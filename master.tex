@@ -275,24 +275,18 @@ This whole process is schematically shown in Figure~\ref{fig:MOOGme_general}
 and the minimization routine itself in Figure~\ref{fig:MOOGme_minimization}.
 The stepping follows these simple equations:
 \begin{align}
-    T_\mathrm{eff}     &+= \frac{700\sign{(a_\mathrm{EP})}}{|\log(|a_\mathrm{EP}|+0.0005)|^3} \\
-    \xi_\mathrm{micro} &+= \frac{0.05\sign{(a_\mathrm{RW})}}{|\log(|a_\mathrm{RW}|+0.0005)|^3} \\
+    T_\mathrm{eff}     &+= \SI{4000}{K} a_\mathrm{EP}   \\
+    \xi_\mathrm{micro} &+= \SI{2.5}{km/s} a_\mathrm{RW} \\
     \log g             &-= \Delta\ion{Fe}.
 \end{align}
 The metallicity is corrected at each step so the input metallicity matches
 that of the output metallicity of the previous iteration. The functional
-form for changing the parameters were found by trial and error. We are looking
-for a function that changes rapidly for high indicators, i.e. we are far from
-the solution, and changes slowly when the indicators have low values. We add
-a small value (0.0005) for the change in $T_\mathrm{eff}$ and $\xi_\mathrm{micro}$,
-in order not to take the logarithm of 0. After having a similar
-function for $\log g$, we see that it could change too rapidly and we will
-get unphysical requests for parameters with high $T_\mathrm{eff}$ and low
-$\log g$. These combinations are not present in the grid we use, and by
-changing the step in $\log g$ as shown above this problem is solved. The
-minimum step we allow is $\{\SI{1}{K}, \SI{0.01}{dex}, \SI{0.01}{dex},
-\SI{0.01}{km/s}\}$ for $T_\mathrm{eff}$, $\log g$, $[\ion{Fe}/\ion{H}]$, and
-$\xi_\mathrm{micro}$, respectively.
+form for changing the parameters were found by changing one parameter,
+e.g. $T_\mathrm{eff}$, while keeping the other parameters fixed at their
+convergence values. A linear fit was applied to $T_\mathrm{eff} - T_\mathrm{eff,0}$
+vs. $a_\mathrm{EP}$ in order to get the slope. Since we ignore all
+interdependencies between the parameters in doing so, we lower the slopes
+above a little and arrive to these very simple equations.
 
 \begin{figure}[tpb]
     \centering
