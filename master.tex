@@ -90,63 +90,62 @@ To date, over 3400 extrasolar planets have been discovered around solar-type
 stars\footnote{For an updated table we refer to \url{http://www.exoplanet.eu}}.
 Most of these have been found thanks to the incredible precision achieved in
 photometric transit and radial velocity methods. The increasing number of
-exoplanets allow us to do
-statistical studies of the newfound worlds by analyzing their internal
-structure, atmospheric composition, and planetary composition.
+exoplanets allow us to do statistical studies of the newfound worlds by
+analyzing their internal structure, atmospheric composition, and planetary
+composition.
 
 A key aspect to this progress is the characterization of the planet host stars.
 For instance, precise and accurate stellar radii are critical if we want to
-measure precise values of the radius of a transiting planet
-\citep[see e.g.][]{Torres2012}. The determination of the stellar radius
-is in turn dependent on the quality of the derived stellar parameters such as
-the effective temperature.
+measure precise values of the radius of a transiting planet \citep[see
+e.g.][]{Torres2012}. The determination of the stellar radius is in turn
+dependent on the quality of the derived stellar parameters such as the effective
+temperature.
 
-We continue the work of \citet{Santos13} by deriving parameters in a
-homogeneous way using the method described in \citet{Sousa2011}. This in turn
-allow us to study planet hosting stars in a homogeneous way and thus
-new correlations may be found, or higher statistical certainty will be
-gained on already discovered correlations for planet hosting stars.
-Analyzing high quality spectra (high spectral resolution and high signal
-to noise ratio (SNR)) for a large sample of stars are both time consuming
-and very timely due to the amount of optical spectrographs with a high
-spectral resolution and a high request for observations. Additionally,
-a number of near-IR spectrographs are either planned or already available
-making the task of analyzing the increasing amount of spectra even more
-important. In the era of large data sets, computation time has to be decreased
-as much as possible without compromising the quality of the results.
-In the light of this we have developed a tool to derive atmospheric
-parameters fast using standard spectroscopic methods. This works well
-for optical spectra which we demonstrate in Section~\ref{sub:Testing_MOOGme}
-using the line list from \citet{Sousa2011}. This tool also ships with
-a line list for near-IR spectra using the line list presented recently
-in \citet{Andreasen2016}. The tool is provided to the community as an
-easy to use web tool to avoid any problems with installations. The tool
-is described in details in Section~\ref{sub:Web interface}.
+We continue the work of \citet{Santos13} by deriving parameters in a homogeneous
+way using the method described in \citet{Sousa2011}. This in turn allow us to
+study planet hosting stars in a homogeneous way and thus new correlations may be
+found, or higher statistical certainty will be gained on already discovered
+correlations for planet hosting stars. Analyzing high quality spectra (high
+spectral resolution and high signal to noise ratio (SNR)) for a large sample of
+stars are both time consuming and very timely due to the amount of optical
+spectrographs with a high spectral resolution and a high request for
+observations. Additionally, a number of near-IR spectrographs are either planned
+or already available making the task of analyzing the increasing amount of
+spectra even more important. In the era of large data sets, computation time has
+to be decreased as much as possible without compromising the quality of the
+results. In the light of this we have developed a tool to derive atmospheric
+parameters fast using standard spectroscopic methods. This works well for
+optical spectra which we demonstrate in Section~\ref{sub:Testing_MOOGme} using
+the line list from \citet{Sousa2011}. This tool also ships with a line list for
+near-IR spectra using the line list presented recently in \citet{Andreasen2016}.
+The tool is provided to the community as an easy to use web tool to avoid any
+problems with installations. The tool is described in details in
+Section~\ref{sec:MOOGme}.
 
 
 
 \section{Data}
 \label{sec:data}
-We obtain spectra related to this work by using the UVES \citep{UVES},
-FEROS \citep{FEROS}, and FIES \citep{FIES} spectrographs. Other spectra
-were found in various archives. Additionally, we use spectra from
-HARPS \citep{HARPS} and ESPaDOnS. Some characteristics of the spectrographs are presented in
-Table~\ref{tab:instruments} with the mean SNR for the spectra used.
-The SNR for each star can be seen in Table~\ref{tab:results} along with
-the atmospheric parameters of the stars.
+We obtain spectra related to this work by using the UVES \citep{UVES}, FEROS
+\citep{FEROS}, and FIES \citep{FIES} spectrographs. Other spectra were found in
+various archives. Additionally, we use spectra from HARPS \citep{HARPS} and
+ESPaDOnS. Some characteristics of the spectrographs are presented in
+Table~\ref{tab:instruments} with the mean SNR for the spectra used. The SNR for
+each star can be seen in Table~\ref{tab:results} along with the atmospheric
+parameters of the stars.
 
-We obtain the spectra with the highest possible resolution
-for a given spectrograph, and in cases there are multiple observations,
-we include all unless a spectrum is close to the saturation limit
-for a given spectrograph. For multiple spectra, we combine them
-after first correcting the radial velocity (RV) and using a sigma clipper to
-remove cosmic rays. The individual spectra are then combined to a single
-spectrum for a given star to increase the SNR. This single spectrum is used
-in the analysis below. For most of the spectra in the archive included here,
-several spectra were combined as described above, while for the observations
-dedicated to this work, the spectrum would be a single spectrum. This is mostly
-due to the difference in science cases behind the observations. E.g. the HARPS
-spectra were used for RV monitoring or follow up of the exoplanet(s).
+We obtain the spectra with the highest possible resolution for a given
+spectrograph, and in cases there are multiple observations, we include all
+unless a spectrum is close to the saturation limit for a given spectrograph. For
+multiple spectra, we combine them after first correcting the radial velocity
+(RV) and using a sigma clipper to remove cosmic rays. The individual spectra are
+then combined to a single spectrum for a given star to increase the SNR. This
+single spectrum is used in the analysis below. For most of the spectra in the
+archive included here, several spectra were combined as described above, while
+for the observations dedicated to this work, the spectrum would be a single
+spectrum. This is mostly due to the difference in science cases behind the
+observations. E.g. the HARPS spectra were used for RV monitoring or follow up of
+the exoplanet(s).
 
 
 \begin{table}[htb!]
@@ -171,15 +170,16 @@ spectra were used for RV monitoring or follow up of the exoplanet(s).
 
 \section{MOOGme}
 \label{sec:MOOGme}
-MOOGme (acronym for MOOG made easy) is a web tool\footnote{\url{super-cool-address-with-MOOGme}}
-for analyzing spectra. MOOGme is written in Python and works as a wrapper around MOOG
-\citep{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one tool.
-MOOG is a radiative transfer code under the assumption of local
-thermodynamic equilibrium (LTE). And ARES is a tool to automatically measure equivalent
-widths (EW) from a spectrum given a line list. MOOGme has
-three different modes: i) Measure EWs using ARES, ii) derive stellar parameters
-from a set of measured \ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii)
-measure abundances for XXX elements, all described below. We use the Kurucz atmospheric grid from
+MOOGme (acronym for MOOG made easy) is a web
+tool\footnote{\url{super-cool-address-with-MOOGme}} for analyzing spectra.
+MOOGme is written in Python and works as a wrapper around MOOG
+\citep{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one tool. MOOG is
+a radiative transfer code under the assumption of local thermodynamic
+equilibrium (LTE). And ARES is a tool to automatically measure equivalent widths
+(EW) from a spectrum given a line list. MOOGme has three different modes: i)
+Measure EWs using ARES, ii) derive stellar parameters from a set of measured
+\ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) measure abundances for XXX
+elements, all described below. We use the Kurucz atmospheric grid from
 \citet{Kurucz1993}.
 
 
@@ -190,27 +190,26 @@ can be done manually using a tool like IRAF, but often when dealing with a large
 sample of stars this is not a suitable way to deal with the problem. Therefore
 tools like ARES exists which can measure the EW of spectral lines automatically.
 To use this mode of MOOGme, it just need a spectrum (format should be 1D fits
-for ARES to read it) and a line
-list. For the latter, MOOGme is shipped with some line lists ready to use, in
-the format suitable for MOOGme. The output will be a line list in the format
-required for MOOG. The output can be used for either the EW method or the
-abundance method, both described below.
+for ARES to read it) and a line list. For the latter, MOOGme is shipped with
+some line lists ready to use, in the format suitable for MOOGme. The output will
+be a line list in the format required for MOOG. The output can be used for
+either the EW method or the abundance method, both described below.
 
 
 
 \subsection{EW method}
 \label{sub:EW_method}
-With measured EWs of \ion{Fe}{I} and \ion{Fe}{II} lines we calculate abundances using a
-stellar atmosphere model with a given set of atmospheric parameters,
+With measured EWs of \ion{Fe}{I} and \ion{Fe}{II} lines we calculate abundances
+using a stellar atmosphere model with a given set of atmospheric parameters,
 effective temperature ($T_\mathrm{eff}$), surface gravity ($\log g$),
 metallicity ([Fe/H], where iron often is used as a proxy), and the micro
 turbulence ($\xi_\mathrm{micro}$). By removing correlations between the measured
-abundances (through the measured EWs) and the excitation potential (EP) and reduced
-EW ($\log(EW/\lambda)$) we can constrain $T_\mathrm{eff}$ and $\xi_\mathrm{micro}$. By
-obtaining ionization balance between \ion{Fe}{I} and \ion{Fe}{II}, that is
-the average abundance of all \ion{Fe}{I} lines are equal to the average
-abundance of all \ion{Fe}{II} lines, we constrain $\log g$. Last, we change
-the input [\ion{Fe}/\ion{H}] to match that of the average output
+abundances (through the measured EWs) and the excitation potential (EP) and
+reduced EW ($\log(EW/\lambda)$) we can constrain $T_\mathrm{eff}$ and
+$\xi_\mathrm{micro}$. By obtaining ionization balance between \ion{Fe}{I} and
+\ion{Fe}{II} (that is the average abundance of all \ion{Fe}{I} lines are equal
+to the average abundance of all \ion{Fe}{II} lines) we constrain $\log g$. Last,
+we change the input [\ion{Fe}/\ion{H}] to match that of the average output
 [\ion{Fe}/\ion{H}]. Hence we have four criteria to minimize simultaneously:
 
 \begin{enumerate}
@@ -220,9 +219,9 @@ the input [\ion{Fe}/\ion{H}] to match that of the average output
           \ion{Fe}{II} ($\Delta\ion{Fe}{}\le0.01$).
     \item Input and output metallicity should be equal.
 \end{enumerate}
-These criteria we denote as indicators for the physical parameters which
-we are trying to minimize for. We denote this method for obtaining stellar
-parameters for the EW method.
+These criteria we denote as indicators for the physical parameters which we are
+trying to minimize for. We denote this method for obtaining stellar parameters
+for the EW method.
 
 \begin{figure}[tpb]
     \centering
@@ -231,26 +230,24 @@ parameters for the EW method.
     \label{fig:MOOGme_general}
 \end{figure}
 
-There exists many minimization routines available in Python. Most commonly
-known are the ones from the SciPy ecosystem\footnote{\url{http://scipy.org}}.
-There are some pros and cons with using proprietary minimization routines.
-Pros are that it is already written, and usually there are good documentation
-in libraries such as SciPy. Cons in this situation is, that most minimization
+There exists many minimization routines available in Python. Most commonly known
+are the ones from the SciPy ecosystem\footnote{\url{http://scipy.org}}. There
+are some pros and cons with using proprietary minimization routines. Pros are
+that it is already written, and usually there are good documentation in
+libraries such as SciPy. Cons in this situation is, that most minimization
 routines do not work well with vector functions returning another vector:
 \begin{align}
     f(\{T_\mathrm{eff}, \log g, [Fe/H], \xi_\mathrm{micro}\}) = \{a_\mathrm{EP}, a_\mathrm{RW}, \Delta\ion{Fe}, \ion{Fe}{I}\}.
 \end{align}
-A work around is
-to combine the criteria into one single criteria by e.g. adding them
-quadratically and minimize that expression instead. Thus we have a vector
+A work around is to combine the criteria into one single criteria by e.g. adding
+them quadratically and minimize that expression instead. Thus we have a vector
 funtion returning a scalar:
 \begin{align}
     f(\{T_\mathrm{eff}, \log g, [Fe/H], \xi_\mathrm{micro}\}) &= \sqrt{a_\mathrm{EP}^2 + a_\mathrm{RW}^2 + \Delta\ion{Fe}{}^2}.
 \end{align}
-The minimization routines
-are also not physical in the sense that they are not optimized for the problem.
-These two cons were incitement for writing a minimization routine optimized for the
-problem at hand. Here is how it works.
+The minimization routines are also not physical in the sense that they are not
+optimized for the problem. These two cons were incitement for writing a
+minimization routine optimized for the problem at hand. Here is how it works.
 
 \begin{enumerate}
     \item Run MOOG once with a user defined initial parameters (default is
@@ -278,22 +275,22 @@ problem at hand. Here is how it works.
           the indicators. If we do not reach convergence, then return the best
           found parameters.
 \end{enumerate}
-This whole process is schematically shown in Figure~\ref{fig:MOOGme_general}
-and the minimization routine itself in Figure~\ref{fig:MOOGme_minimization}.
-The stepping follows these simple equations:
+This whole process is schematically shown in Figure~\ref{fig:MOOGme_general} and
+the minimization routine itself in Figure~\ref{fig:MOOGme_minimization}. The
+stepping follows these simple equations:
 \begin{align}
     T_\mathrm{eff}     &+= \SI{4000}{K} a_\mathrm{EP}   \\
     \xi_\mathrm{micro} &+= \SI{2.5}{km/s} a_\mathrm{RW} \\
     \log g             &-= \Delta\ion{Fe}.
 \end{align}
-The metallicity is corrected at each step so the input metallicity matches
-that of the output metallicity of the previous iteration. The functional
-form for changing the parameters were found by changing one parameter,
-e.g. $T_\mathrm{eff}$, while keeping the other parameters fixed at their
-convergence values. A linear fit was applied to $T_\mathrm{eff} - T_\mathrm{eff,0}$
-vs. $a_\mathrm{EP}$ in order to get the slope. Since we ignore all
-interdependencies between the parameters in doing so, we lower the slopes
-above a little and arrive to these very simple equations.
+The metallicity is corrected at each step so the input metallicity matches that
+of the output metallicity of the previous iteration. The functional form for
+changing the parameters were found by changing one parameter, e.g.
+$T_\mathrm{eff}$, while keeping the other parameters fixed at their convergence
+values. A linear fit was applied to $T_\mathrm{eff} - T_\mathrm{eff,0}$ vs.
+$a_\mathrm{EP}$ in order to get the slope. Since we ignore all interdependencies
+between the parameters in doing so, we lower the slopes above a little and
+arrive to these very simple equations.
 
 \begin{figure}[tpb]
     \centering
@@ -304,8 +301,8 @@ above a little and arrive to these very simple equations.
 \end{figure}
 
 By using the indicators like this, we can relative fast reach convergence.
-Typical calculation time for an FGKM dwarf with a high quality spectrum
-is around $\SI{2}{min}$.
+Typical calculation time for an FGK dwarf with a high quality spectrum is around
+$\SI{2}{min}$.
 
 \subsubsection{Options}
 \label{subs:EWoptions}
@@ -334,46 +331,44 @@ will be described here.
           convergence criteria can be changed by the user, but we recommend
           using the defaults provided above.
 \end{itemize}
-If $\xi_\mathrm{micro}$ is fixed it is changed at each iteration according to
-an empirical relation. For dwarfs it follows the one presented in
+If $\xi_\mathrm{micro}$ is fixed it is changed at each iteration according to an
+empirical relation. For dwarfs it follows the one presented in
 \citet{Tsantaki2013} and for giants it follows the one presented in
 \citet{Adibekyan2015}.
 
 We use the line list presented in \citet{Sousa2008a}. However, this line list
-does not work well for cool stars. This was fixed in \citet{Tsantaki2013}
-by removing some lines from \citet{Sousa2008a}. For stars cooler than
-\SI{5200}{K} we automatically rederive the atmospheric parameters after
-removing lines so the line list resemble that of \citet{Tsantaki2013}.
+does not work well for cool stars. This was fixed in \citet{Tsantaki2013} by
+removing some lines from \citet{Sousa2008a}. For stars cooler than \SI{5200}{K}
+we automatically rederive the atmospheric parameters after removing lines so the
+line list resemble that of \citet{Tsantaki2013}.
 
-All restarts of the minimization routine is done with initial condition at
-the last found best parameters.
+All restarts of the minimization routine is done with initial condition at the
+last found best parameters.
 
 
 \subsection{Abundance method}
 \label{sub:Abundance_method}
 
-With the line list from \citet{Adibekyan...} with XXX different elements
-it is possible to measure abundances for these elements by combining the
-ARES mode to measure the EWs and the EW method mode to obtain the atmospheric
-parameters. The abundances are saved to a table.
+With the line list from \citet{Adibekyan...} with 15 different elements it is
+possible to measure abundances for these elements by combining the ARES mode to
+measure the EWs and the EW method mode to obtain the atmospheric parameters. The
+abundances are saved to a table.
 
 
 \subsection{Testing MOOGme}
 \label{sub:Testing_MOOGme}
-To test the EW method implemented in MOOGme we derive
-parameters from the 582 sample by \citet{Sousa2011}. We use ARES2
-to measure the EWs. ARES can give an estimate on the signal to
-noise ratio (SNR) by analyzing the continuum in given intervals.
-For solar type stars the following intervals are working well:
+To test the EW method implemented in MOOGme we derive parameters from the 582
+sample by \citet{Sousa2011}. We use ARES2 to measure the EWs. ARES can give an
+estimate on the signal to noise ratio (SNR) by analyzing the continuum in given
+intervals. For solar type stars the following intervals are working well:
 \SIrange{5764}{5766}{\angstrom}, \SIrange{6047}{6053}{\angstrom}, and
-\SIrange{6068}{6076}{\angstrom}. From the estimated SNR, ARES can give
-an estimate on the very important \emph{rejt} parameters
-\citep[see][for more information]{Sousa2015a}. After measuring the EWs
-with ARES, we use the MOOGme minimization described in
-Section~\ref{sub:EW_method} to determine the stellar atmospheric parameters.
-The results are presented in Figure~\ref{fig:MOOGmeTest} which shows
-$T_\mathrm{eff}$, $\log g$, [\ion{Fe}/\ion{H}], and $\xi_\mathrm{micro}$
-for MOOGme against those of \citet{Sousa2011}.
+\SIrange{6068}{6076}{\angstrom}. From the estimated SNR, ARES can give an
+estimate on the very important \emph{rejt} parameters \citep[see][for more
+information]{Sousa2015a}. After measuring the EWs with ARES, we use the MOOGme
+minimization described in Section~\ref{sub:EW_method} to determine the stellar
+atmospheric parameters. The results are presented in Figure~\ref{fig:MOOGmeTest}
+which shows $T_\mathrm{eff}$, $\log g$, [\ion{Fe}/\ion{H}], and
+$\xi_\mathrm{micro}$ for MOOGme against those of \citet{Sousa2011}.
 
 \begin{figure*}[tpb]
     \centering
@@ -383,55 +378,56 @@ for MOOGme against those of \citet{Sousa2011}.
     \label{fig:MOOGmeTest}
 \end{figure*}
 
-The sample contains stars with $T_\mathrm{eff}$ too cold for the line
-list used. As described in Section~\ref{sub:EW_method} we should then
-convert the line list by \citet{Sousa2008a} to the line list presented
-in \citet{Tsantaki2013}. However, since this line list was not available
-when \citet{Sousa2011} derived parameters, we do not make this change
-in order to make a better test for MOOGme.
+The sample contains stars with $T_\mathrm{eff}$ too cold for the line list used.
+As described in Section~\ref{sub:EW_method} we should then convert the line list
+by \citet{Sousa2008a} to the line list presented in \citet{Tsantaki2013}.
+However, since this line list was not available when \citet{Sousa2011} derived
+parameters, we do not make this change in order to make a better test for
+MOOGme.
 
-The mean of the difference between parameters from \citet{Sousa2011} and
-those by MOOGme are presented in Table~\ref{tab:MOOGmeTest}.
+The mean of the difference between parameters from \citet{Sousa2011} and those
+by MOOGme are presented in Table~\ref{tab:MOOGmeTest}.
 
 \begin{table}[htb!]
     \caption{The difference in derived parameters by \citet{Sousa2011}
-    and MOOGme.}
+    and MOOGme. Second column is the mean difference with EWs measured by
+    ARES in MOOGme, while the third column is the mean difference using
+    20 randomly stars with the exact same line list.}
     \label{tab:MOOGmeTest}
     \centering
     \begin{tabular}{lrr}
       \hline\hline
-      Parameter             &  Mean difference         & Mean difference (same line list) \\
+      Parameter             &  Mean difference         & Same line list        \\
       \hline
-      $T_\mathrm{eff}$      &  $\SI{16(36)}{K}$        & $\SI{21(11)}{K}$                 \\
-      $\log g$              &  $\num{-0.04(7)}$        & $\num{-0.007(9)}$                \\
-      $[\ion{Fe}/\ion{H}]$  &  $\num{0.03(2)}$         & $\num{0.004(9)}$                 \\
-      $\xi_\mathrm{micro}$  &  $\SI{-0.04(14)}{km/s}$  & $\SI{0.04(2)}{km/s}$             \\
+      $T_\mathrm{eff}$      &  $\SI{16(36)}{K}$        & $\SI{21(11)}{K}$      \\
+      $\log g$              &  $\num{-0.04(7)}$        & $\num{-0.007(9)}$     \\
+      $[\ion{Fe}/\ion{H}]$  &  $\num{0.03(2)}$         & $\num{0.004(9)}$      \\
+      $\xi_\mathrm{micro}$  &  $\SI{-0.04(14)}{km/s}$  & $\SI{0.04(2)}{km/s}$  \\
       \hline
     \end{tabular}
 \end{table}
 
 We see small offsets that can be due to different versions of MOOG, measured
 line lists, interpolation of atmosphere grid, and minimization routine. Most
-likely the difference will be due to different used \emph{rejt} parameters
-in ARES, which can alter the EWs and hence the parameters. We therefore randomly
+likely the difference will be due to different used \emph{rejt} parameters in
+ARES, which can alter the EWs and hence the parameters. We therefore randomly
 selected 20 stars with different $T_\mathrm{eff}$ and used the line lists
-directly from \citet{Sousa2011} to derive parameters. The results are
-presented in the last column of Table~\ref{tab:MOOGmeTest}. We note that
-the $\log gf$ values from the original line lists by \citet{Sousa2011}, which
-used the MOOG 2002 version, were not changed for the 2014 version of MOOG.
-This might lead to some errors as well. However, the offsets are very small
-and compatible with the errors on parameters normally obtained from high
-quality spectra.
+directly from \citet{Sousa2011} to derive parameters. The results are presented
+in the last column of Table~\ref{tab:MOOGmeTest}. We note that the $\log gf$
+values from the original line lists by \citet{Sousa2011}, which used the MOOG
+2002 version, were not changed for the 2014 version of MOOG. This might lead to
+some errors as well. However, the offsets are very small and compatible with the
+errors on parameters normally obtained from high quality spectra.
 
 
 \subsection{Web interface}
 \label{sub:Web interface}
 NOTE: More will be written once we have a web page.
 
-We provide a web interface for MOOGme. In the web interface it is
-possible to use some of the line list provided with MOOGme to
-measure EWs of a spectrum (has to be provided by the user). This
-can be used for all the available MOOGme methods described above.
+We provide a web interface for MOOGme. In the web interface it is possible to
+use some of the line list provided with MOOGme to measure EWs of a spectrum (has
+to be provided by the user). This can be used for all the available MOOGme
+methods described above.
 
 The web interface can be found at the following link
 \url{super-cool-address-with-MOOGme}.
@@ -441,7 +437,9 @@ The web interface can be found at the following link
 \section{New spectroscopic parameters for 49 planet hosts}
 \label{sec:results}
 Here we present the sample of 50 stars. We were unable to derive parameters for
-HD77065. This is a spectroscopic binary according to \cite{Pourbaix2004}.
+HD77065. This is a spectroscopic binary according to \cite{Pourbaix2004}, and
+the spectrum is contaminated with the companion star. This make EW measurement
+very difficult, hence we exclude it from the sample.
 
 The remaining 49 stars are presented in Table~\ref{tab:results}.
 
@@ -507,7 +505,12 @@ The remaining 49 stars are presented in Table~\ref{tab:results}.
     \end{tabular}
 \end{table*}
 We present a Hertzprung-Russel diagram (HRD) of our sample in
-Figure~\ref{fig:HRD}.
+Figure~\ref{fig:HRD}. Figure~\ref{fig:HRD} is made with a tool for post
+processing the results saved to a table by MOOGme. We also use isochrones
+\citep{Morton2015} to give an estimate of the age. The mass estimation is based
+on the relation by \citet{Torres2010}. The age estimation is dependent on the
+mass of the star and the metallicity, which can be seen Figure~\ref{fig:age}.
+
 \begin{figure}[tpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/HR.pdf}
@@ -519,11 +522,6 @@ Figure~\ref{fig:HRD}.
     \label{fig:HRD}
 \end{figure}
 
-Figure~\ref{fig:HRD} is made with a tool for post processing the results
-saved to a table by MOOGme. We also use isochrones \citep{Morton2015}
-to give an estimate of the age. The mass estimation is based on the relation
-by \citet{Torres2010}. The age estimation is dependent on the mass of the
-star and the metallicity, which can be seen Figure~\ref{fig:age}.
 
 \begin{figure}[tpb]
     \centering
@@ -543,23 +541,21 @@ star and the metallicity, which can be seen Figure~\ref{fig:age}.
 
 \begin{acknowledgements}
 
-This work was supported by Funda\c{c}\~ao para a Ci\^encia e a
-Tecnologia (FCT) through the research grants UID/FIS/04434/2013 and
-PTDC/FIS-AST/1526/2014. N.C.S., and S.G.S. acknowledge the support from
-FCT through Investigador FCT contracts of reference IF/00169/2012, and
-IF/00028/2014, respectively, and POPH/FSE (EC) by FEDER funding through
-the program “Programa Operacional de Factores de Competitividade
-- COMPETE”. E.D.M. and B.J.A. acknowledge the support from FCT in
-form of the fellowship SFRH/BPD/76606/2011 and SFRH/BPD/87776/2012,
-respectively. This work also benefit from the collaboration of a
-cooperation project FCT/CAPES - 2014/2015 (FCT Proc 4.4.1.00 CAPES).
+This work was supported by Funda\c{c}\~ao para a Ci\^encia e a Tecnologia (FCT)
+through the research grants UID/FIS/04434/2013 and PTDC/FIS-AST/1526/2014.
+N.C.S., and S.G.S. acknowledge the support from FCT through Investigador FCT
+contracts of reference IF/00169/2012, and IF/00028/2014, respectively, and
+POPH/FSE (EC) by FEDER funding through the program “Programa Operacional de
+Factores de Competitividade - COMPETE”. E.D.M. and B.J.A. acknowledge the
+support from FCT in form of the fellowship SFRH/BPD/76606/2011 and
+SFRH/BPD/87776/2012, respectively. This work also benefit from the collaboration
+of a cooperation project FCT/CAPES - 2014/2015 (FCT Proc 4.4.1.00 CAPES).
 
 AM received funding from the European Union Seventh Framework Programme
 (FP7/2007-2013) under grant agreement number 313014 (ETAEARTH).
 
-
-This research has made use of the SIMBAD database operated at CDS,
-Strasbourg (France).
+This research has made use of the SIMBAD database operated at CDS, Strasbourg
+(France).
 
 \end{acknowledgements}
 
