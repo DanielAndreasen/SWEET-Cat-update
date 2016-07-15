@@ -96,13 +96,13 @@ composition.
 
 A key aspect to this progress is the characterization of the planet host stars.
 For instance, precise and accurate stellar radii are critical if we want to
-measure precise values of the radius of a transiting planet \citep[see
-e.g.][]{Torres2012}. The determination of the stellar radius is in turn
-dependent on the quality of the derived stellar parameters such as the effective
-temperature.
+measure precise values of the radius of a transiting planet
+\citep[seee.g.][]{,Mortier2013,Torres2012}. The determination of the stellar
+radius is in turn dependent on the quality of the derived stellar parameters
+such as the effective temperature.
 
 We continue the work of \citet{Santos13} by deriving parameters in a homogeneous
-way using the method described in \citet{Sousa2011}. This in turn allow us to
+way using the method described in \citet{Sousa2011}. This in turn allows us to
 study planet hosting stars in a homogeneous way and thus new correlations may be
 found, or higher statistical certainty will be gained on already discovered
 correlations for planet hosting stars. Analyzing high quality spectra (high
@@ -129,13 +129,13 @@ Section~\ref{sec:MOOGme}.
 We obtain spectra related to this work by using the UVES \citep{UVES}, FEROS
 \citep{FEROS}, and FIES \citep{FIES} spectrographs. Other spectra were found in
 various archives. Additionally, we use spectra from HARPS \citep{HARPS} and
-ESPaDOnS. Some characteristics of the spectrographs are presented in
-Table~\ref{tab:instruments} with the mean SNR for the spectra used. The SNR for
-each star can be seen in Table~\ref{tab:results} along with the atmospheric
-parameters of the stars.
+ESPaDOnS \citep{ESPADONS}. Some characteristics of the spectrographs are
+presented in Table~\ref{tab:instruments} with the mean SNR for the spectra used.
+The SNR for each star can be seen in Table~\ref{tab:results} along with the
+atmospheric parameters of the stars.
 
 We obtain the spectra with the highest possible resolution for a given
-spectrograph, and in cases there are multiple observations, we include all
+spectrograph, and in cases with multiple observations, we include all
 unless a spectrum is close to the saturation limit for a given spectrograph. For
 multiple spectra, we combine them after first correcting the radial velocity
 (RV) and using a sigma clipper to remove cosmic rays. The individual spectra are
@@ -149,7 +149,8 @@ the exoplanet(s).
 
 
 \begin{table}[htb!]
-    \caption{This is a caption}
+    \caption{Spectrograpgs used for this paper with their spectral resolution,
+             wavelength coverage, and typical (mean) SNR from the spectra used.}
     \label{tab:instruments}
     \centering
     \begin{tabular}{llll}
@@ -175,10 +176,10 @@ tool\footnote{\url{super-cool-address-with-MOOGme}} for analyzing spectra.
 MOOGme is written in Python and works as a wrapper around MOOG
 \citep{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one tool. MOOG is
 a radiative transfer code under the assumption of local thermodynamic
-equilibrium (LTE). And ARES is a tool to automatically measure equivalent widths
+equilibrium (LTE). ARES is a tool to automatically measure equivalent widths
 (EW) from a spectrum given a line list. MOOGme has three different modes: i)
 Measure EWs using ARES, ii) derive stellar parameters from a set of measured
-\ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) measure abundances for XXX
+\ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) abundances derivation for 15
 elements, all described below. We use the Kurucz atmospheric grid from
 \citet{Kurucz1993}.
 
@@ -188,12 +189,31 @@ elements, all described below. We use the Kurucz atmospheric grid from
 EW measurements are essential for the EW method and to obtain abundances. This
 can be done manually using a tool like IRAF, but often when dealing with a large
 sample of stars this is not a suitable way to deal with the problem. Therefore
-tools like ARES exists which can measure the EW of spectral lines automatically.
-To use this mode of MOOGme, it just need a spectrum (format should be 1D fits
+tools like ARES exist which can measure the EWs of spectral lines automatically.
+To use this mode of MOOGme, it just needs a spectrum (format should be 1D fits
 for ARES to read it) and a line list. For the latter, MOOGme is shipped with
 some line lists ready to use, in the format suitable for MOOGme. The output will
 be a line list in the format required for MOOG. The output can be used for
 either the EW method or the abundance method, both described below.
+
+The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}
+
+\begin{table}[htb!]
+    \caption{The line lists provided with MOOGme. The first two line lists
+             are for parameter determination while the last line list is
+             used to derive abundances for 15 different elements.}
+    \label{tab:linelist}
+    \centering
+    \begin{tabular}{lrr}
+      \hline\hline
+      Line list            & \ion{Fe}{I}/\ion{Fe}{II} & # elements & Usage      \\
+      \hline
+      \citet{Sousa2008a}   &  263/36                  &  1         & Parameters \\
+      \citet{Tsantaki2013} &  120/17                  &  1         & Parameters \\
+      \citet{Neves2009}    &  -/-                     & 15         & Abundances \\
+      \hline
+    \end{tabular}
+\end{table}
 
 
 
@@ -202,19 +222,22 @@ either the EW method or the abundance method, both described below.
 With measured EWs of \ion{Fe}{I} and \ion{Fe}{II} lines we calculate abundances
 using a stellar atmosphere model with a given set of atmospheric parameters,
 effective temperature ($T_\mathrm{eff}$), surface gravity ($\log g$),
-metallicity ([Fe/H], where iron often is used as a proxy), and the micro
-turbulence ($\xi_\mathrm{micro}$). By removing correlations between the measured
-abundances (through the measured EWs) and the excitation potential (EP) and
-reduced EW ($\log(EW/\lambda)$) we can constrain $T_\mathrm{eff}$ and
-$\xi_\mathrm{micro}$. By obtaining ionization balance between \ion{Fe}{I} and
-\ion{Fe}{II} (that is the average abundance of all \ion{Fe}{I} lines are equal
-to the average abundance of all \ion{Fe}{II} lines) we constrain $\log g$. Last,
-we change the input [\ion{Fe}/\ion{H}] to match that of the average output
-[\ion{Fe}/\ion{H}]. Hence we have four criteria to minimize simultaneously:
+metallicity ([Fe/H], where iron often is used as a proxy for the total
+metallicity), and the micro turbulence ($\xi_\mathrm{micro}$). By removing
+correlations between the measured abundances (through the measured EWs) and the
+excitation potential (EP) and reduced EW ($\log(EW/\lambda)$) we can constrain
+$T_\mathrm{eff}$ and $\xi_\mathrm{micro}$. By obtaining ionization balance
+between \ion{Fe}{I} and \ion{Fe}{II} (that is the average abundance of all
+\ion{Fe}{I} lines are equal to the average abundance of all \ion{Fe}{II} lines)
+we constrain $\log g$. Last, we change the input [\ion{Fe}/\ion{H}] to match
+that of the average output [\ion{Fe}/\ion{H}]. Hence we have four criteria to
+minimize simultaneously:
 
 \begin{enumerate}
     \item The slope between abundance and excitation potential ($a_\mathrm{EP}\le0.001$).
     \item The slope between abundance and reduced EW ($a_\mathrm{RW}\le0.003$).
+          We use 0.003 rather than 0.001 since this slope varies more rapidly
+          with small changes in atmospheric parameters.
     \item The difference between the average abundances of \ion{Fe}{I} and
           \ion{Fe}{II} ($\Delta\ion{Fe}{}\le0.01$).
     \item Input and output metallicity should be equal.
@@ -233,7 +256,7 @@ for the EW method.
 There exists many minimization routines available in Python. Most commonly known
 are the ones from the SciPy ecosystem\footnote{\url{http://scipy.org}}. There
 are some pros and cons with using proprietary minimization routines. Pros are
-that it is already written, and usually there are good documentation in
+that it is already written, and usually there is good documentation in
 libraries such as SciPy. Cons in this situation is, that most minimization
 routines do not work well with vector functions returning another vector:
 \begin{align}
@@ -260,8 +283,8 @@ minimization routine optimized for the problem at hand. Here is how it works.
         \item $a_\mathrm{EP}$: Indicator for $T_\mathrm{eff}$. If this value
               is positive, then increase $T_\mathrm{eff}$.
         \item $a_\mathrm{RW}$: Same as above but for $\xi_\mathrm{micro}$.
-        \item $\Delta$\ion{Fe}{}: Same as above but for $\log g$. Positive
-              $\Delta$\ion{Fe}{} means $\log g$ should be decreased.
+        \item $\Delta$\ion{Fe}{}: Positive $\Delta$\ion{Fe}{} means $\log g$
+              should be decreased and vice versa.
         \item For [\ion{Fe}/\ion{H}] it is changed to the output [\ion{Fe}/\ion{H}]
               in each iteration.
     \end{itemize}
@@ -291,6 +314,10 @@ values. A linear fit was applied to $T_\mathrm{eff} - T_\mathrm{eff,0}$ vs.
 $a_\mathrm{EP}$ in order to get the slope. Since we ignore all interdependencies
 between the parameters in doing so, we lower the slopes above a little and
 arrive to these very simple equations.
+
+The error estimates is based on the same method presented in
+\citet{Gonzalez2000}, which is also described in details in
+\citet{Santos2003,Andreasen2016}.
 
 \begin{figure}[tpb]
     \centering
@@ -498,6 +525,7 @@ The remaining 49 stars are presented in Table~\ref{tab:results}.
     HD 285507     &  $4620 \pm 126$      &  $4.42 \pm 0.61$    &  $ 0.04 \pm 0.06$    &  $0.74 \pm 0.43$             &             no              & FIES         &  239  \\  % 094.C-0367                                                                                                              \\
      HD 37124     &  $5468 \pm  32$      &  $4.28 \pm 0.04$    &  $-0.43 \pm 0.03$    &  $0.67 \pm 0.07$             &             no              & FIES         &  991  \\  % 53-202                                                                                                                  \\
     *HD 37124     &  $5470 \pm  32$      &  $4.28 \pm 0.04$	   &  $-0.43 \pm 0.03$    &  $0.67 \pm 0.07$             &             no              & FIES         &  991  \\
+      HD 5583     &  $4980 \pm  35$      &  $2.76 \pm 0.06$    &  $-0.36 \pm 0.04$    &  $1.59 \pm 0.04$             &             no              & FIES         &  936  \\
      HD 70573     &  $5889 \pm 186$      &  $4.32 \pm 0.27$    &  $-0.42 \pm 0.13$    &  $1.14 \pm 0.01$             &             yes             & FIES         &  487  \\  % 53-202                                                                                                                  \\
      HD 81688     &  $4906 \pm  29$      &  $2.69 \pm 0.06$    &  $-0.21 \pm 0.02$    &  $1.60 \pm 0.03$             &             no              & ESPaDOnS     & 1019  \\  % 14AF14, 53-202                                                                                                          \\
     *HD 81688     &  $4913 \pm  29$      &  $2.64 \pm 0.07$	   &  $-0.21 \pm 0.02$    &  $1.57 \pm 0.03$             &             no              & FIES         & 1253  \\
