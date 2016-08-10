@@ -90,22 +90,25 @@ To date, over 3400 extrasolar planets have been discovered around solar-type
 stars\footnote{For an updated table we refer to \url{http://www.exoplanet.eu}}.
 Most of these have been found thanks to the incredible precision achieved in
 photometric transit and radial velocity methods. The increasing number of
-exoplanets allow us to do statistical studies of the newfound worlds by
+exoplanets allows us to do statistical studies of the newfound worlds by
 analyzing their internal structure, atmospheric composition, and planetary
 composition.
 
 A key aspect to this progress is the characterization of the planet host stars.
 For instance, precise and accurate stellar radii are critical if we want to
 measure precise values of the radius of a transiting planet
-\citep[seee.g.][]{,Mortier2013,Torres2012}. The determination of the stellar
+\citep[see e.g.][]{,Mortier2013,Torres2012}. The determination of the stellar
 radius is in turn dependent on the quality of the derived stellar parameters
 such as the effective temperature.
 
-We continue the work of \citet{Santos13} by deriving parameters in a homogeneous
-way using the method described in \citet{Sousa2011}. This in turn allows us to
-study planet hosting stars in a homogeneous way and thus new correlations may be
-found, or higher statistical certainty will be gained on already discovered
-correlations for planet hosting stars. Analyzing high quality spectra (high
+We continue the work of \citet{Santos13} by deriving atmospheric parameters, namely 
+the effective temperature ($T_\mathrm{eff}$), surface gravity ($\log g$),
+metallicity ([Fe/H], where iron often is used as a proxy for the total
+metallicity), and the micro turbulence ($\xi_\mathrm{micro}$) in a homogeneous
+way for a sample of planet host stars. This in turn, allows us to
+study new correlations between planets and their hosts in a homogeneous way, 
+or gain higher statistical certainty on the already discovered
+correlations. Analyzing high quality spectra (high
 spectral resolution and high signal to noise ratio (SNR)) for a large sample of
 stars are both time consuming and very timely due to the amount of optical
 spectrographs with a high spectral resolution and a high request for
@@ -114,7 +117,7 @@ or already available making the task of analyzing the increasing amount of
 spectra even more important. In the era of large data sets, computation time has
 to be decreased as much as possible without compromising the quality of the
 results. In the light of this we have developed a tool to derive atmospheric
-parameters fast using standard spectroscopic methods. This works well for
+parameters in a fast and robust way using standard spectroscopic methods. This works well for
 optical spectra which we demonstrate in Section~\ref{sub:Testing_MOOGme} using
 the line list from \citet{Sousa2011}. This tool also ships with a line list for
 near-IR spectra using the line list presented recently in \citet{Andreasen2016}.
@@ -126,8 +129,8 @@ Section~\ref{sec:MOOGme}.
 
 \section{Data}
 \label{sec:data}
-We obtain spectra related to this work by using the UVES \citep{UVES}, FEROS
-\citep{FEROS}, and FIES \citep{FIES} spectrographs. Other spectra were found in
+We obtain how many? spectra related to this work by using the UVES \citep{UVES}, FEROS
+\citep{FEROS}, and FIES \citep{FIES} spectrographs. Other how many? spectra were found in
 various archives. Additionally, we use spectra from HARPS \citep{HARPS} and
 ESPaDOnS \citep{ESPADONS}. Some characteristics of the spectrographs are
 presented in Table~\ref{tab:instruments} with the mean SNR for the spectra used.
@@ -147,7 +150,7 @@ This is mostly due to the difference in science cases behind the observations.
 E.g. the HARPS spectra were used for RV monitoring or follow up of the
 exoplanet(s).
 
-
+%What do you mean typical SNR? I usually write SNR @6400A
 \begin{table}[htb!]
     \caption{Spectrographs used for this paper with their spectral resolution,
              wavelength coverage, and typical (mean) SNR from the spectra used.}
@@ -174,7 +177,7 @@ exoplanet(s).
 MOOGme (acronym for MOOG made easy) is a web
 tool\footnote{\url{super-cool-address-with-MOOGme}} for analyzing spectra.
 MOOGme is written in Python and works as a wrapper around MOOG
-\citep{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one tool. MOOG is
+\citep[][version 2014]{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one tool. MOOG is
 a radiative transfer code under the assumption of local thermodynamic
 equilibrium (LTE). ARES is a tool to automatically measure equivalent widths
 (EW) from a spectrum given a line list. MOOGme has three different modes: i)
@@ -182,11 +185,12 @@ Measure EWs using ARES, ii) derive stellar parameters from a set of measured
 \ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) abundances derivation for 15
 elements, all described below. We use the Kurucz atmospheric grid from
 \citet{Kurucz1993}.
+%Dont forget that works with MARCS too :)
 
 
 \subsection{EW measurements}
 \label{sub:EW_measurements}
-EW measurements are essential for the EW method and to obtain abundances. This
+The atmospheric parameters are strongly correlated with the EW. This
 can be done manually using a tool like IRAF, but often when dealing with a large
 sample of stars this is not a suitable way to deal with the problem. Therefore
 tools like ARES exist which can measure the EWs of spectral lines automatically.
@@ -220,16 +224,14 @@ The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}
 \subsection{EW method}
 \label{sub:EW_method}
 With measured EWs of \ion{Fe}{I} and \ion{Fe}{II} lines we calculate abundances
-using a stellar atmosphere model with a given set of atmospheric parameters,
-effective temperature ($T_\mathrm{eff}$), surface gravity ($\log g$),
-metallicity ([Fe/H], where iron often is used as a proxy for the total
-metallicity), and the micro turbulence ($\xi_\mathrm{micro}$). By removing
+using a stellar atmosphere model for a given set of atmospheric parameters
+($T_\mathrm{eff}$, $\log g$, [Fe/H], and $\xi_\mathrm{micro}$). By removing
 correlations between the measured abundances (through the measured EWs) and the
 excitation potential (EP) and reduced EW ($\log(EW/\lambda)$) we can constrain
 $T_\mathrm{eff}$ and $\xi_\mathrm{micro}$. By obtaining ionization balance
 between \ion{Fe}{I} and \ion{Fe}{II} (that is the average abundance of all
 \ion{Fe}{I} lines are equal to the average abundance of all \ion{Fe}{II} lines)
-we constrain $\log g$. Last, we change the input [\ion{Fe}/\ion{H}] to match
+we constrain $\log g$. Lastly, we change the input [\ion{Fe}/\ion{H}] to match
 that of the average output [\ion{Fe}/\ion{H}]. Hence we have four criteria to
 minimize simultaneously:
 
@@ -371,6 +373,7 @@ line list resemble that of \citet{Tsantaki2013}.
 
 All restarts of the minimization routine is done with initial condition at the
 last found best parameters.
+%Dont forget TMCALC
 
 
 \subsection{Abundance method}
