@@ -11,3 +11,10 @@ There are still some things to be done.
     [ ] Adjust font size on all plots
     [ ] Find a good colourscheme for plots
     [ ] Stellar parameters affect on planetary parameters (is this out of the scope of the work?)
+
+# Other stuff
+
+    [ ] Add more text in the introduction. Look into some proposals for inspiration.
+    [ ] Expand the result section
+    [ ] Write the conclusion section
+    [ ] Make sure the acknowledgement are right
