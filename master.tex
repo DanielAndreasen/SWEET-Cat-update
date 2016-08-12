@@ -6,6 +6,8 @@
 \usepackage[version=3]{mhchem}
 \usepackage{amsmath}
 \DeclareMathOperator{\sign}{sign}
+\newcommand{\pluseq}{\mathrel{+}=}
+\newcommand{\minuseq}{\mathrel{-}=}
 
 \sisetup{range-units = single}
 \sisetup{range-phrase = -}
@@ -86,7 +88,7 @@ SUPA, School of Physics and Astronomy, University of St Andrews, St Andrews KY16
 \section{Introduction}
 \label{sec:introduction}
 The study of extrasolar planetary systems is an established field of research.
-To date, over 3400 extrasolar planets have been discovered around solar-type
+To date, nearly 3500 extrasolar planets have been discovered around solar-type
 stars\footnote{For an updated table we refer to \url{http://www.exoplanet.eu}}.
 Most of these have been found thanks to the incredible precision achieved in
 photometric transit and radial velocity methods. The increasing number of
@@ -96,43 +98,45 @@ composition.
 
 A key aspect to this progress is the characterization of the planet host stars.
 For instance, precise and accurate stellar radii are critical if we want to
-measure precise values of the radius of a transiting planet
-\citep[see e.g.][]{,Mortier2013,Torres2012}. The determination of the stellar
-radius is in turn dependent on the quality of the derived stellar parameters
-such as the effective temperature.
+measure precise values of the radius of a transiting planet \citep[see e.g.][]{,Mortier2013,Torres2012}.
+The determination of the stellar radius is in turn dependent on the quality of
+the derived stellar atmospheric parameters such as the effective temperature.
 
-We continue the work of \citet{Santos13} by deriving atmospheric parameters, namely 
-the effective temperature ($T_\mathrm{eff}$), surface gravity ($\log g$),
-metallicity ([Fe/H], where iron often is used as a proxy for the total
+We continue the work of \citet{Santos13} by deriving atmospheric parameters,
+namely  the effective temperature ($T_\mathrm{eff}$), surface gravity ($\log
+g$), metallicity ([Fe/H], where iron often is used as a proxy for the total
 metallicity), and the micro turbulence ($\xi_\mathrm{micro}$) in a homogeneous
-way for a sample of planet host stars. This in turn, allows us to
-study new correlations between planets and their hosts in a homogeneous way, 
-or gain higher statistical certainty on the already discovered
-correlations. Analyzing high quality spectra (high
-spectral resolution and high signal to noise ratio (SNR)) for a large sample of
-stars are both time consuming and very timely due to the amount of optical
-spectrographs with a high spectral resolution and a high request for
-observations. Additionally, a number of near-IR spectrographs are either planned
-or already available making the task of analyzing the increasing amount of
-spectra even more important. In the era of large data sets, computation time has
-to be decreased as much as possible without compromising the quality of the
-results. In the light of this we have developed a tool to derive atmospheric
-parameters in a fast and robust way using standard spectroscopic methods. This works well for
-optical spectra which we demonstrate in Section~\ref{sub:Testing_MOOGme} using
-the line list from \citet{Sousa2011}. This tool also ships with a line list for
-near-IR spectra using the line list presented recently in \citet{Andreasen2016}.
-The tool is provided to the community as an easy to use web tool to avoid any
-problems with installations. The tool is described in details in
+way for a sample of planet host stars. This, in turn, allows us to study new
+correlations between planets and their hosts in a homogeneous way,  or gain
+higher statistical certainty on the already discovered correlations.
+
+The analysis of high quality spectra, i.e. spectra with high spectral resolution
+and an high  signal to noise ratio (SNR), serves an important role in the
+derivation of stellar atmospheric parameters. Nevertheless, spectral analysis is
+a time consuming method. There has been an increase of the amount of  optical
+high-resolution spectrographs available and, additionally, a number of near-IR
+spectrographs are either planned or are already available making the task of
+analyzing the increasing amount of spectra even more crucial.
+
+In the era of large data sets, computation time has to be decreased as much as
+possible without compromising the quality of the results. In the light of this
+we have developed a tool to derive atmospheric parameters in a fast and robust
+way using standard spectroscopic methods. This works well for optical spectra
+which we demonstrate in Section~\ref{sub:Testing_MOOGme} using the line list
+from \citet{Sousa2011}. This tool also ships with a line list for near-IR
+spectra using the line list presented recently in \citet{Andreasen2016}. The
+tool is provided to the community as an easy to use web tool to avoid any
+problems with installations. The tool is described in detail in
 Section~\ref{sec:MOOGme}.
 
 
 
 \section{Data}
 \label{sec:data}
-We obtain how many? spectra related to this work by using the UVES \citep{UVES}, FEROS
-\citep{FEROS}, and FIES \citep{FIES} spectrographs. Other how many? spectra were found in
-various archives. Additionally, we use spectra from HARPS \citep{HARPS} and
-ESPaDOnS \citep{ESPADONS}. Some characteristics of the spectrographs are
+We obtain 43 spectra related to this work by using the UVES \citep{UVES}, FEROS
+\citep{FEROS}, and FIES \citep{FIES} spectrographs. Other how many? spectra were
+found in various archives. Additionally, we use spectra from HARPS \citep{HARPS}
+and ESPaDOnS \citep{ESPADONS}. Some characteristics of the spectrographs are
 presented in Table~\ref{tab:instruments} with the mean SNR for the spectra used.
 The SNR for each star can be seen in Table~\ref{tab:results} along with the
 atmospheric parameters of the stars.
@@ -150,7 +154,6 @@ This is mostly due to the difference in science cases behind the observations.
 E.g. the HARPS spectra were used for RV monitoring or follow up of the
 exoplanet(s).
 
-%What do you mean typical SNR? I usually write SNR @6400A
 \begin{table}[htb!]
     \caption{Spectrographs used for this paper with their spectral resolution,
              wavelength coverage, and typical (mean) SNR from the spectra used.}
@@ -158,7 +161,7 @@ exoplanet(s).
     \centering
     \begin{tabular}{llll}
       \hline\hline
-      Spectrograph & Resolution & spectral coverage           & Typical SNR \\
+      Spectrograph & Resolution & spectral coverage           &   Mean SNR  \\
       \hline
       UVES         &    110 000 & $\SIrange{420}{1100}{nm}$   &   212       \\
       FEROS        &     48 000 & $\SIrange{350}{920}{nm}$    &   208       \\
@@ -177,30 +180,37 @@ exoplanet(s).
 MOOGme (acronym for MOOG made easy) is a web
 tool\footnote{\url{super-cool-address-with-MOOGme}} for analyzing spectra.
 MOOGme is written in Python and works as a wrapper around MOOG
-\citep[][version 2014]{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one tool. MOOG is
-a radiative transfer code under the assumption of local thermodynamic
-equilibrium (LTE). ARES is a tool to automatically measure equivalent widths
-(EW) from a spectrum given a line list. MOOGme has three different modes: i)
-Measure EWs using ARES, ii) derive stellar parameters from a set of measured
-\ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) abundances derivation for 15
-elements, all described below. We use the Kurucz atmospheric grid from
-\citet{Kurucz1993}.
-%Dont forget that works with MARCS too :)
+\citep[][version 2014]{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one
+tool. MOOG is a radiative transfer code under the assumption of local
+thermodynamic equilibrium (LTE). ARES is a tool to automatically measure
+equivalent widths (EW) from a spectrum given a line list. MOOGme has three
+different modes: i) Measure EWs using ARES, ii) derive stellar parameters from a
+set of measured \ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) abundances
+derivation for 15 elements, all described below. The model atmospheres are
+formatted in a grid of Kurucz Atlas 9 plane-parallel, 1D static model
+atmospheres \citet{Kurucz1993}. MOOGme can also manage the new grid of Atlas
+models calculated by \citet{Meszaros2012} for the APOGEE survey and the MARCS
+models \citep{Gustafson2008}. The interpolation from the grid is calculated from
+a geometric mean for effective temperature, surface gravity and metallicity.
+
 
 
 \subsection{EW measurements}
 \label{sub:EW_measurements}
-The atmospheric parameters are strongly correlated with the EW. This
-can be done manually using a tool like IRAF, but often when dealing with a large
-sample of stars this is not a suitable way to deal with the problem. Therefore
-tools like ARES exist which can measure the EWs of spectral lines automatically.
-To use this mode of MOOGme, it just needs a spectrum (format should be 1D fits
-for ARES to read it) and a line list. For the latter, MOOGme is shipped with
-some line lists ready to use, in the format suitable for MOOGme. The output will
-be a line list in the format required for MOOG. The output can be used for
-either the EW method or the abundance method, both described below.
+The EWs are strongly correlated with the atmospheric parameters. Measurements of
+the EW can be done manually using a tool like IRAF, but often when dealing with
+a large sample of stars this is not a suitable way to deal with the task.
+Therefore tools like ARES exist which can measure the EWs of spectral lines
+automatically. To use this mode of MOOGme, it just needs a spectrum (format
+should be 1D fits for ARES to read it) and a line list. For the latter, MOOGme
+is shipped with some line lists ready to use, in the format suitable for MOOGme.
+The output will be a line list in the format required for MOOG. The output can
+be used for either the EW method or the abundance method, both described below.
 
-The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}
+The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}.
+These line lists are all calibrated for the Sun, i.e. the oscillator strengths
+for each absorption line are changed so the line with the measured EW from a
+solar spectrum return solar abundance for the given element.
 
 \begin{table}[htb!]
     \caption{The line lists provided with MOOGme. The first two line lists
@@ -208,13 +218,14 @@ The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}
              used to derive abundances for 15 different elements.}
     \label{tab:linelist}
     \centering
-    \begin{tabular}{lrr}
+    \begin{tabular}{lrrl}
       \hline\hline
-      Line list            & \ion{Fe}{I}/\ion{Fe}{II} & # elements & Usage      \\
+      Line list             & \ion{Fe}{I}/\ion{Fe}{II} & Elements   & Usage      \\
       \hline
-      \citet{Sousa2008a}   &  263/36                  &  1         & Parameters \\
-      \citet{Tsantaki2013} &  120/17                  &  1         & Parameters \\
-      \citet{Neves2009}    &  -/-                     & 15         & Abundances \\
+      \citet{Sousa2008a}    &  263/36                  &  1         & Parameters \\
+      \citet{Tsantaki2013}  &  120/17                  &  1         & Parameters \\
+      \citet{Andreasen2016} &                          &  1         & Parameters \\
+      \citet{Neves2009}     &  -/-                     & 15         & Abundances \\
       \hline
     \end{tabular}
 \end{table}
@@ -223,6 +234,31 @@ The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}
 
 \subsection{EW method}
 \label{sub:EW_method}
+The standard determination of spectroscopic parameters for solar-type stars
+starts by measuring the EW of selected and well-defined absorption lines. Then
+we translate these measurements into individual line abundances, assuming a
+given atmospheric model. We obtain the correct stellar parameters by imposing
+excitation and ionization balance for the iron species.
+
+\begin{itemize}
+    \item The effective temperature has a strong influence on the correlation
+          of iron abundance with the excitation potential (excitation balance).
+          We obtain the $T_\mathrm{eff}$ when \ion{Fe}{I} abundance shows no
+          dependence on the excitation potential, i.e., the slope of abundance
+          versus excitation potential is zero.
+    \item Surface gravity is derived from the ionization balance of \ion{Fe}{I}
+          and \ion{Fe}{II} abundances. Therefore, the abundance of neutral iron
+          should be equal to the abundance of ionized and consistent with the
+          one of the input model atmosphere.
+    \item Microturbulence is connected with the saturation of the stronger iron
+          lines. However, the abundances for weak and strong lines of a certain
+          species (in our case iron) should be the same independent of the value
+          of $\xi_\mathrm{micro}$. Iron abundances should show no dependence on
+          the reduced equivalent width, i.e. the slope of abundance vs the
+          reduced EW is zero.
+\end{itemize}
+
+
 With measured EWs of \ion{Fe}{I} and \ion{Fe}{II} lines we calculate abundances
 using a stellar atmosphere model for a given set of atmospheric parameters
 ($T_\mathrm{eff}$, $\log g$, [Fe/H], and $\xi_\mathrm{micro}$). By removing
@@ -258,7 +294,7 @@ for the EW method.
 There exists many minimization routines available in Python. Most commonly known
 are the ones from the SciPy ecosystem\footnote{\url{http://scipy.org}}. There
 are some pros and cons with using proprietary minimization routines. Pros are
-that it is already written, and usually there is good documentation in
+that it is already written, and usually there is good documentation for
 libraries such as SciPy. Cons in this situation is, that most minimization
 routines do not work well with vector functions returning another vector:
 \begin{align}
@@ -266,7 +302,7 @@ routines do not work well with vector functions returning another vector:
 \end{align}
 A work around is to combine the criteria into one single criteria by e.g. adding
 them quadratically and minimize that expression instead. Thus we have a vector
-funtion returning a scalar:
+function returning a scalar:
 \begin{align}
     f(\{T_\mathrm{eff}, \log g, [Fe/H], \xi_\mathrm{micro}\}) &= \sqrt{a_\mathrm{EP}^2 + a_\mathrm{RW}^2 + \Delta\ion{Fe}{}^2}.
 \end{align}
@@ -304,9 +340,9 @@ This whole process is schematically shown in Figure~\ref{fig:MOOGme_general} and
 the minimization routine itself in Figure~\ref{fig:MOOGme_minimization}. The
 stepping follows these simple equations:
 \begin{align}
-    T_\mathrm{eff}     &+= \SI{2000}{K} a_\mathrm{EP}   \\
-    \xi_\mathrm{micro} &+= \SI{1.5}{km/s} a_\mathrm{RW} \\
-    \log g             &-= \Delta\ion{Fe}.
+    T_\mathrm{eff}     &\pluseq \SI{2000}{K} a_\mathrm{EP}   \\
+    \xi_\mathrm{micro} &\pluseq \SI{1.5}{km/s} a_\mathrm{RW} \\
+    \log g             &\minuseq \Delta\ion{Fe}.
 \end{align}
 The metallicity is corrected at each step so the input metallicity matches that
 of the output metallicity of the previous iteration. The functional form for
@@ -340,9 +376,11 @@ will be described here.
 
 \begin{itemize}
     \item \emph{fixteff}: Fix $T_\mathrm{eff}$ and derive the other parameters.
-          Same is available for $\log g$ (fixlogg), [\ion{Fe}/\ion{H}]
-          (fixfeh), and $\xi_\mathrm{micro}$ (fixvt). One or more parameters
-          can be fixed.
+          Same is available for $\log g$ (\emph{fixlogg}), [\ion{Fe}/\ion{H}]
+          (\emph{fixfeh}), and $\xi_\mathrm{micro}$ (\emph{fixvt}). One or more parameters
+          can be fixed. When one or more parameters are fixed, the corresponding
+          indicator will be ignored for each iteration, thus the parameter itself
+          will not be changed.
     \item \emph{outlier}: Remove outliers after the first run with the minimization
           routine and restarting the minimization from the previous best
           parameters. The options are to remove all outliers above $3\sigma$
@@ -350,15 +388,19 @@ will be described here.
           iteratively.
     \item \emph{autofixvt}: If the minimization routine does not converge and
           $\xi_\mathrm{micro}$ is close to 0 or 10 with a significant
-          $a_\mathrm{RW}$, then fix $\xi_\mathrm{micro}$. This option was added
-          since we see this behavior in some cases. The solution is typically
-          to restart the minimization manually with $\xi_\mathrm{micro}$
-          fixed.
+          $a_\mathrm{RW}$ (numerically bigger than 0.05), then fix
+          $\xi_\mathrm{micro}$. This option was added since we saw this behaviour
+          in some cases. The solution was typically to restart the minimization
+          manually with $\xi_\mathrm{micro}$ fixed.
     \item \emph{refine}: After the minimization is done, run it again from the best
           found parameters but with more strict criteria. If this option is set,
           it will always be the last step (after removal of outliers). The
           convergence criteria can be changed by the user, but we recommend
           using the defaults provided above.
+    \item \emph{tmcalc}: Use TMCalc \citep{Sousa2012} to fast estimate the
+          $T_\mathrm{eff}$ and $[\ion{Fe}/\ion{H}]$ using the raw output from
+          ARES. We then assume solar surface gravity ($\SI{4.44}{dex}$) and
+          estimate $\xi_\mathrm{micro}$ based on an empirical relation (see below).
 \end{itemize}
 If $\xi_\mathrm{micro}$ is fixed it is changed at each iteration according to an
 empirical relation. For dwarfs it follows the one presented in
@@ -373,7 +415,6 @@ line list resemble that of \citet{Tsantaki2013}.
 
 All restarts of the minimization routine is done with initial condition at the
 last found best parameters.
-%Dont forget TMCALC
 
 
 \subsection{Abundance method}
@@ -478,7 +519,7 @@ The remaining 49 stars are presented in Table~\ref{tab:results}.
              is measured by ARES.}
     \label{tab:results}
     \centering
-    \begin{tabular}{lllllll}
+    \begin{tabular}{llllllll}
       \hline\hline
       % Add alternative name and SNR
       Star      & $T_\mathrm{eff}$ (K) &  $\log g$ (dex)     &  [Fe/H] (dex)        &  $\xi_\mathrm{micro}$ (km/s)   & $\xi_\mathrm{micro}$ fixed? & Instrument   & SNR   \\  %Program ID \\
