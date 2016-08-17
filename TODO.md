@@ -7,7 +7,7 @@ There are still some things to be done.
     - [x] Fig. 1 measured linelist --> EW measurements
     - [x] Fig. 1 Atmosphere model Kurucz --> Grid of models
     - [x] Fig. 2 interpolate --> interpolate new model
-- [ ] Make a plot of new parameters vs. old parameters
+- [x] Make a plot of new parameters vs. old parameters
 - [x] Adjust font size on all plots
 - [x] Find a good colourscheme for plots
 - [ ] Stellar parameters affect on planetary parameters (is this out of the scope of the work?)
