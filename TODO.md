@@ -11,11 +11,14 @@ There are still some things to be done.
 - [x] Adjust font size on all plots
 - [x] Find a good colourscheme for plots
 - [ ] Stellar parameters affect on planetary parameters (is this out of the scope of the work?)
+- [ ] Metallicity histogram of entire SC, SC with homog=1, and only new ones in same plot
 
 # Other stuff
 
 - [ ] Add more text in the introduction. Look into some proposals for inspiration.
 - [ ] Expand the result section
+    - [ ] If some star deviate a lot in parameters, check if they have a special planet, and
+          with new parameters this might make them more normal
 - [ ] Write the conclusion section
 - [ ] Make sure the acknowledgement are right
 - [ ] More on abundance section
