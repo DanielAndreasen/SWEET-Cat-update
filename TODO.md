@@ -11,7 +11,7 @@ There are still some things to be done.
 - [x] Adjust font size on all plots
 - [x] Find a good colourscheme for plots
 - [ ] Stellar parameters affect on planetary parameters (is this out of the scope of the work?)
-- [ ] Metallicity histogram of entire SC, SC with homog=1, and only new ones in same plot
+- [x] Metallicity histogram of entire SC, SC with homog=1, and only new ones in same plot
 
 # Other stuff
 
