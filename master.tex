@@ -29,7 +29,7 @@
 \begin{document}
 
 
-\title{SWEET-Cat update and MOOGme}
+\title{SWEET-Cat update and FASMA}
 \subtitle{A new minimization procedure for high quality spectra}
 
 
@@ -125,12 +125,11 @@ In the era of large data sets, computation time has to be decreased as much as
 possible without compromising the quality of the results. In the light of this
 we have developed a tool to derive atmospheric parameters in a fast and robust
 way using standard spectroscopic methods. This works well for optical spectra
-which we demonstrate in Section~\ref{sub:Testing_MOOGme} using the line list
-from \citet{Sousa2011}. This tool also ships with a line list for near-IR
-spectra using the line list presented recently in \citet{Andreasen2016}. The
-tool is provided to the community as an easy to use web tool to avoid any
-problems with installations. The tool is described in detail in
-Section~\ref{sec:MOOGme}.
+which we demonstrate in Section~\ref{sub:Testing_FASMA} using the line list from
+\citet{Sousa2011}. This tool also ships with a line list for near-IR spectra
+using the line list presented recently in \citet{Andreasen2016}. The tool is
+provided to the community as an easy to use web tool to avoid any problems with
+installations. The tool is described in detail in Section~\ref{sec:FASMA}.
 
 
 
@@ -178,20 +177,20 @@ exoplanet(s).
 
 
 
-\section{MOOGme}
-\label{sec:MOOGme}
-MOOGme (acronym for MOOG made easy) is a web
-tool\footnote{\url{super-cool-address-with-MOOGme}} for analyzing spectra.
-MOOGme is written in Python and works as a wrapper around MOOG
+\section{FASMA}
+\label{sec:FASMA}
+FASMA (acronym for Fast Analysis of Speactra Made Automatically) is a web
+tool\footnote{\url{super-cool-address-with-FASMA}} for analyzing spectra. FASMA
+is written in Python and works as a wrapper around MOOG
 \citep[][version 2014]{Sneden1973}, and ARES \citep{Sousa2015a} for an all-in-one
 tool. MOOG is a radiative transfer code under the assumption of local
 thermodynamic equilibrium (LTE). ARES is a tool to automatically measure
-equivalent widths (EW) from a spectrum given a line list. MOOGme has three
+equivalent widths (EW) from a spectrum given a line list. FASMA has three
 different modes: i) Measure EWs using ARES, ii) derive stellar parameters from a
 set of measured \ion{Fe}{I} and \ion{Fe}{II} line EWs, and iii) abundances
 derivation for 15 elements, all described below. The model atmospheres are
 formatted in a grid of Kurucz Atlas 9 plane-parallel, 1D static model
-atmospheres \citet{Kurucz1993}. MOOGme can also manage the new grid of Atlas
+atmospheres \citet{Kurucz1993}. FASMA can also manage the new grid of Atlas
 models calculated by \citet{Meszaros2012} for the APOGEE survey and the MARCS
 models \citep{Gustafson2008}. The interpolation from the grid is calculated from
 a geometric mean for effective temperature, surface gravity and metallicity.
@@ -204,19 +203,19 @@ The EWs are strongly correlated with the atmospheric parameters. Measurements of
 the EW can be done manually using a tool like IRAF, but often when dealing with
 a large sample of stars this is not a suitable way to deal with the task.
 Therefore tools like ARES exist which can measure the EWs of spectral lines
-automatically. To use this mode of MOOGme, it just needs a spectrum (format
-should be 1D fits for ARES to read it) and a line list. For the latter, MOOGme
-is shipped with some line lists ready to use, in the format suitable for MOOGme.
-The output will be a line list in the format required for MOOG. The output can
-be used for either the EW method or the abundance method, both described below.
+automatically. To use this mode of FASMA, it just needs a spectrum (format
+should be 1D fits for ARES to read it) and a line list. For the latter, FASMA is
+shipped with some line lists ready to use, in the format suitable for FASMA. The
+output will be a line list in the format required for MOOG. The output can be
+used for either the EW method or the abundance method, both described below.
 
-The line lists shipped with MOOGme are presented in Table~\ref{tab:linelists}.
+The line lists shipped with FASMA are presented in Table~\ref{tab:linelists}.
 These line lists are all calibrated for the Sun, i.e. the oscillator strengths
 for each absorption line are changed so the line with the measured EW from a
 solar spectrum return solar abundance for the given element.
 
 \begin{table}[htb!]
-    \caption{The line lists provided with MOOGme. The first two line lists
+    \caption{The line lists provided with FASMA. The first two line lists
              are for parameter determination while the last line list is
              used to derive abundances for 15 different elements.}
     \label{tab:linelist}
@@ -289,9 +288,9 @@ for the EW method.
 
 \begin{figure}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/MOOGme_general.pdf}
-    \caption{A general overview over MOOGme from spectrum to parameters.}
-    \label{fig:MOOGme_general}
+    \includegraphics[width=1.0\linewidth]{figures/FASMA_general.pdf}
+    \caption{A general overview over FASMA from spectrum to parameters.}
+    \label{fig:FASMA_general}
 \end{figure}
 
 There exists many minimization routines available in Python. Most commonly known
@@ -339,8 +338,8 @@ minimization routine optimized for the problem at hand. Here is how it works.
           the indicators. If we do not reach convergence, then return the best
           found parameters.
 \end{enumerate}
-This whole process is schematically shown in Figure~\ref{fig:MOOGme_general} and
-the minimization routine itself in Figure~\ref{fig:MOOGme_minimization}. The
+This whole process is schematically shown in Figure~\ref{fig:FASMA_general} and
+the minimization routine itself in Figure~\ref{fig:FASMA_minimization}. The
 stepping follows these simple equations:
 \begin{align}
     T_\mathrm{eff}     &\pluseq \SI{2000}{K} a_\mathrm{EP}   \\
@@ -362,10 +361,10 @@ The error estimates is based on the same method presented in
 
 \begin{figure}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/MOOGme_minimization.pdf}
-    \caption{A schematic overview over the minimization for MOOGme with the
+    \includegraphics[width=1.0\linewidth]{figures/FASMA_minimization.pdf}
+    \caption{A schematic overview over the minimization for FASMA with the
     EW method.}
-    \label{fig:MOOGme_minimization}
+    \label{fig:FASMA_minimization}
 \end{figure}
 
 By using the indicators like this, we can relative fast reach convergence.
@@ -429,27 +428,27 @@ measure the EWs and the EW method mode to obtain the atmospheric parameters. The
 abundances are saved to a table.
 
 
-\subsection{Testing MOOGme}
-\label{sub:Testing_MOOGme}
-To test the EW method implemented in MOOGme we derive parameters from the 582
+\subsection{Testing FASMA}
+\label{sub:Testing_FASMA}
+To test the EW method implemented in FASMA we derive parameters from the 582
 sample by \citet{Sousa2011}. We use ARES2 to measure the EWs. ARES can give an
 estimate on the signal to noise ratio (SNR) by analyzing the continuum in given
 intervals. For solar type stars the following intervals are working well:
 \SIrange{5764}{5766}{\angstrom}, \SIrange{6047}{6053}{\angstrom}, and
 \SIrange{6068}{6076}{\angstrom}. From the estimated SNR, ARES can give an
 estimate on the very important \emph{rejt} parameters \citep[see][for more
-information]{Sousa2015a}. After measuring the EWs with ARES, we use the MOOGme
+information]{Sousa2015a}. After measuring the EWs with ARES, we use the FASMA
 minimization described in Section~\ref{sub:EW_method} to determine the stellar
-atmospheric parameters. The results are presented in Figure~\ref{fig:MOOGmeTest}
+atmospheric parameters. The results are presented in Figure~\ref{fig:FASMATest}
 which shows $T_\mathrm{eff}$, $\log g$, [\ion{Fe}/\ion{H}], and
-$\xi_\mathrm{micro}$ for MOOGme against those of \citet{Sousa2011}.
+$\xi_\mathrm{micro}$ for FASMA against those of \citet{Sousa2011}.
 
 \begin{figure*}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/MOOGmeTest.pdf}
-    \caption{Stellar atmospheric parameters derived by MOOGme compared
+    \includegraphics[width=1.0\linewidth]{figures/FASMATest.pdf}
+    \caption{Stellar atmospheric parameters derived by FASMA compared
     to the sample by \citet{Sousa2011}.}
-    \label{fig:MOOGmeTest}
+    \label{fig:FASMATest}
 \end{figure*}
 
 The sample contains stars with $T_\mathrm{eff}$ too cold for the line list used.
@@ -457,17 +456,17 @@ As described in Section~\ref{sub:EW_method} we should then convert the line list
 by \citet{Sousa2008a} to the line list presented in \citet{Tsantaki2013}.
 However, since this line list was not available when \citet{Sousa2011} derived
 parameters, we do not make this change in order to make a better test for
-MOOGme.
+FASMA.
 
 The mean of the difference between parameters from \citet{Sousa2011} and those
-by MOOGme are presented in Table~\ref{tab:MOOGmeTest}.
+by FASMA are presented in Table~\ref{tab:FASMATest}.
 
 \begin{table}[htb!]
     \caption{The difference in derived parameters by \citet{Sousa2011}
-    and MOOGme. Second column is the mean difference with EWs measured by
-    ARES in MOOGme, while the third column is the mean difference using
+    and FASMA. Second column is the mean difference with EWs measured by
+    ARES in FASMA, while the third column is the mean difference using
     20 randomly stars with the exact same line list.}
-    \label{tab:MOOGmeTest}
+    \label{tab:FASMATest}
     \centering
     \begin{tabular}{lrr}
       \hline\hline
@@ -487,7 +486,7 @@ likely the difference will be due to different used \emph{rejt} parameters in
 ARES, which can alter the EWs and hence the parameters. We therefore randomly
 selected 20 stars with different $T_\mathrm{eff}$ and used the line lists
 directly from \citet{Sousa2011} to derive parameters. The results are presented
-in the last column of Table~\ref{tab:MOOGmeTest}. We note that the $\log gf$
+in the last column of Table~\ref{tab:FASMATest}. We note that the $\log gf$
 values from the original line lists by \citet{Sousa2011}, which used the MOOG
 2002 version, were not changed for the 2014 version of MOOG. This might lead to
 some errors as well. However, the offsets are very small and compatible with the
@@ -498,13 +497,13 @@ errors on parameters normally obtained from high quality spectra.
 \label{sub:Web interface}
 NOTE: More will be written once we have a web page.
 
-We provide a web interface for MOOGme. In the web interface it is possible to
-use some of the line list provided with MOOGme to measure EWs of a spectrum (has
-to be provided by the user). This can be used for all the available MOOGme
-methods described above.
+We provide a web interface for FASMA. In the web interface it is possible to use
+some of the line list provided with FASMA to measure EWs of a spectrum (has to
+be provided by the user). This can be used for all the available FASMA methods
+described above.
 
 The web interface can be found at the following link
-\url{super-cool-address-with-MOOGme}.
+\url{super-cool-address-with-FASMA}.
 
 
 
@@ -515,14 +514,14 @@ HD77065. This is a spectroscopic binary according to \cite{Pourbaix2004}, and
 the spectrum is contaminated with the companion star. This make EW measurement
 very difficult, hence we exclude it from the sample.
 
-Moreover we were not able to successfully derive parameters with this method
-for Aldebaran, a well known red giant star. Even though the quality of the
-spectra for a bright star like Aldebaran are available, the spectral type
-is intrinsic difficult due to the low $T_\mathrm{eff}$ which can give arise to
-molecular absorption in the optical. We also expect to see non-LTE effects for
-this kind of spectral type. That we are not able to derive parameters for
-Aldebaran is not a big concern, since it is well studied with other techniques,
-and we can trust the parameters already listed in SWEET-Cat.
+Moreover we were not able to successfully derive parameters with this method for
+Aldebaran, a well known red giant star. Even though the quality of the spectra
+for a bright star like Aldebaran are available, the spectral type is intrinsic
+difficult due to the low $T_\mathrm{eff}$ which can give arise to molecular
+absorption in the optical. We also expect to see non-LTE effects for this kind
+of spectral type. That we are not able to derive parameters for Aldebaran is not
+a big concern, since it is well studied with other techniques, and we can trust
+the parameters already listed in SWEET-Cat.
 
 The remaining 61 stars are presented in Table~\ref{tab:results}.
 
@@ -610,7 +609,7 @@ The remaining 61 stars are presented in Table~\ref{tab:results}.
 \end{table*}
 We present a Hertzprung-Russel diagram (HRD) of our sample in
 Figure~\ref{fig:HRD}. Figure~\ref{fig:HRD} is made with a tool for post
-processing the results saved to a table by MOOGme.
+processing the results saved to a table by FASMA.
 
 \begin{figure}[tpb]
     \centering
