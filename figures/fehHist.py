@@ -8,10 +8,10 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-# sns.set_style('ticks')
-# sns.set_context('paper', font_scale=1.7)
-sns.set_style('white')
-sns.set_context('talk')
+sns.set_style('ticks')
+sns.set_context('paper', font_scale=1.7)
+# sns.set_style('white')
+# sns.set_context('talk')
 
 """Make histogram of [Fe/H] of all stars in SC, and only with homogenity=1, and
 only with the new additions to see how it may shift"""
@@ -40,24 +40,34 @@ if __name__ == '__main__':
     sc.dropna(subset=['metal'], inplace=True)
 
     # Plotting
-    plt.subplot(211)
-    plt.hist(sc.metal, label='Entire SC')
-    plt.hist(sc.metal[sc.source], label='SC with homogenity=1')
-    plt.hist(new.feh, label='New additions')
-    plt.legend(frameon=False, loc='best')
-    plt.ylabel('# of planet host stars')
-    plt.title('All stars')
+    fig = plt.figure()
+    ax = fig.add_subplot(111)    # The big subplot
+    ax1 = fig.add_subplot(211)
+    ax2 = fig.add_subplot(212)
+
+    # Turn off axis lines and ticks of the big subplot
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_color('none')
+    ax.spines['left'].set_color('none')
+    ax.spines['right'].set_color('none')
+    ax.tick_params(labelcolor='w', top='off', bottom='off', left='off', right='off')
+    ax.set_xlabel('Metallicity, [Fe/H]')
+    ax.set_ylabel('# of planet host stars')
+
+    ax1.hist(sc.metal, label='Entire SC')
+    ax1.hist(sc.metal[sc.source], label='SC with homogenity=1')
+    ax1.hist(new.feh, label='New additions')
+    ax1.set_title('All stars')
 
     # Only bright stars
     sc.dropna(subset=['vmag'], inplace=True)
     sc = sc[sc.vmag<12]
-    plt.subplot(212)
-    plt.hist(sc.metal, label='Entire SC')
-    plt.hist(sc.metal[sc.source], label='SC with homogenity=1')
-    plt.hist(new.feh, label='New additions')
-    plt.xlabel('Metallicity, [Fe/H]')
-    plt.ylabel('# of planet host stars')
-    plt.title('Stars brighter than 12 V magnitude')
+    ax2.hist(sc.metal, label='Entire SC')
+    ax2.hist(sc.metal[sc.source], label='SC with homogenity=1')
+    ax2.hist(new.feh, label='New additions')
+    ax2.set_title('Stars brighter than 12 V magnitude')
+
     plt.tight_layout()
-    # plt.show()
-    plt.savefig('metallicityDistribution.pdf')
+    plt.show()
+    # TODO: I have to manually change the spacing, since tight_layout gives strange results.
+    # plt.savefig('metallicityDistribution.pdf')
