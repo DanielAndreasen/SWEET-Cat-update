@@ -58,6 +58,7 @@ if __name__ == '__main__':
     ax1.hist(sc.metal[sc.source], label='SC with homogenity=1')
     ax1.hist(new.feh, label='New additions')
     ax1.set_title('All stars')
+    ax1.set_yscale('log')
 
     # Only bright stars
     sc.dropna(subset=['vmag'], inplace=True)
