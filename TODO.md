@@ -22,3 +22,4 @@ There are still some things to be done.
 - [ ] Write the conclusion section
 - [ ] Make sure the acknowledgement are right
 - [ ] More on abundance section
+- [ ] Update the table with parameters from SC.csv
