@@ -218,7 +218,7 @@ solar spectrum return solar abundance for the given element.
     \caption{The line lists provided with FASMA. The first two line lists
              are for parameter determination while the last line list is
              used to derive abundances for 15 different elements.}
-    \label{tab:linelist}
+    \label{tab:linelists}
     \centering
     \begin{tabular}{lrrl}
       \hline\hline
@@ -523,7 +523,13 @@ of spectral type. That we are not able to derive parameters for Aldebaran is not
 a big concern, since it is well studied with other techniques, and we can trust
 the parameters already listed in SWEET-Cat.
 
-The remaining 61 stars are presented in Table~\ref{tab:results}.
+The remaining 61 stars are presented in Table~\ref{tab:results}. Note that we
+apply a correction to the spectroscopic $\log g$ based asteroseismology as
+found in \citet{Mortier2014}. We only use this corrections for FGK dwarf stars,
+i.e. between $\SI{4800}{K}\leq T_\mathrm{eff} \leq \SI{6500}{K}$ and
+$\log g\geq4.2$. For stars with a $\log g$ lower than this limit we do not apply
+the corrections, and if the $\log g$ change to below this limit after the
+correction, we go back to use the spectroscopic $\log g$ again.
 
 \begin{table*}[htb!]
     \caption{The derived parameters for the 61 stars in our sample. The SNR
@@ -662,6 +668,91 @@ and hence expensive, to observe or impossible with the current technology.
     \label{fig:distribution}
 \end{figure}
 
+
+
+\section{Discussion}
+\label{sec:Discussion}
+We will now focus on the stars with $T_\mathrm{eff}$ higher than \SI{4800}{K}
+and lower than \SI{6500}{K}. Outside this range the EW method suffer from
+different factors and will be less reliable. For the lower range, we expect to
+see more line blending, and hence the EW measurements will no longer be
+reliable. Without reliable EW measurements, the rest of the technique will not
+work. For the other limit we start to see non-LTE effects which we do not take
+into account, hence the method does not work there.
+
+We compute radius and mass of all stars (even the ones which parameters may not
+be reliable in order to be complete) using the empirical formula presented in
+\citet{Torres2010}. Some of the stars have derived radius from different methods
+and generally show a good correlation with radius derived from
+\citet{Torres2010} if the literature parameters of $T_\mathrm{eff}$, $\log g$,
+and $[\ion{Fe}/\ion{H}]$ are used. However, if we compare with the new radius
+derived the results can differ up to 65\%. Below we discuss the systems where
+the radius of the stars change more then 25\% and how this influence the
+planetary parameters. The changes in radius for a star is primarily due to
+changes in $\log g$, which can be used as an indicator of the evolutionary stage
+of a star.
+
+The 8 stars which radius deviates more than 25\% are discussed below. We
+rederive the planetary radius and mass when possible following the two simple
+relations:
+
+\begin{align}
+    M_\mathrm{pl,new} &= \left(\frac{M_\mathrm{st,lit}}{M_\mathrm{st,new}}\right)^{-2/3} M_\mathrm{pl,lit},  \\
+    R_\mathrm{pl,new} &= \left(\frac{R_\mathrm{st,lit}}{R_\mathrm{st,new}}\right) R_\mathrm{pl,lit},
+\end{align}
+where subscript lit denotes the value from the literature which we compare with,
+subscript new will be the new computed values, subscript pl is short for planet,
+and last subscript st is short for star. $M$ and $R$ are mass and radius,
+respectively.
+
+\subsection{HAT-P-46}
+\label{sub:HAT-P-46}
+HAT-P-46 has two discovered exoplanets according to \citet{Hartmann2014}. The
+outer planet HAT-P-46 c is not transiting hence we do not have any radius for
+this planet. The results we present in this paper for this star comes from UVES
+data with a SNR at 208. \citet{Hartmann2014} derives the following spectroscopic
+parameters: $T_\mathrm{eff}=\SI{6120(100)}{K}$, $\log g=4.25\pm0.11$, and
+$[\ion{Fe}/\ion{H}]=0.30\pm0.10$. We note that for this star the asteroseismic
+correction we apply as mentioned in \ref{sec:results}, the corrected $\log g$
+were below 4.2dex, so we end up using the spectroscopic $\log g$ for this star.
+
+If we derive the mass and radius of HAT-P-46 b with our new parameters, we
+obtain the following (values from \citet{Hartmann2014} in parantheses):
+$M_\mathrm{pl} = 0.49(0.49)$ and $R_\mathrm{pl} = 0.93(1.28)$, both in units
+of Jupiter. We see no change in mass, however there is a decrease in the radius,
+and we end up with a more dense planet, $\rho_\mathrm{pl} = 0.61(0.23)$.
+
+As the secondary companion does not transit we only have a limit on the minimum
+mass for this planet. Here we get: $M\sin i_\mathrm{pl} = 1.97(2.00)$, so a very
+small change as expected.
+
+
+\subsection{HD 120084}
+\label{sub:HD_120084}
+
+
+
+\subsection{HD 233604}
+\label{sub:HD_233604}
+
+
+\subsection{HD 81688}
+\label{sub:HD81688}
+% Many references: http://exoplanet.eu/catalog/hd_81688_b/
+Worth looking into mass here, since it change quite a bit.
+
+\subsection{HIP 107773}
+\label{sub:HIP_107773}
+
+\subsection{WASP-97}
+\label{sub:WASP-97}
+
+
+
+\subsection{omi UMa}
+\label{sub:omiUMa}
+1630d period planet. msini is 4.1 in Jupiter units.
+% Ref: http://arxiv.org/abs/1207.3141
 
 
 
