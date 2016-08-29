@@ -1,6 +1,9 @@
 ## Python stuff
-
 *.pyc
+
+## Other stuff
+*.rdb
+figures/mass_radius
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
