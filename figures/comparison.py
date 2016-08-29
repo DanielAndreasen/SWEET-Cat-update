@@ -8,10 +8,10 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-# sns.set_style('ticks')
-# sns.set_context('paper', font_scale=1.7)
-sns.set_style('white')
-sns.set_context('talk')
+sns.set_style('ticks')
+sns.set_context('paper', font_scale=1.7)
+# sns.set_style('white')
+# sns.set_context('talk')
 
 """Make the comparison between previous SWEET-Cat values
 and new values from this paper."""
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     fx, fy = stat.loc['mean', 'ermetal'], stat.loc['mean', 'feherrnew']
     vx, vy = stat.loc['mean', 'ervt'], stat.loc['mean', 'vterrnew']
 
-    plt.figure()
+    plt.figure(figsize=(12, 8))
     gs1 = gridspec.GridSpec(3, 1)
     gs1.update(right=0.48, left=0.05, bottom=0.55, hspace=0.10)
     ax1 = plt.subplot(gs1[0:2, 0])
