@@ -33,7 +33,7 @@ def _readSC():
 
 def _readNew():
     """Read and prepare the new SC"""
-    df = pd.read_csv('SC.csv')
+    df = pd.read_csv('SC.csv', comment='#')
     df = df[df.convergence]
     df.linelist = df.linelist.str.strip()
     df.rename(columns={'teff': 'teffnew', 'tefferr': 'tefferrnew',
