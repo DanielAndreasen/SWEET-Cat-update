@@ -1,5 +1,6 @@
 linelist,teff,tefferr,logg,loggerr,feh,feherr,vt,vterr,loggastero,dloggastero,loggLC,dloggLC,convergence,fixteff,fixlogg,fixfeh,fixvt,outlier,weights,model,refine,EPcrit,RWcrit,ABdiffcrit
 11 Com,4903,34,2.55,0.13,-0.23,0.03,1.56,0.04,2.74,0.13,2.90,0.13,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+14 And,4808,39,2.61,0.10,-0.22,0.03,1.60,0.04,2.84,0.10,3.00,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 42 Dra,4528,57,2.27,0.11,-0.30,0.03,1.53,0.05,2.61,0.11,2.79,0.11,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 Aldebaran,5279,223,4.53,0.40,0.14,0.12,3.05,0.41,4.58,0.41,4.71,0.41,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 BD-114672,4553,75,4.54,0.51,-0.30,0.02,0.14,0.07,4.87,0.51,5.05,0.51,True,False,False,False,True,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -16,8 +17,6 @@ HD 102272,4883,34,2.69,0.07,-0.29,0.03,1.54,0.04,2.89,0.07,3.05,0.07,True,False,
 HD 104985,4786,58,2.66,0.09,-0.28,0.04,1.65,0.05,2.90,0.09,3.06,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 114762,5879,39,4.23,0.04,-0.66,0.03,1.16,0.07,4.04,0.04,4.13,0.04,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 120084,4969,40,2.94,0.14,0.12,0.03,1.41,0.04,3.11,0.14,3.26,0.14,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-HD 136512,4882,40,2.64,0.10,-0.17,0.03,1.55,0.04,2.84,0.10,3.00,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-HD 141680,4928,35,2.69,0.06,-0.11,0.03,1.55,0.04,2.87,0.06,3.03,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 152581,5181,27,3.37,0.06,-0.23,0.02,1.15,0.03,3.45,0.06,3.59,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 155358,5906,33,4.24,0.03,-0.61,0.02,1.30,0.05,4.04,0.03,4.13,0.03,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 171028,5699,36,3.83,0.03,-0.40,0.02,1.21,0.04,3.71,0.03,3.82,0.03,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -25,11 +24,9 @@ HD 192263,4946,46,4.43,0.14,-0.05,0.02,0.66,0.12,4.61,0.14,4.76,0.14,True,False,
 HD 192699,5208,27,3.56,0.10,-0.12,0.02,1.19,0.03,3.63,0.10,3.77,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 197037,6233,45,4.54,0.04,-0.12,0.03,1.22,0.06,4.22,0.04,4.28,0.04,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 200964,5083,24,3.32,0.07,-0.16,0.02,1.18,0.03,3.44,0.07,3.59,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-HD 207229,4957,49,2.83,0.09,0.04,0.04,1.49,0.05,3.00,0.09,3.15,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 219134,4767,70,4.32,0.17,-0.0,0.04,0.59,0.24,4.57,0.17,4.73,0.17,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 220074,4748,233,3.67,0.33,-0.06,0.09,2.82,0.37,3.92,0.34,4.09,0.35,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 220842,5999,39,4.30,0.06,-0.08,0.03,1.21,0.05,4.07,0.06,4.15,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-HD 221345,4808,39,2.61,0.10,-0.22,0.03,1.60,0.04,2.84,0.10,3.00,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 233604,4954,46,2.86,0.11,-0.14,0.04,1.61,0.05,3.03,0.11,3.19,0.11,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 283668,4841,73,4.29,0.18,-0.74,0.04,0.16,0.61,4.51,0.18,4.67,0.18,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 285507,4620,126,4.42,0.61,0.04,0.06,0.74,0.43,4.72,0.61,4.90,0.61,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -40,8 +37,8 @@ HD 81688,4903,21,2.70,0.05,-0.21,0.02,1.54,0.02,2.89,0.05,3.04,0.05,True,False,F
 HD 82886,5123,18,3.30,0.04,-0.25,0.01,1.16,0.02,3.41,0.04,3.55,0.04,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 96063,5232,36,3.61,0.06,-0.12,0.03,1.23,0.04,3.67,0.06,3.81,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 97658,5219,54,4.53,0.10,-0.28,0.04,0.78,0.11,4.60,0.10,4.73,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-HD 85503,4605,94,2.61,0.26,0.25,0.06,1.64,0.11,2.92,0.26,3.10,0.26,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HD 87883,4917,68,4.34,0.19,0.02,0.03,0.46,0.21,4.53,0.19,4.68,0.19,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+HIP 107773,4957,49,2.83,0.09,0.04,0.04,1.49,0.05,3.00,0.09,3.15,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HIP 11915,5770,14,4.47,0.03,-0.06,0.01,0.95,0.02,4.33,0.03,4.42,0.03,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HIP 116454,5038,82,4.39,0.18,-0.12,0.04,0.74,0.15,4.53,0.18,4.68,0.18,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HR 228,5042,42,3.30,0.09,0.07,0.03,1.14,0.04,3.44,0.09,3.59,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -49,6 +46,9 @@ KELT-6,6246,88,4.22,0.09,-0.22,0.06,1.66,0.13,3.89,0.10,3.96,0.10,True,False,Fal
 Kepler-37,5378,53,4.46,0.12,-0.23,0.04,0.58,0.13,4.47,0.12,4.59,0.12,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 Kepler-444,5111,43,4.39,0.13,-0.51,0.03,0.37,0.15,4.50,0.13,4.64,0.13,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 ksi Aql,4834,42,2.65,0.10,-0.14,0.03,1.53,0.04,2.87,0.10,3.03,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+mu Leo,4605,94,2.61,0.26,0.25,0.06,1.64,0.11,2.92,0.26,3.10,0.26,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+ome Ser,4928,35,2.69,0.06,-0.11,0.03,1.55,0.04,2.87,0.06,3.03,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+omi CrB,4882,40,2.64,0.10,-0.17,0.03,1.55,0.04,2.84,0.10,3.00,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 omi UMa,5499,52,3.36,0.07,-0.01,0.05,1.98,0.06,3.32,0.07,3.44,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 Qatar-2,4637,316,4.23,0.61,0.09,0.17,0.63,0.83,4.53,0.62,4.70,0.63,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 SAND364,4457,104,2.26,0.20,-0.04,0.06,1.60,0.11,2.63,0.20,2.81,0.21,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
