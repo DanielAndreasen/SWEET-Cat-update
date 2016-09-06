@@ -17,7 +17,7 @@ There are still some things to be done.
 
 - [ ] Add more text in the introduction. Look into some proposals for inspiration.
 - [ ] Expand the result section
-    - [ ] If some star deviate a lot in parameters, check if they have a special planet, and
+    - [x] If some star deviate a lot in parameters, check if they have a special planet, and
           with new parameters this might make them more normal
 - [ ] Write the conclusion section
 - [ ] Make sure the acknowledgement are right
