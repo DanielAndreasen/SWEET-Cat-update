@@ -5,6 +5,8 @@
             multi-part-units=single]{siunitx}
 \usepackage[version=3]{mhchem}
 \usepackage{amsmath}
+\usepackage{lscape}
+\usepackage{graphicx}
 \DeclareMathOperator{\sign}{sign}
 \newcommand{\pluseq}{\mathrel{+}=}
 \newcommand{\minuseq}{\mathrel{-}=}
@@ -288,7 +290,7 @@ for the EW method.
 
 \begin{figure}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/FASMA_general.pdf}
+    \includegraphics[width=1.0\linewidth,natwidth=700,natheight=650]{figures/FASMA_general.pdf}
     \caption{A general overview over FASMA from spectrum to parameters.}
     \label{fig:FASMA_general}
 \end{figure}
@@ -361,7 +363,7 @@ The error estimates is based on the same method presented in
 
 \begin{figure}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/FASMA_minimization.pdf}
+    \includegraphics[width=1.0\linewidth,natwidth=700,natheight=650]{figures/FASMA_minimization.pdf}
     \caption{A schematic overview over the minimization for FASMA with the
     EW method.}
     \label{fig:FASMA_minimization}
@@ -445,7 +447,7 @@ $\xi_\mathrm{micro}$ for FASMA against those of \citet{Sousa2011}.
 
 \begin{figure*}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/FASMATest.pdf}
+    \includegraphics[width=1.0\linewidth,natwidth=750,natheight=500]{figures/FASMATest.pdf}
     \caption{Stellar atmospheric parameters derived by FASMA compared
     to the sample by \citet{Sousa2011}.}
     \label{fig:FASMATest}
@@ -531,94 +533,13 @@ $\log g\geq4.2$. For stars with a $\log g$ lower than this limit we do not apply
 the corrections, and if the $\log g$ change to below this limit after the
 correction, we go back to use the spectroscopic $\log g$ again.
 
-\begin{table*}[htb!]
-    \caption{The derived parameters for the 61 stars in our sample. The SNR
-             is measured by ARES.}
-    \label{tab:results}
-    \centering
-    \begin{tabular}{llllllll}
-      \hline\hline
-      % Add alternative name and SNR
-      Star      & $T_\mathrm{eff}$ (K) &  $\log g$ (dex)     &  [Fe/H] (dex)        &  $\xi_\mathrm{micro}$ (km/s)   & $\xi_\mathrm{micro}$ fixed? & Instrument   & SNR   \\  %Program ID \\
-      \hline
-      WASP-37     &  $6024 \pm  58$      &  $4.70 \pm 0.06$	   &  $-0.15 \pm 0.05$    &  $1.34 \pm 0.09$             &             no              & FIES         &  250  \\
-      WASP-44     &  $5612 \pm  80$      &  $4.47 \pm 0.30$    &  $ 0.17 \pm 0.06$    &  $1.32 \pm 0.13$             &             no              & UVES         &  125  \\  % 092.C-0695                                                                                                              \\
-      WASP-52     &  $5197 \pm  83$      &  $4.47 \pm 0.30$    &  $ 0.15 \pm 0.05$    &  $1.16 \pm 0.14$             &             no              & UVES         &  125  \\  % 093.C-0219                                                                                                              \\
-      WASP-58     &  $6103 \pm  64$      &  $4.68 \pm 0.08$	   &  $-0.10 \pm 0.04$    &  $1.36 \pm 0.11$             &             no              & FIES         &  293  \\
-      WASP-60     &  $6330 \pm  64$      &  $4.66 \pm 0.09$	   &  $ 0.36 \pm 0.04$    &  $1.61 \pm 0.09$             &             no              & FIES         &  315  \\
-      WASP-61     &  $6265 \pm 168$      &  $4.21 \pm 0.21$    &  $-0.38 \pm 0.11$    &  $1.44 \pm 0.02$             &             yes             & UVES         &  163  \\  % 094.C-0367                                                                                                              \\
-      WASP-72     &  $6570 \pm  85$      &  $4.71 \pm 0.13$    &  $ 0.15 \pm 0.06$    &  $2.30 \pm 0.15$             &             no              & UVES         &  174  \\  % 093.C-0219                                                                                                              \\
-      WASP-75     &  $6203 \pm  46$      &  $4.42 \pm 0.22$    &  $ 0.24 \pm 0.03$    &  $1.45 \pm 0.06$             &             no              & UVES         &  189  \\  % 093.C-0219                                                                                                              \\
-      WASP-76     &  $6347 \pm  52$      &  $4.29 \pm 0.08$    &  $ 0.36 \pm 0.04$    &  $1.73 \pm 0.06$             &             no              & FEROS        &  165  \\  % 2014B/020,  094.C-0367                                                                                                  \\
-      WASP-82     &  $6563 \pm  55$      &  $4.29 \pm 0.10$    &  $ 0.18 \pm 0.04$    &  $1.93 \pm 0.08$             &             no              & FEROS        &  239  \\  % 2014B/020,  094.C-0367                                                                                                  \\
-      WASP-88     &  $6450 \pm  61$      &  $4.24 \pm 0.06$    &  $ 0.03 \pm 0.04$    &  $1.79 \pm 0.09$             &             no              & FEROS        &  174  \\  % 2014B/020,  095.C-0324                                                                                                  \\
-      WASP-95     &  $5799 \pm  31$      &  $4.29 \pm 0.05$    &  $ 0.22 \pm 0.03$    &  $1.18 \pm 0.04$             &             no              & FEROS        &  247  \\  % 2014B/020,  095.C-0324                                                                                                  \\
-      WASP-97     &  $5723 \pm  52$      &  $4.37 \pm 0.07$    &  $ 0.31 \pm 0.04$    &  $1.03 \pm 0.08$             &             no              & FEROS        &  219  \\  % 2014B/020,  094.C-0367                                                                                                  \\
-      WASP-99     &  $6324 \pm  89$      &  $4.70 \pm 0.11$    &  $ 0.27 \pm 0.06$    &  $1.83 \pm 0.12$             &             no              & FEROS        &  249  \\  % 2014B/020,  094.C-0367                                                                                                  \\
-     WASP-100     &  $6853 \pm 209$      &  $4.15 \pm 0.26$    &  $-0.30 \pm 0.12$    &  $1.87 \pm 0.02$             &             yes             & FEROS        &  166  \\  % 2014B/020  094.C-0367                                                                                                   \\
-       HATS-1     &  $5969 \pm  46$      &  $4.61 \pm 0.06$    &  $-0.04 \pm 0.04$    &  $1.06 \pm 0.08$             &             no              & UVES         &  155  \\  % 092.C-0695                                                                                                              \\
-       HATS-5     &  $5383 \pm  91$      &  $4.40 \pm 0.22$    &  $ 0.08 \pm 0.06$    &  $0.91 \pm 0.14$             &             no              & UVES         &  158  \\  % 094.C-0367                                                                                                              \\
-     HAT-P-24     &  $6470 \pm 181$      &  $4.75 \pm 0.26$    &  $-0.41 \pm 0.10$    &  $1.40 \pm 0.03$             &             yes             & UVES         &  158  \\  % 092.C-0695                                                                                                              \\
-     HAT-P-39     &  $6745 \pm 236$      &  $4.91 \pm 0.46$    &  $-0.21 \pm 0.12$    &  $1.53 \pm 0.04$             &             yes             & UVES         &  127  \\  % 094.C-0367                                                                                                              \\
-     HAT-P-42     &  $5903 \pm  66$      &  $4.29 \pm 0.10$    &  $ 0.34 \pm 0.05$    &  $1.19 \pm 0.08$             &             no              & UVES         &  130  \\  % 094.C-0367                                                                                                              \\
-     HAT-P-46     &  $6421 \pm 121$      &  $4.53 \pm 0.14$    &  $ 0.16 \pm 0.09$    &  $1.67 \pm 0.18$             &             no              & UVES         &  208  \\  % 093.C-0219                                                                                                              \\
-       HR 228     &  $5042 \pm  42$      &  $3.30 \pm 0.09$    &  $ 0.07 \pm 0.03$    &  $1.14 \pm 0.04$             &             no              & UVES         &  400  \\  % 094.C-0367                                                                                                              \\
-      SAND364     &  $4457 \pm 104$      &  $2.26 \pm 0.20$    &  $-0.04 \pm 0.06$    &  $1.60 \pm 0.11$             &             no              & UVES         &  220  \\  % 094.C-0367                                                                                                              \\
-       GJ 785     &  $5087 \pm  48$      &  $4.30 \pm 0.10$    &  $-0.01 \pm 0.03$    &  $0.69 \pm 0.10$             &             no              & HARPS        &  801  \\  % 60.A-9036(A), 072.C-0488(E), 081.C-0842(D), 083.C-1001(A)                                                               \\
-    HD 102272     &  $5037 \pm  80$      &  $2.72 \pm 0.25$    &  $-0.52 \pm 0.08$    &  $0.67 \pm 0.12$             &             no              & FIES         &  830  \\  % 53-202                                                                                                                  \\
-   *HD 102272     &  $4889 \pm  30$      &  $2.72 \pm 0.07$	   &  $-0.30 \pm 0.02$    &  $1.57 \pm 0.04$             &             no              & FIES         &  953  \\
-    HD 104985     &  $4809 \pm  48$      &  $2.73 \pm 0.08$    &  $-0.26 \pm 0.04$    &  $1.65 \pm 0.05$             &             no              & FIES         & 1010  \\  % 53-202                                                                                                                  \\
-    HD 114762     &  $6061 \pm  83$      &  $4.70 \pm 0.08$    &  $-0.78 \pm 0.05$    &  $0.02 \pm 0.26$             &             no              & FIES         & 1628  \\  % 53-202                                                                                                                  \\
-   *HD 114762     &  $5884 \pm  35$      &  $4.24 \pm 0.04$	   &  $-0.66 \pm 0.02$    &  $1.21 \pm 0.06$             &             no              & FIES         & 1533  \\
-    HD 120084     &  $4969 \pm  40$      &  $2.94 \pm 0.14$    &  $ 0.12 \pm 0.03$    &  $1.41 \pm 0.04$             &             no              & ESPaDOnS     &  852  \\  % 14AF14                                                                                                                  \\
-    HD 152581     &  $5355 \pm  82$      &  $3.65 \pm 0.18$    &  $-0.39 \pm 0.07$    &  $0.60 \pm 0.15$             &             no              & UVES         &  692  \\  % 095.C-0324, 53-202                                                                                                      \\
-    HD 155358     &  $5917 \pm  51$      &  $4.12 \pm 0.08$    &  $-0.55 \pm 0.04$    &  $1.06 \pm 0.08$             &             no              & FIES         &  888  \\  % 40-203                                                                                                                  \\
-    HD 171028     &  $5672 \pm  29$      &  $3.80 \pm 0.04$	   &  $-0.42 \pm 0.02$    &  $1.24 \pm 0.04$             &             no              & FIES         & 1194  \\
-    HD 192263     &  $4946 \pm  46$      &  $4.43 \pm 0.14$    &  $-0.05 \pm 0.02$    &  $0.66 \pm 0.12$             &             no              & HARPS        &  415  \\  % 087.C-0012(B), 192.C-0852(A)                                                                                            \\
-    HD 192699     &  $5210 \pm  27$      &  $3.56 \pm 0.09$	   &  $-0.12 \pm 0.02$    &  $1.19 \pm 0.03$             &             no              & FIES         &  781  \\
-    HD 197037     &  $6255 \pm  44$      &  $4.58 \pm 0.04$	   &  $-0.12 \pm 0.03$    &  $1.27 \pm 0.06$             &             no              & FIES         & 1083  \\
-   HD 2200964     &  $5075 \pm  28$      &  $3.32 \pm 0.07$	   &  $-0.16 \pm 0.02$    &  $1.18 \pm 0.03$             &             no              & FIES         & 1073  \\
-    HD 220842     &  $6027 \pm  30$      &  $4.35 \pm 0.05$    &  $-0.08 \pm 0.03$    &  $1.19 \pm 0.04$             &             no              & FIES         &  197  \\  % 44-210                                                                                                                  \\
-    HD 219134     &  $4767 \pm  70$      &  $4.32 \pm 0.17$    &  $-0.00 \pm 0.04$    &  $0.59 \pm 0.24$             &             no              & ESPaDOnS     &  725  \\  % 07bo03                                                                                                                  \\
-    HD 233604     &  $4925 \pm  44$      &  $2.79 \pm 0.11$    &  $-0.15 \pm 0.03$    &  $1.62 \pm 0.05$             &             no              & FIES         &  320  \\  % 53-202                                                                                                                  \\
-   *HD 233604     &  $4926 \pm  41$      &  $2.79 \pm 0.10$	   &  $-0.15 \pm 0.03$    &  $1.62 \pm 0.05$             &             no              & FIES         &  320  \\
-    HD 283668     &  $4988 \pm  45$      &  $4.82 \pm 0.10$	   &  $-0.68 \pm 0.03$    &  $0.34 \pm 0.02$             &             yes             & FIES         &  709  \\
-    HD 285507     &  $4620 \pm 126$      &  $4.42 \pm 0.61$    &  $ 0.04 \pm 0.06$    &  $0.74 \pm 0.43$             &             no              & FIES         &  239  \\  % 094.C-0367                                                                                                              \\
-     HD 37124     &  $5468 \pm  32$      &  $4.28 \pm 0.04$    &  $-0.43 \pm 0.03$    &  $0.67 \pm 0.07$             &             no              & FIES         &  991  \\  % 53-202                                                                                                                  \\
-    *HD 37124     &  $5470 \pm  32$      &  $4.28 \pm 0.04$	   &  $-0.43 \pm 0.03$    &  $0.67 \pm 0.07$             &             no              & FIES         &  991  \\
-      HD 5583     &  $4980 \pm  35$      &  $2.76 \pm 0.06$    &  $-0.36 \pm 0.04$    &  $1.59 \pm 0.04$             &             no              & FIES         &  936  \\
-     HD 70573     &  $5889 \pm 186$      &  $4.32 \pm 0.27$    &  $-0.42 \pm 0.13$    &  $1.14 \pm 0.01$             &             yes             & FIES         &  487  \\  % 53-202                                                                                                                  \\
-    *HD 81688     &  $4913 \pm  29$      &  $2.64 \pm 0.07$	   &  $-0.21 \pm 0.02$    &  $1.57 \pm 0.03$             &             no              & FIES         & 1253  \\
-     HD 82886     &  $5124 \pm  22$      &  $3.30 \pm 0.05$    &  $-0.25 \pm 0.02$    &  $1.15 \pm 0.03$             &             no              & ESPaDOnS     & 1198  \\  % 14AF14, 53-202                                                                                                          \\
-    *HD 82886     &  $5137 \pm  36$      &  $3.35 \pm 0.08$	   &  $-0.23 \pm 0.03$    &  $1.19 \pm 0.04$             &             no              & FIES         & 1229  \\
-     HD 87883     &  $4917 \pm  68$      &  $4.34 \pm 0.19$    &  $ 0.02 \pm 0.03$    &  $0.46 \pm 0.21$             &             no              & ESPaDOnS     &  753  \\  % 14AF14                                                                                                                  \\
-     HD 96063     &  $5220 \pm  35$      &  $3.59 \pm 0.08$	   &  $-0.13 \pm 0.03$    &  $1.20 \pm 0.04$             &             no              & FIES         &  644  \\
-     HD 97658     &  $5182 \pm  43$      &  $4.50 \pm 0.12$    &  $-0.29 \pm 0.03$    &  $0.77 \pm 0.11$             &             no              & FIES         & 1001  \\  % 53-202                                                                                                                  \\
-    HIP 11915     &  $5770 \pm  14$      &  $4.47 \pm 0.03$    &  $-0.06 \pm 0.01$    &  $0.95 \pm 0.02$             &             no              & HARPS        &  709  \\  % 072.C-0488(E), 089.C-0732(A), 091.C-0034(A), 092.C-0721(A), 093.C-0409(A), 183.C-0972(A), 188.C-0265(A), 192.C-0852(M)  \\
-   HIP 116454     &  $5012 \pm  83$      &  $4.38 \pm 0.16$	   &  $-0.13 \pm 0.04$    &  $0.78 \pm 0.15$             &             no              & FIES         &  316  \\
-   HIP 107773     &  $4957 \pm  49$      &  $2.83 \pm 0.09$    &  $ 0.04 \pm 0.04$    &  $1.49 \pm 0.05$             &             no              & UVES         &  218  \\  % 085.C-0062(A)                                                                                                           \\
-       mu Leo     &  $4605 \pm  94$      &  $2.61 \pm 0.26$    &  $ 0.25 \pm 0.06$    &  $1.64 \pm 0.11$             &             no              & ESPaDOnS     &  354  \\  % 11AQ78, 05AC23, 06AF22                                                                                                  \\
-      omi UMa     &  $5499 \pm  52$      &  $3.36 \pm 0.07$    &  $-0.01 \pm 0.05$    &  $1.98 \pm 0.06$             &             no              & ESPaDOnS     &  527  \\  % 14AF14                                                                                                                  \\
-       11 Com     &  $4911 \pm  38$      &  $2.68 \pm 0.08$    &  $-0.20 \pm 0.03$    &  $1.56 \pm 0.04$             &             no              & FIES         &  953  \\  % 53-202                                                                                                                  \\
-      *11 Com     &  $4907 \pm  34$      &  $2.62 \pm 0.09$	   &  $-0.23 \pm 0.03$    &  $1.56 \pm 0.04$             &             no              & FIES         & 1191  \\
-      omi CrB     &  $4915 \pm  33$      &  $2.74 \pm 0.08$    &  $-0.14 \pm 0.03$    &  $1.57 \pm 0.04$             &             no              & FIES         &  932  \\  % 53-202                                                                                                                  \\
-       42 Dra     &  $4547 \pm  55$      &  $2.23 \pm 0.10$    &  $-0.31 \pm 0.03$    &  $1.54 \pm 0.05$             &             no              & FIES         &  569  \\  % 49-202                                                                                                                  \\
-       14 And     &  $4797 \pm  44$      &  $2.58 \pm 0.11$    &  $-0.23 \pm 0.03$    &  $1.58 \pm 0.04$             &             no              & FIES         &  731  \\  % 49-202                                                                                                                  \\
-   Kepler-444     &  $5163 \pm  40$      &  $4.41 \pm 0.11$    &  $-0.50 \pm 0.03$    &  $0.78 \pm 0.10$             &             no              & FIES         &  675  \\  % 53-202                                                                                                                  \\
-      Qatar-2     &  $4637 \pm 316$      &  $4.23 \pm 0.61$    &  $ 0.09 \pm 0.17$    &  $0.63 \pm 0.83$             &             no              & UVES         &   97  \\  % 092.C-0695
-     bd114672     &  $4612 \pm  86$      &  $4.83 \pm 0.30$	   &  $-0.23 \pm 0.02$    &  $0.08 \pm 0.08$             &             yes             & FIES         &  487  \\
-       ksiaql     &  $4809 \pm  46$      &  $2.71 \pm 0.11$	   &  $-0.16 \pm 0.03$    &  $1.55 \pm 0.04$             &             no              & FIES         &  994  \\
-          tyc     &  $4886 \pm  41$      &  $2.74 \pm 0.08$	   &  $-0.09 \pm 0.03$    &  $1.56 \pm 0.05$             &             no              & FIES         &  505  \\
-      \hline
-    \end{tabular}
-\end{table*}
 We present a Hertzprung-Russel diagram (HRD) of our sample in
 Figure~\ref{fig:HRD}. Figure~\ref{fig:HRD} is made with a tool for post
 processing the results saved to a table by FASMA.
 
 \begin{figure}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/HR.pdf}
+    \includegraphics[width=1.0\linewidth,natwidth=440,natheight=290]{figures/HR.pdf}
     \caption{Hertzprung-Russel diagram of our sample with the Sun as a yellow
     star. The size of the points represents the $\log g$, with bigger points
     being smaller $\log g$ (giants), and vice versa. The colour code show the
@@ -638,7 +559,7 @@ making them time expensive for the spectroscopic analysis required her.
 
 \begin{figure*}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/update.pdf}
+    \includegraphics[width=1.0\linewidth,natwidth=870,natheight=580]{figures/update.pdf}
     \caption{Atmospheric parameters of the updated planet host stars. The x-axis
     are previous values, while the y-axis is the new updated values. In the
     upper left corner of each of the four plots we show the typical error
@@ -655,7 +576,7 @@ and hence expensive, to observe or impossible with the current technology.
 
 \begin{figure}[tpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/metallicityDistribution.pdf}
+    \includegraphics[width=1.0\linewidth,natwidth=450,natheight=300]{figures/metallicityDistribution.pdf}
     \caption{The metallicity distribution. In the \emph{upper} plot we see all
              stars (logarithmic scale) in SWEET-Cat, divided in three. Blue
              (the largest distribution) are all stars available in SWEET-Cat,
@@ -889,6 +810,102 @@ This research has made use of the SIMBAD database operated at CDS, Strasbourg
 \bibliographystyle{aa}
 \bibliography{thesis}
 
+\clearpage
+\appendix
+
+\begin{center}
+\begin{table*}
+% use packages: array
+\caption{The derived parameters for the 61 stars in our sample. The SNR is measured by ARES.}
+\centering
+\begin{tabular}{llllllll}
+\hline
+\noalign{\medskip} %para dejar mas espacio debajo de la linea
+      Star   & $T_\mathrm{eff}$ (K)    &  $\log g$ (dex)                   & $[\ion{Fe}/\ion{H}]$ (dex) &  $\xi_\mathrm{micro}$ (km/s)   & $\xi_\mathrm{micro}$ fixed? & Instrument        & SNR   \\
+\noalign{\medskip} %para dejar mas espacio debajo de la linea
+\hline
+\hline
+      11 Com &   $4903 \pm 34 $        &  $2.55 \pm 0.13$\tablefootmark{a} &  $-0.23 \pm 0.03$          &  $1.56 \pm 0.04$               & no                          &  FIES             &  966  \\
+      14 And &   $4808 \pm 39 $        &  $2.61 \pm 0.10$\tablefootmark{a} &  $-0.22 \pm 0.03$          &  $1.60 \pm 0.04$               & no                          &  FIES             &  724  \\
+      42 Dra &   $4528 \pm 57 $        &  $2.27 \pm 0.11$\tablefootmark{a} &  $-0.30 \pm 0.03$          &  $1.53 \pm 0.05$               & no                          &  FIES             &  645  \\
+ BD -11 4672 &   $4553 \pm 75 $        &  $4.87 \pm 0.51$                  &  $-0.30 \pm 0.02$          &  $0.14 \pm 0.07$               & yes                         &  FIES             &  487  \\
+ BD +49 828  &   $5015 \pm 36 $        &  $2.87 \pm 0.09$\tablefootmark{a} &  $-0.01 \pm 0.03$          &  $1.48 \pm 0.04$               & no                          &  FIES             &  567  \\
+      GJ 785 &   $5087 \pm 48 $        &  $4.42 \pm 0.10$                  &  $-0.01 \pm 0.03$          &  $0.69 \pm 0.10$               & no                          &  HARPS            &  801  \\
+      HATS-1 &   $5969 \pm 46 $        &  $4.39 \pm 0.06$                  &  $-0.04 \pm 0.04$          &  $1.06 \pm 0.08$               & no                          &  UVES             &  155  \\
+      HATS-5 &   $5383 \pm 91 $        &  $4.41 \pm 0.22$                  &  $ 0.08 \pm 0.06$          &  $0.91 \pm 0.14$               & no                          &  UVES             &  158  \\
+    HAT-P-12 &   $4642 \pm 106$        &  $4.53 \pm 0.27$                  &  $-0.26 \pm 0.06$          &  $0.28 \pm 0.63$               & no                          &  FIES             &  185  \\
+    HAT-P-24 &   $6470 \pm 181$        &  $4.33 \pm 0.27$                  &  $-0.41 \pm 0.10$          &  $1.40 \pm 0.03$               & yes                         &  UVES             &  158  \\
+    HAT-P-39 &   $6745 \pm 236$        &  $4.39 \pm 0.47$                  &  $-0.21 \pm 0.12$          &  $1.53 \pm 0.04$               & yes                         &  UVES             &  127  \\
+    HAT-P-42 &   $5903 \pm 66 $        &  $4.29 \pm 0.10$\tablefootmark{a} &  $ 0.34 \pm 0.05$          &  $1.19 \pm 0.08$               & no                          &  UVES             &  130  \\
+    HAT-P-46 &   $6421 \pm 121$        &  $4.53 \pm 0.14$\tablefootmark{a} &  $ 0.16 \pm 0.09$          &  $1.67 \pm 0.18$               & no                          &  UVES             &  208  \\
+   HD 102272 &   $4883 \pm 34 $        &  $2.69 \pm 0.07$\tablefootmark{a} &  $-0.29 \pm 0.03$          &  $1.54 \pm 0.04$               & no                          &  FIES             & 1011  \\
+   HD 104985 &   $4786 \pm 58 $        &  $2.66 \pm 0.09$\tablefootmark{a} &  $-0.28 \pm 0.04$          &  $1.65 \pm 0.05$               & no                          &  FIES             & 1010  \\
+   HD 114762 &   $5879 \pm 39 $        &  $4.23 \pm 0.04$\tablefootmark{a} &  $-0.66 \pm 0.03$          &  $1.16 \pm 0.07$               & no                          &  FIES             & 1671  \\
+   HD 120084 &   $4969 \pm 40 $        &  $2.94 \pm 0.14$\tablefootmark{a} &  $ 0.12 \pm 0.03$          &  $1.41 \pm 0.04$               & no                          &  ESPaDOnS         &  852  \\
+   HD 152581 &   $5181 \pm 27 $        &  $3.37 \pm 0.06$\tablefootmark{a} &  $-0.23 \pm 0.02$          &  $1.15 \pm 0.03$               & no                          &  FIES             &  796  \\
+   HD 155358 &   $5906 \pm 33 $        &  $4.24 \pm 0.03$\tablefootmark{a} &  $-0.61 \pm 0.02$          &  $1.30 \pm 0.05$               & no                          &  FIES             &  424  \\
+   HD 171028 &   $5699 \pm 36 $        &  $3.83 \pm 0.03$\tablefootmark{a} &  $-0.40 \pm 0.02$          &  $1.21 \pm 0.04$               & no                          &  FIES             &  460  \\
+   HD 192263 &   $4946 \pm 46 $        &  $4.61 \pm 0.14$                  &  $-0.05 \pm 0.02$          &  $0.66 \pm 0.12$               & no                          &  HARPS            &  415  \\
+   HD 192699 &   $5208 \pm 27 $        &  $3.56 \pm 0.10$\tablefootmark{a} &  $-0.12 \pm 0.02$          &  $1.19 \pm 0.03$               & no                          &  FIES             &  776  \\
+   HD 197037 &   $6233 \pm 45 $        &  $4.22 \pm 0.04$                  &  $-0.12 \pm 0.03$          &  $1.22 \pm 0.06$               & no                          &  FIES             & 1074  \\
+   HD 200964 &   $5083 \pm 24 $        &  $3.32 \pm 0.07$\tablefootmark{a} &  $-0.16 \pm 0.02$          &  $1.18 \pm 0.03$               & no                          &  FIES             & 1081  \\
+   HD 219134 &   $4767 \pm 70 $        &  $4.57 \pm 0.17$                  &  $ 0.00 \pm 0.04$          &  $0.59 \pm 0.24$               & no                          &  ESPaDOnS         &  725  \\
+   HD 220074 &   $4748 \pm 233$        &  $3.67 \pm 0.33$\tablefootmark{a} &  $-0.06 \pm 0.09$          &  $2.82 \pm 0.37$               & no                          &  FIES             &  419  \\
+   HD 220842 &   $5999 \pm 39 $        &  $4.30 \pm 0.06$\tablefootmark{a} &  $-0.08 \pm 0.03$          &  $1.21 \pm 0.05$               & no                          &  FIES             &  459  \\
+   HD 233604 &   $4954 \pm 46 $        &  $2.86 \pm 0.11$\tablefootmark{a} &  $-0.14 \pm 0.04$          &  $1.61 \pm 0.05$               & no                          &  FIES             &  314  \\
+   HD 283668 &   $4841 \pm 73 $        &  $4.51 \pm 0.18$                  &  $-0.74 \pm 0.04$          &  $0.16 \pm 0.61$               & no                          &  FIES             &  592  \\
+   HD 285507 &   $4620 \pm 126$        &  $4.72 \pm 0.61$                  &  $ 0.04 \pm 0.06$          &  $0.74 \pm 0.43$               & no                          &  UVES             &  239  \\
+   HD 37124  &   $5460 \pm 35 $        &  $4.24 \pm 0.04$                  &  $-0.42 \pm 0.03$          &  $0.61 \pm 0.07$               & no                          &  FIES             &  988  \\
+   HD 5583   &   $4986 \pm 35 $        &  $2.87 \pm 0.09$\tablefootmark{a} &  $-0.35 \pm 0.03$          &  $1.62 \pm 0.04$               & no                          &  FIES             &  933  \\
+   HD 70573  &   $5889 \pm 186$        &  $4.32 \pm 0.27$\tablefootmark{a} &  $-0.42 \pm 0.13$          &  $1.14 \pm 0.01$               & yes                         &  FIES             &  487  \\
+   HD 81688  &   $4903 \pm 21 $        &  $2.70 \pm 0.05$\tablefootmark{a} &  $-0.21 \pm 0.02$          &  $1.54 \pm 0.02$               & no                          & \tablefootmark{b} & 1350, 860  \\
+   HD 82886  &   $5123 \pm 18 $        &  $3.30 \pm 0.04$\tablefootmark{a} &  $-0.25 \pm 0.01$          &  $1.16 \pm 0.02$               & no                          & \tablefootmark{c} & 1198,1294   \\
+   HD 96063  &   $5232 \pm 36 $        &  $3.61 \pm 0.06$\tablefootmark{a} &  $-0.12 \pm 0.03$          &  $1.23 \pm 0.04$               & no                          &  FIES             &  644  \\
+   HD 97658  &   $5219 \pm 54 $        &  $4.60 \pm 0.10$                  &  $-0.28 \pm 0.04$          &  $0.78 \pm 0.11$               & no                          &  FIES             & 1123  \\
+   HD 87883  &   $4917 \pm 68 $        &  $4.53 \pm 0.19$                  &  $ 0.02 \pm 0.03$          &  $0.46 \pm 0.21$               & no                          &  ESPaDOnS         &  753  \\
+  HIP 107773 &   $4957 \pm 49 $        &  $2.83 \pm 0.09$\tablefootmark{a} &  $ 0.04 \pm 0.04$          &  $1.49 \pm 0.05$               & no                          &  UVES             &  218  \\
+  HIP 11915  &   $5770 \pm 14 $        &  $4.33 \pm 0.03$                  &  $-0.06 \pm 0.01$          &  $0.95 \pm 0.02$               & no                          &  HARPS            &  709  \\
+  HIP 116454 &   $5038 \pm 82 $        &  $4.53 \pm 0.18$                  &  $-0.12 \pm 0.04$          &  $0.74 \pm 0.15$               & no                          &  FIES             &  309  \\
+      HR 228 &   $5042 \pm 42 $        &  $3.30 \pm 0.09$\tablefootmark{a} &  $ 0.07 \pm 0.03$          &  $1.14 \pm 0.04$               & no                          &  UVES             &  400  \\
+      KELT-6 &   $6246 \pm 88 $        &  $4.22 \pm 0.09$\tablefootmark{a} &  $-0.22 \pm 0.06$          &  $1.66 \pm 0.13$               & no                          &  FIES             &  374  \\
+  Kepler-37  &   $5378 \pm 53 $        &  $4.47 \pm 0.12$                  &  $-0.23 \pm 0.04$          &  $0.58 \pm 0.13$               & no                          &  FIES             &  205  \\
+  Kepler-444 &   $5111 \pm 43 $        &  $4.50 \pm 0.13$                  &  $-0.51 \pm 0.03$          &  $0.37 \pm 0.15$               & no                          &  FIES             &  675  \\
+     ksi Aql &   $4834 \pm 42 $        &  $2.65 \pm 0.10$\tablefootmark{a} &  $-0.14 \pm 0.03$          &  $1.53 \pm 0.04$               & no                          &  FIES             &  919  \\
+     mu Leo  &   $4605 \pm 94 $        &  $2.61 \pm 0.26$\tablefootmark{a} &  $ 0.25 \pm 0.06$          &  $1.64 \pm 0.11$               & no                          &  ESPaDOnS         &  354  \\
+     ome Ser &   $4928 \pm 35 $        &  $2.69 \pm 0.06$\tablefootmark{a} &  $-0.11 \pm 0.03$          &  $1.55 \pm 0.04$               & no                          &  FIES             & 1168  \\
+     omi CrB &   $4882 \pm 40 $        &  $2.64 \pm 0.10$\tablefootmark{a} &  $-0.17 \pm 0.03$          &  $1.55 \pm 0.04$               & no                          &  FIES             &  932  \\
+     omi UMa &   $5499 \pm 52 $        &  $3.36 \pm 0.07$\tablefootmark{a} &  $-0.01 \pm 0.05$          &  $1.98 \pm 0.06$               & no                          &  ESPaDOnS         &  527  \\
+     Qatar-2 &   $4637 \pm 316$        &  $4.53 \pm 0.62$                  &  $ 0.09 \pm 0.17$          &  $0.63 \pm 0.83$               & no                          &  UVES             &   97  \\
+     SAND364 &   $4457 \pm 104$        &  $2.26 \pm 0.20$\tablefootmark{a} &  $-0.04 \pm 0.06$          &  $1.60 \pm 0.11$               & no                          &  UVES             &  220  \\
+TYC+1422-614-1 & $4908 \pm 41 $        &  $2.90 \pm 0.12$\tablefootmark{a} &  $-0.07 \pm 0.03$          &  $1.57 \pm 0.05$               & no                          &  FIES             &  506  \\
+    WASP-37  &   $5917 \pm 72 $        &  $4.25 \pm 0.15$                  &  $-0.23 \pm 0.05$          &  $0.59 \pm 0.13$               & no                          &  FIES             &  232  \\
+    WASP-44  &   $5612 \pm 80 $        &  $4.39 \pm 0.30$                  &  $ 0.17 \pm 0.06$          &  $1.32 \pm 0.13$               & no                          &  UVES             &  125  \\
+    WASP-52  &   $5197 \pm 83 $        &  $4.55 \pm 0.30$                  &  $ 0.15 \pm 0.05$          &  $1.16 \pm 0.14$               & no                          &  UVES             &  125  \\
+    WASP-58  &   $6039 \pm 55 $        &  $4.23 \pm 0.10$                  &  $-0.09 \pm 0.04$          &  $1.12 \pm 0.08$               & no                          &  FIES             &  310  \\
+    WASP-61  &   $6265 \pm 168$        &  $4.21 \pm 0.21$\tablefootmark{a} &  $-0.38 \pm 0.11$          &  $1.44 \pm 0.02$               & yes                         &  UVES             &  163  \\
+    WASP-72  &   $6570 \pm 85 $        &  $4.25 \pm 0.13$                  &  $ 0.15 \pm 0.06$          &  $2.30 \pm 0.15$               & no                          &  UVES             &  174  \\
+    WASP-75  &   $6203 \pm 46 $        &  $4.42 \pm 0.22$\tablefootmark{a} &  $ 0.24 \pm 0.03$          &  $1.45 \pm 0.06$               & no                          &  UVES             &  189  \\
+    WASP-76  &   $6347 \pm 52 $        &  $4.29 \pm 0.08$\tablefootmark{a} &  $ 0.36 \pm 0.04$          &  $1.73 \pm 0.06$               & no                          &  UVES             &  165  \\
+    WASP-82  &   $6563 \pm 55 $        &  $4.29 \pm 0.10$\tablefootmark{a} &  $ 0.18 \pm 0.04$          &  $1.93 \pm 0.08$               & no                          &  UVES             &  239  \\
+    WASP-88  &   $6450 \pm 61 $        &  $4.24 \pm 0.06$\tablefootmark{a} &  $ 0.03 \pm 0.04$          &  $1.79 \pm 0.09$               & no                          &  UVES             &  174  \\
+    WASP-95  &   $5799 \pm 31 $        &  $4.29 \pm 0.05$\tablefootmark{a} &  $ 0.22 \pm 0.03$          &  $1.18 \pm 0.04$               & no                          &  UVES             &  247  \\
+    WASP-97  &   $5723 \pm 52 $        &  $4.24 \pm 0.07$                  &  $ 0.31 \pm 0.04$          &  $1.03 \pm 0.08$               & no                          &  UVES             &  219  \\
+    WASP-99  &   $6324 \pm 89 $        &  $4.34 \pm 0.12$                  &  $ 0.27 \pm 0.06$          &  $1.83 \pm 0.12$               & no                          &  UVES             &  249  \\
+%     \tablefoot{
+%         \tablefoottext{a}{Spectroscopic $\log g$.}
+%         \tablefoottext{b}{Weighted average of ESPaDoNS and FIES results. The parameters are (FIES in parantheses): $T_\mathrm{eff}=4870(4934)\pm30(29)$
+%                                                                                                                    $\log g=2.50(2.73)\pm0.14(0.05)$,
+%                                                                                                                    $[\ion{Fe}/\ion{H}]=-0.26(-0.19)\pm0.03(0.02)$, and
+%                                                                                                                    $\xi_\mathrm{micro}=1.50(1.59)\pm0.03(0.03)$}
+%         \tablefoottext{c}{Weighted average of ESPaDoNS and FIES results. The parameters are (FIES in parantheses): $T_\mathrm{eff}=15124(5121)\pm22(29)$,
+%                                                                                                                    $\log g=3.30(3.31)\pm0.05(0.07)$,
+%         }}
+% \hline
+% \noalign{\medskip} %para dejar mas espacio debajo de la linea
+\end{tabular}
+\end{table*}
+\label{tab:results}
+\end{center}
 
 
 \end{document}
