@@ -2,7 +2,6 @@ linelist,teff,tefferr,logg,loggerr,feh,feherr,vt,vterr,loggastero,dloggastero,lo
 11 Com,4903,34,2.55,0.13,-0.23,0.03,1.56,0.04,2.74,0.13,2.90,0.13,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 14 And,4808,39,2.61,0.10,-0.22,0.03,1.60,0.04,2.84,0.10,3.00,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 42 Dra,4528,57,2.27,0.11,-0.30,0.03,1.53,0.05,2.61,0.11,2.79,0.11,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-Aldebaran,5279,223,4.53,0.40,0.14,0.12,3.05,0.41,4.58,0.41,4.71,0.41,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 BD-114672,4553,75,4.54,0.51,-0.30,0.02,0.14,0.07,4.87,0.51,5.05,0.51,True,False,False,False,True,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 BD +49 828,5015,36,2.87,0.09,-0.01,0.03,1.48,0.04,3.02,0.09,3.17,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 GJ 785,5087,48,4.30,0.10,-0.01,0.03,0.69,0.10,4.42,0.10,4.57,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -74,3 +73,5 @@ WASP-100,6853,209,4.15,0.26,-0.3,0.12,1.87,0.02,3.58,0.27,3.61,0.28,True,False,F
 #
 #HD82886NOT4,5121,29,3.31,0.07,-0.24,0.02,1.17,0.04,3.42,0.07,3.56,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 #HD82886ESPaDOnS,5124,22,3.30,0.05,-0.25,0.02,1.15,0.03,3.41,0.05,3.55,0.05,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+
+#Aldebaran,5279,223,4.53,0.40,0.14,0.12,3.05,0.41,4.58,0.41,4.71,0.41,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
