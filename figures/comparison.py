@@ -24,7 +24,7 @@ if __name__ == '__main__':
              'author', 'source', 'update', 'comment', 'z1', 'z2']
 
     df = pd.read_csv('SC.csv')
-    df = df[df.convergence]
+    # df = df[df.convergence]
     sc = pd.read_csv('WEBSITE_online.rdb', delimiter='\t', names=names, na_values=['NULL'])
 
     # Remove trailing withspaces from the names
@@ -46,7 +46,7 @@ if __name__ == '__main__':
                'metal', 'ermetal', 'fehnew', 'feherrnew',
                'vt', 'ervt', 'vtnew', 'vterrnew']
     df2 = df2.loc[:, columns]
-
+    df2.teffnew = df2.teffnew.astype(float)
     df2['teffdiff'] = df2['teff']-df2['teffnew']
     df2['loggdiff'] = df2['logg']-df2['loggnew']
     df2['fehdiff'] = df2['metal']-df2['fehnew']
@@ -76,8 +76,8 @@ if __name__ == '__main__':
     ax2 = plt.subplot(gs1[-1, 0])
     ax2.plot(df.teff, df.teffdiff, 'o', alpha=0.7)
     ax2.hlines([teffdiff], 4200, 7100)
-    ax2.set_yticks([-450, -300, -150, 0, 150])
-    ax2.set_ylim(-500, 250)
+    ax2.set_yticks([-400, -200, 0, 200, 400])
+    ax2.set_ylim(-500, 500)
     ax2.grid(True)
 
     gs2 = gridspec.GridSpec(3, 1)
@@ -91,8 +91,8 @@ if __name__ == '__main__':
     ax4 = plt.subplot(gs2[-1, 0])
     ax4.plot(df.logg, df.loggdiff, 'o', alpha=0.7)
     ax4.hlines([loggdiff], 1.8, 5.1)
-    ax4.set_yticks([-0.9, -0.6, -0.3, 0.0, 0.3])
-    ax4.set_ylim(-0.9, 0.5)
+    ax4.set_yticks([-0.6, -0.3, 0.0, 0.3, 0.6])
+    ax4.set_ylim(-0.9, 0.9)
     ax4.grid(True)
 
     gs3 = gridspec.GridSpec(3, 1)
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     ax6 = plt.subplot(gs3[-1, 0])
     ax6.plot(df.metal, df.fehdiff, 'o', alpha=0.7)
     ax6.hlines([fehdiff], -0.8, 0.55)
-    ax6.set_yticks([-0.3, 0.0, 0.3])
+    ax4.set_yticks([-0.6, -0.3, 0.0, 0.3, 0.6])
     ax6.set_ylim(-0.5, 0.5)
     ax6.grid(True)
 
@@ -121,8 +121,8 @@ if __name__ == '__main__':
     ax8 = plt.subplot(gs4[-1, 0])
     ax8.plot(df.vt, df.vtdiff, 'o', alpha=0.7)
     ax8.hlines([vtdiff], -0.1, 2.2)
-    ax8.set_yticks([-0.8, -0.4, 0.0, 0.4])
-    ax8.set_ylim(-1.0, 0.8)
+    ax8.set_yticks([-0.8, -0.4, 0.0, 0.4, 0.8])
+    ax8.set_ylim(-1.0, 1.0)
     ax8.grid(True)
 
     plt.savefig('update.pdf')
