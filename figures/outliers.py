@@ -202,3 +202,14 @@ if __name__ == '__main__':
             'stRadius', 'Rnew', 'space', 'plMass', 'Mplnew', 'space',
             'plRadius', 'Rplnew', 'space', 'plDensity', 'densityPlNew']
     print outlier.loc[:, info]
+
+    # for star in df.index:
+    #     try:
+    #         x1, x2 = df.loc[star, ['plMass', 'Mplnew']]
+    #         y1, y2 = df.loc[star, ['plRadius', 'Rplnew']]
+    #         plt.errorbar([x1], [y1], xerr=0.1*x1, yerr=0.1*y1, fmt='or')
+    #         plt.errorbar([x2], [y2], xerr=0.1*x1, yerr=0.1*y1, fmt='og')
+    #         plt.plot([x1, x2], [y1, y2], '-k')
+    #     except:
+    #         pass
+    # plt.show()
