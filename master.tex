@@ -32,7 +32,9 @@
 
 
 \title{SWEET-Cat update and FASMA}
-\subtitle{A new minimization procedure for high quality spectra}
+\subtitle{A new minimization procedure for high quality spectra\thanks{Data is
+from the following program IDs: 092.C-0695, 093.C-0219,2014B/020, 094.C-0367,
+095.C-0324, and 096.C-0092.}}
 
 
 \author{ D.~T.~Andreasen\inst{1,2}
@@ -95,9 +97,10 @@ To date, nearly 3500 extrasolar planets have been discovered around almost 2500
 solar-type stars\footnote{For an updated table we refer to
 \url{http://www.exoplanet.eu}}. Most of these have been found thanks to the
 incredible precision achieved in photometric transit and radial velocity
-methods. The increasing number of exoplanets allows us to do statistical studies
-of the newfound worlds by analyzing their internal structure, atmospheric
-composition, and planetary composition.
+methods. Not only do we have intriguing new types of planetary systems that
+challenge current theories but also the increasing number of exoplanets allows
+us to do statistical studies of the newfound worlds by analyzing their internal
+structure, atmospheric composition, and planetary composition.
 
 Precise and accurate planetary parameters (mass, radius, and mean density) are
 needed to distinguish between solid rocky, water rich, gaseous, or otherwise
@@ -127,8 +130,9 @@ analyzing the increasing amount of spectra even more crucial.
 In the era of large data sets, computation time has to be decreased as much as
 possible without compromising the quality of the results. In the light of this
 we have developed a tool to derive atmospheric parameters in a fast and robust
-way using standard spectroscopic methods. This works well for optical spectra
-which we demonstrate in Section~\ref{sub:Testing_FASMA} using the line list from
+way using standard spectroscopic methods. We made this tool available as a web
+interface at \url{link to FASMA}. This works well for optical spectra which we
+demonstrate in Section~\ref{sub:Testing_FASMA} using the line list from
 \citet{Sousa2011}. This tool also ships with a line list for near-IR spectra
 using the line list presented recently in \citet{Andreasen2016}. The tool is
 provided to the community as an easy to use web tool to avoid any problems with
@@ -138,8 +142,9 @@ installations. The tool is described in detail in Section~\ref{sec:FASMA}.
 
 \section{Data}
 \label{sec:data}
-We obtain 43 spectra related to this work by using the UVES \citep{UVES}, FEROS
-\citep{FEROS}, and FIES \citep{FIES} spectrographs. The rest (18) spectra were
+In this paper we derived parameters for a sample 66 stars,
+43 were observed by our team using the UVES \citep{UVES}, FEROS
+\citep{FEROS}, and FIES \citep{FIES} spectrographs. The rest (23) spectra were
 found in various archives. Additionally, we use spectra from HARPS \citep{HARPS}
 and ESPaDOnS \citep{ESPADONS}. Some characteristics of the spectrographs are
 presented in Table~\ref{tab:instruments} with the mean SNR for the spectra used.
@@ -157,7 +162,8 @@ included here, several spectra were combined as described above, while for the
 observations dedicated to this work, the spectrum would be a single spectrum.
 This is mostly due to the difference in science cases behind the observations.
 E.g. the HARPS spectra were used for RV monitoring or follow up of the
-exoplanet(s).
+exoplanet(s), while the UVES spectra were used for characterisation of stellar
+parameters.
 
 \begin{table}[htb!]
     \caption{Spectrographs used for this paper with their spectral resolution,
@@ -166,9 +172,9 @@ exoplanet(s).
     \centering
     \begin{tabular}{llll}
       \hline\hline
-      Spectrograph & Resolution & spectral coverage           &   Mean SNR  \\
+      Spectrograph & Resolution & Spectral coverage           &   Mean SNR  \\
       \hline
-      UVES         &    110 000 & $\SIrange{420}{1100}{nm}$   &   212       \\
+      UVES         &    110 000 & $\SIrange{480}{680}{nm}$    &   212       \\
       FEROS        &     48 000 & $\SIrange{350}{920}{nm}$    &   208       \\
       HARPS        &    115 000 & $\SIrange{378}{691}{nm}$    &   642       \\
       FIES         &     67 000 & $\SIrange{370}{730}{nm}$    &   763       \\
@@ -203,10 +209,10 @@ a geometric mean for effective temperature, surface gravity and metallicity.
 \subsection{EW measurements}
 \label{sub:EW_measurements}
 The EWs are strongly correlated with the atmospheric parameters. Measurements of
-the EW can be done manually using a tool like IRAF, but often when dealing with
-a large sample of stars this is not a suitable way to deal with the task.
-Therefore tools like ARES exist which can measure the EWs of spectral lines
-automatically. To use this mode of FASMA, it just needs a spectrum (format
+the EW can be done manually using a tool like splot in IRAF, but often when
+dealing with a large sample of stars this is not a suitable way to deal with the
+task. Therefore tools like ARES exist which can measure the EWs of spectral
+lines automatically. To use this mode of FASMA, it just needs a spectrum (format
 should be 1D fits for ARES to read it) and a line list. For the latter, FASMA is
 shipped with some line lists ready to use, in the format suitable for FASMA. The
 output will be a line list in the format required for MOOG. The output can be
@@ -358,7 +364,7 @@ $a_\mathrm{EP}$ in order to get the slope. Since we ignore all interdependencies
 between the parameters in doing so, we lower the slopes above a little and
 arrive to these very simple equations.
 
-The error estimates is based on the same method presented in
+The error estimates are based on the same method presented in
 \citet{Gonzalez2000}, which is also described in details in
 \citet{Santos2003,Andreasen2016}.
 
@@ -434,23 +440,26 @@ abundances are saved to a table.
 \subsection{Testing FASMA}
 \label{sub:Testing_FASMA}
 To test the EW method implemented in FASMA we derive parameters from the 582
-sample by \citet{Sousa2011}. We use ARES2 to measure the EWs. ARES can give an
-estimate on the signal to noise ratio (SNR) by analyzing the continuum in given
-intervals. For solar type stars the following intervals are working well:
-\SIrange{5764}{5766}{\angstrom}, \SIrange{6047}{6053}{\angstrom}, and
-\SIrange{6068}{6076}{\angstrom}. From the estimated SNR, ARES can give an
-estimate on the very important \emph{rejt} parameters \citep[see][for more
-information]{Sousa2015a}. After measuring the EWs with ARES, we use the FASMA
-minimization described in Section~\ref{sub:EW_method} to determine the stellar
-atmospheric parameters. The results are presented in Figure~\ref{fig:FASMATest}
-which shows $T_\mathrm{eff}$, $\log g$, [\ion{Fe}/\ion{H}], and
-$\xi_\mathrm{micro}$ for FASMA against those of \citet{Sousa2011}.
+sample by \citet{Sousa2011}. This sample has a wider range of SNR than the 451
+sample from \citet{Tsantaki2013}, therefore making it better for a comparison.
+We use ARES2 to measure the EWs. ARES can give an estimate on the signal to
+noise ratio (SNR) by analyzing the continuum in given intervals. For solar type
+stars the following intervals are working well: \SIrange{5764}{5766}{\angstrom},
+\SIrange{6047}{6053}{\angstrom}, and \SIrange{6068}{6076}{\angstrom}. From the
+estimated SNR, ARES can give an estimate on the very important \emph{rejt}
+parameters \citep[see][for more information]{Sousa2015a}. After measuring the
+EWs with ARES, we use the FASMA minimization described in
+Section~\ref{sub:EW_method} to determine the stellar atmospheric parameters. The
+results are presented in Figure~\ref{fig:FASMATest} which shows
+$T_\mathrm{eff}$, $\log g$, [\ion{Fe}/\ion{H}], and $\xi_\mathrm{micro}$ for
+FASMA against those of \citet{Sousa2011}.
 
 \begin{figure*}[tpb]
     \centering
     \includegraphics[width=1.0\linewidth,natwidth=750,natheight=500]{figures/FASMATest.pdf}
     \caption{Stellar atmospheric parameters derived by FASMA compared
-    to the sample by \citet{Sousa2011}.}
+    to the sample by \citet{Sousa2011}. The x-axis in all plots show the results
+    from FASMA while the y-axis is the parameters derived by \citet{Sousa2011}.}
     \label{fig:FASMATest}
 \end{figure*}
 
@@ -458,7 +467,7 @@ The sample contains stars with $T_\mathrm{eff}$ too cold for the line list used.
 As described in Section~\ref{sub:EW_method} we should then convert the line list
 by \citet{Sousa2008a} to the line list presented in \citet{Tsantaki2013}.
 However, since this line list was not available when \citet{Sousa2011} derived
-parameters, we do not make this change in order to make a better test for
+parameters, we do not make this change in order to make a fair comparison for
 FASMA.
 
 The mean of the difference between parameters from \citet{Sousa2011} and those
@@ -483,17 +492,19 @@ by FASMA are presented in Table~\ref{tab:FASMATest}.
     \end{tabular}
 \end{table}
 
-We see small offsets that can be due to different versions of MOOG, measured
-line lists, interpolation of atmosphere grid, and minimization routine. Most
-likely the difference will be due to different used \emph{rejt} parameters in
-ARES, which can alter the EWs and hence the parameters. We therefore randomly
-selected 20 stars with different $T_\mathrm{eff}$ and used the line lists
-directly from \citet{Sousa2011} to derive parameters. The results are presented
-in the last column of Table~\ref{tab:FASMATest}. We note that the $\log gf$
-values from the original line lists by \citet{Sousa2011}, which used the MOOG
-2002 version, were not changed for the 2014 version of MOOG. This might lead to
-some errors as well. However, the offsets are very small and compatible with the
-errors on parameters normally obtained from high quality spectra.
+The comparison is very consistent as expected and the small offsets are within
+the errors except for metallicity. This can be due to different versions of
+MOOG, measured line lists, interpolation of atmosphere grid, and minimization
+routine. Most likely the difference will be due to different used \emph{rejt}
+parameters in ARES, which can alter the EWs systematically and hence the
+metallicity. We therefore randomly selected 20 stars with different
+$T_\mathrm{eff}$ and used the line lists directly from \citet{Sousa2011} to
+derive parameters. The results are presented in the last column of
+Table~\ref{tab:FASMATest}. We note that the $\log gf$ values from the original
+line lists by \citet{Sousa2011}, which used the MOOG 2002 version, were not
+changed for the 2014 version of MOOG. This might lead to some errors as well.
+However, the offsets are very small and compatible with the errors on parameters
+normally obtained from high quality spectra.
 
 
 \subsection{Web interface}
@@ -510,12 +521,12 @@ The web interface can be found at the following link
 
 
 
-\section{New spectroscopic parameters for 61 planet hosts}
+\section{New homogeneous spectroscopic parameters for 66 planet hosts}
 \label{sec:results}
-Here we present the sample of 61 stars. We were unable to derive parameters for
+Here we present the sample of 66 stars. We were unable to derive parameters for
 HD77065. This is a spectroscopic binary according to \cite{Pourbaix2004}, and
 the spectrum is contaminated with the companion star. This make EW measurement
-very difficult, hence we exclude it from the sample.
+very difficult, hence we exclude it from the sample of collected spectra.
 
 Moreover we were not able to successfully derive parameters with this method for
 Aldebaran, a well known red giant star. Even though the quality of the spectra
@@ -526,8 +537,12 @@ of spectral type. That we are not able to derive parameters for Aldebaran is not
 a big concern, since it is well studied with other techniques, and we can trust
 the parameters already listed in SWEET-Cat.
 
-The remaining 61 stars are presented in Table~\ref{tab:results}. Note that we
-apply a correction to the spectroscopic $\log g$ based asteroseismology as
+Last, we also removed .... from our sample since these stars did not convergence
+during the minimization procedure. The $T_\mathrm{eff}$ for these stars are too
+high for the EW method to work.
+
+The remaining 66 stars are presented in Table~\ref{tab:results}. Note that we
+apply a correction to the spectroscopic $\log g$ based on asteroseismology as
 found in \citet{Mortier2014}. We only use this corrections for FGK dwarf stars,
 i.e. between $\SI{4800}{K}\leq T_\mathrm{eff} \leq \SI{6500}{K}$ and
 $\log g\geq4.2$. For stars with a $\log g$ lower than this limit we do not apply
@@ -541,10 +556,10 @@ processing the results saved to a table by FASMA.
 \begin{figure}[tpb]
     \centering
     \includegraphics[width=1.0\linewidth,natwidth=440,natheight=290]{figures/HR.pdf}
-    \caption{Hertzprung-Russel diagram of our sample with the Sun as a yellow
+    \caption{Hertzprung-Russel diagram of our sample with the Sun as a green
     star. The size of the points represents the $\log g$, with bigger points
     being smaller $\log g$ (giants), and vice versa. The colour code show the
-    same as the size. Red points are the dwarfs, while blue points are the
+    same as the size. Red points are the dwarfs, while yellow points are the
     giants.}
     \label{fig:HRD}
 \end{figure}
@@ -556,7 +571,10 @@ work. We note that the limiting factor at the moment for increasing the sample
 of stars analyzed in the homogeneous way is the magnitude of that planet hosts.
 There have been found many planet hosts with space mission as \emph{Kepler} and
 \emph{CoRoT} using the transiting method. Most of these stars are faint and thus
-making them time expensive for the spectroscopic analysis required her.
+making them time expensive for the spectroscopic analysis required here. For
+stars brighter than magnitude 12 the completeness, i.e. the stars analyzed in a
+homogeneous way compared to the ones we did not analyze yet, is up to 77\% now
+while it is at 85\% for exoplanet hosts brighter than magnitude 10.
 
 \begin{figure*}[tpb]
     \centering
@@ -572,8 +590,8 @@ The metallicity distribution for all the planet host stars are important to
 understand e.g. planet formation. We present a distribution in
 Figure~\ref{fig:distribution}. The sample is divided in two, for all stars, and
 for stars brighter than 12 V magnitude. Stars dimmer are mainly observed with
-the \emph{Kepler} space mission. These dim stars are either very time consuming,
-and hence expensive, to observe or impossible with the current technology.
+the \emph{Kepler} space mission. These dim stars are very time consuming, and
+hence expensive to observe.
 
 \begin{figure}[tpb]
     \centering
@@ -599,7 +617,7 @@ different factors and will be less reliable. For the lower range, we expect to
 see more line blending, and hence the EW measurements will no longer be
 reliable. Without reliable EW measurements, the rest of the technique will not
 work. For the other limit we start to see non-LTE effects which we do not take
-into account, hence the method does not work there.
+into account, hence the method does not work there \citep{Gray2006}.
 
 We compute radius and mass of all stars (even the ones which parameters may not
 be reliable in order to be complete) using the empirical formula presented in
@@ -607,11 +625,29 @@ be reliable in order to be complete) using the empirical formula presented in
 and generally show a good correlation with radius derived from
 \citet{Torres2010} if the literature parameters of $T_\mathrm{eff}$, $\log g$,
 and $[\ion{Fe}/\ion{H}]$ are used. However, if we compare with the new radius
-derived the results can differ up to 65\%. Below we discuss the systems where
-the radius of the stars change more then 25\% and how this influence the
-planetary parameters. The changes in radius for a star is primarily due to
-changes in $\log g$, which can be used as an indicator of the evolutionary stage
-of a star.
+derived using the parameters presented here the results can differ up to 65\%.
+We show in Figure~\ref{fig:RR} how the radius calculated from \citet{Torres2010}
+differ between the literature atmospheric parameters and the new homogeneous
+atmospheric parameters presented here. We note that stellar radii is provided by
+many of the authors from different discovery papers, but we chose to compare the
+atmospheric parameters via the derivation of the stellar radius as described
+above, rather than compare the stellar radii from different methods.
+
+\begin{figure}[tpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/radiusVSradius.pdf}
+    \caption{The stellar radius on both axis calculated based on \citet{Torres2010}.
+    For the x-axis we show the stellar radius based on the atmoshperic parameters
+    from the literature, while the y-axis is from the new homogeneous parameters
+    presented here. The colour and size present the surface gravity. This clearly
+    shows that the disagreement is biggest for more evolved stars.}
+    \label{fig:RR}
+\end{figure}
+
+Below we discuss the systems where the radius of the stars change more then 25\%
+and how this influence the planetary parameters. The changes in radius for a
+star is primarily due to changes in $\log g$, which can be used as an indicator
+of the evolutionary stage of a star.
 
 The 7 stars (8 exoplanets) which radius deviates more than 25\% are discussed
 below. We rederive the planetary radius, mass and semi-major axis when possible
@@ -639,14 +675,16 @@ this planet. The results we present in this paper for this star comes from UVES
 data with a SNR at 208. \citet{Hartmann2014} derives the following spectroscopic
 parameters: $T_\mathrm{eff}=\SI{6120(100)}{K}$, $\log g=4.25\pm0.11$, and
 $[\ion{Fe}/\ion{H}]=0.30\pm0.10$. We note that for this star the asteroseismic
-correction we apply as mentioned in \ref{sec:results}, the corrected $\log g$
-were below 4.2dex, so we end up using the spectroscopic $\log g$ for this star.
+correction we apply as mentioned in Section~\ref{sec:results}, the corrected
+$\log g$ were below 4.2dex, so we end up using the spectroscopic $\log g$ for
+this star.
 
 If we derive the mass and radius of HAT-P-46 b with our new parameters, we
-obtain the following (values from \citet{Hartmann2014} in parantheses):
-$M_\mathrm{pl} = 0.49(0.49)$ and $R_\mathrm{pl} = 0.93(1.28)$, both in units
-of Jupiter. We see no change in mass, however there is a decrease in the radius,
-and we end up with a more dense planet, $\rho_\mathrm{pl} = 0.76(0.23)$.
+obtain the following: $R_\mathrm{pl} = 0.93$, while \citet{Hartmann2014} derived
+$R_\mathrm{pl} = 1.28$ in units of Jupiter. We see no change in mass
+(\citet{Hartmann2014} found $M_\mathrm{pl}=0.49$), however there is a decrease
+in the radius, and we end up with a more dense planet, $\rho_\mathrm{pl}=0.76$
+from $\rho_\mathrm{pl}=0.28\pm0.10$.
 
 As the secondary companion does not transit we only have a limit on the minimum
 mass for this planet. Here we get: $M\sin i_\mathrm{pl} = 1.97(2.00)$, so a very
@@ -655,30 +693,30 @@ small change as expected.
 
 \subsection{HD 120084}
 \label{sub:HD_120084}
-The exoplanet orbiting this star was discovered by \citet{Sato2013}. Atmospheric
-parameters were derived by \citet{Takeda2008} using a similar method as
-described in this paper. The spectra they analyzed however, was not of as high
-quality as used here. Using the HIDES spectrograph \citet{Takeda2008} reported
-an average SNR for their sample of 100-300 at a resolving power of 67 000. We
-used data from ESPaDOnS with a resolving power of 81 000, and with a SNR for
-this star of 850. With our new parameter we obtain a slightly lower stellar mass
-for the star at $1.93M_\odot$ compared to $2.39M_\odot$ obtained by
-\cite{Takeda2008}, hence the minimum planetary mass is also decreased slightly
-from $m_\mathrm{pl}\sin i=4.5m_J$ to $m_\mathrm{pl}\sin i=3.9m_J$. We see a
-decrease in the stellar radius by 28\% from $9.12R_\odot$ to $7.81R_\odot$.
-Since there are no observations of the planet transiting, the planetary radius
-has not been computed.
+The exoplanet orbiting this star with a period of 2082 days and quite eccentric
+orbit at 0.66 was discovered by \citet{Sato2013}. Atmospheric parameters were
+derived by \citet{Takeda2008} using a similar method as described in this paper.
+The spectra they analyzed however, was not of as high quality as used here.
+Using the HIDES spectrograph \citet{Takeda2008} reported an average SNR for
+their sample of 100-300 at a resolving power of 67 000. We used data from
+ESPaDOnS with a resolving power of 81 000, and with a SNR for this star of 850.
+With our new parameter we obtain a slightly lower stellar mass for the star at
+$1.93M_\odot$ compared to $2.39M_\odot$ obtained by \cite{Takeda2008}, hence the
+minimum planetary mass is also decreased slightly from $m_\mathrm{pl}\sin
+i=4.5m_J$ to $m_\mathrm{pl}\sin i=3.9m_J$. We see a decrease in the stellar
+radius by 28\% from $9.12R_\odot$ to $7.81R_\odot$. Since there are no
+observations of the planet transiting, the planetary radius has not been
+computed.
 
 
 \subsection{HD 233604}
 \label{sub:HD_233604}
-HD 233604 b was discovered by \citet{Nowak2013} while the atmospheric
-parameters of the star was derived by \citet{Zielinski2012} with the same
-method as described in this paper using the HRS spectrograph with a resolving
-power of 60 000 with a typical SNR at 200-250 for their sample of 348 stars.
-We obtained the spectrum for this star using the FIES spectrograph with a
-slightly higher resolution at 67 000, and similar but also slightly higher
-SNR at 320 for this star.
+HD 233604 b was discovered by \citet{Nowak2013} while the atmospheric parameters
+of the star were derived by \citet{Zielinski2012} with the same method as
+described in this paper using the HRS spectrograph with a resolving power of 60
+000 with a typical SNR at 200-250. We obtained the spectrum for this star using
+the FIES spectrograph with a slightly higher resolution at 67 000, and similar
+but also slightly higher SNR at 320 for this star.
 
 This planet is very close orbit with a semi-major axis of $\sim 15R_\mathrm{st}$
 ($R_\mathrm{st}$ is the stellar radius) using the parameters from
@@ -704,18 +742,39 @@ as well as a precise placement in an HR diagram.
 
 \subsection{HD 5583}
 \label{sub:HD_5583}
-
+This exoplanet was discovered by \citet{Niedzielski2016} has an orbital period
+of 139 days around a K giant. This exoplanet was discovered with the radial
+velocity technique, hence we do not have a planetary radius. The stellar
+parameters were derived in a similar manner as presented here
+\citep[see][and references therein]{Niedzielski2016} where our biggest
+disagreement is in the surface gravity. We derive a 0.34 dex higher $\log g$
+giving us a smaller stellar radius (37\% smaller). The derived mass is 15\%
+higher which in turn increases the minimum planetary mass from $5.78M_J$ to
+$8.63M_J$. Even with the increase in mass, it is still within the planetary
+regime for most inclinations as noted by \citet{Niedzielski2016}.
 
 
 
 \subsection{HD 81688}
 \label{sub:HD81688}
-% Many references: http://exoplanet.eu/catalog/hd_81688_b/
-Worth looking into mass here, since it change quite a bit.
+This exoplanet was discovered by \citet{Sato2008} with the RV method. The host
+star is a metal-poor K giant. The atmospheric parameters presented in
+\citet{Sato2008} are from the same method as presented in this paper, and we
+have quite good agreement. Once again the big disagreement is in the surface
+gravity where ours is 0.48 dex higher. Even though the stellar parameters, and
+hence the planetary, does change, the radius and mass we derive are not far from
+what is presented in the paper by \citet{Sato2008}. This is a case where the
+star was marked as an outlier due to the comparison between the radius and mass
+derived from \citet{Torres2010}.
 
+The new stellar mass is the same as before, $2.1M\_dot$. The stellar radius
+change from $13.0R_\odot$ to $10.8R_\odot$. Since a transit of this star has not
+been observed and the stellar mass remains the same, we do not see any change in
+the planetary parameters.
 
-
-
+We note that this system is in an interesting configuration with a very close
+orbit around an evolved star. This system, among others, have been subject
+to work on planet engulfment \citep[see e.g.][]{Kunitomo2011}.
 
 
 \subsection{HIP 107773}
@@ -748,8 +807,18 @@ $\SI{0.59}{g/cm^3}$. This exoplanet is then in the same category as Saturn with
 a density lower than water, however with a size slightly larger than Jupiter.
 
 
-\subsection{ome Ser}
+\subsection{$\omega$ Serpentis (ome Ser)}
 \label{sub:ome_Ser}
+The exoplanet orbiting this star with a period of 277 days and an eccentric
+orbit at 0.11 was also presented by \citet{Sato2013}. The atmospheric parameters
+were derived in the same way as for HD 120084. We used data from FIES with a
+resolving power of 67 000, and with a SNR for this star of 1168. With our new
+parameter we obtain a slightly higher stellar mass for the star at $2.19M_\odot$
+compared to $2.17M_\odot$ obtained by \cite{Takeda2008}. This change is not
+significant enough to change the minimum planetary mass at $m_\mathrm{pl}\sin
+i=1.7m_J$. The stellar radius decrease with more than one solar radius, from
+$12.3R_\odot$ to $11.1R_\odot$. However, since there are no observations of
+exoplanet transiting, we can not see the change in the planetary radius.
 
 
 
@@ -776,12 +845,16 @@ changes a lot with these new results.
 
 
 
-
-
-
-
 \section{Conclusion}
 \label{sec:conclusion}
+
+
+
+
+
+
+
+
 
 
 
@@ -817,7 +890,7 @@ This research has made use of the SIMBAD database operated at CDS, Strasbourg
 \begin{center}
 \begin{table*}
 % use packages: array
-\caption{The derived parameters for the 61 stars in our sample. The SNR is measured by ARES.}
+\caption{The derived parameters for the 66 stars in our sample. The SNR is measured by ARES.}
 \centering
 \begin{tabular}{llllllll}
 \hline
@@ -830,7 +903,7 @@ This research has made use of the SIMBAD database operated at CDS, Strasbourg
       14 And &   $4808 \pm 39 $        &  $2.61 \pm 0.10$\tablefootmark{a} &  $-0.22 \pm 0.03$          &  $1.60 \pm 0.04$               & no                          &  FIES             &  724  \\
       42 Dra &   $4528 \pm 57 $        &  $2.27 \pm 0.11$\tablefootmark{a} &  $-0.30 \pm 0.03$          &  $1.53 \pm 0.05$               & no                          &  FIES             &  645  \\
  BD -11 4672 &   $4553 \pm 75 $        &  $4.87 \pm 0.51$                  &  $-0.30 \pm 0.02$          &  $0.14 \pm 0.07$               & yes                         &  FIES             &  487  \\
- BD +49 828  &   $5015 \pm 36 $        &  $2.87 \pm 0.09$\tablefootmark{a} &  $-0.01 \pm 0.03$          &  $1.48 \pm 0.04$               & no                          &  FIES             &  567  \\
+ BD +49  828 &   $5015 \pm 36 $        &  $2.87 \pm 0.09$\tablefootmark{a} &  $-0.01 \pm 0.03$          &  $1.48 \pm 0.04$               & no                          &  FIES             &  567  \\
       GJ 785 &   $5087 \pm 48 $        &  $4.42 \pm 0.10$                  &  $-0.01 \pm 0.03$          &  $0.69 \pm 0.10$               & no                          &  HARPS            &  801  \\
       HATS-1 &   $5969 \pm 46 $        &  $4.39 \pm 0.06$                  &  $-0.04 \pm 0.04$          &  $1.06 \pm 0.08$               & no                          &  UVES             &  155  \\
       HATS-5 &   $5383 \pm 91 $        &  $4.41 \pm 0.22$                  &  $ 0.08 \pm 0.06$          &  $0.91 \pm 0.14$               & no                          &  UVES             &  158  \\
