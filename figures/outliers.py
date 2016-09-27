@@ -9,10 +9,12 @@ from joblib import Parallel, delayed
 import seaborn as sns
 from PyAstronomy import pyasl
 from astropy import constants as c
-# sns.set_style('ticks')
-# sns.set_context('paper', font_scale=1.7)
-sns.set_style('white')
-sns.set_context('talk')
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+sns.set_style('ticks')
+sns.set_context('paper', font_scale=1.7)
+# sns.set_style('white')
+# sns.set_context('talk')
 
 """Look at the stars which changed a lot compared to literature. See how this
 affects the planetary parameters."""
@@ -202,6 +204,21 @@ if __name__ == '__main__':
             'stRadius', 'Rnew', 'space', 'plMass', 'Mplnew', 'space',
             'plRadius', 'Rplnew', 'space', 'plDensity', 'densityPlNew']
     print outlier.loc[:, info]
+
+    z = 1/df.loggSpec.values
+    size = (z-z.min())/(z.max()-z.min())*100
+    color = z
+
+    plt.figure()
+    plt.plot([0, 25], [0, 25], '--k', alpha=0.3)
+    plt.scatter(df.R, df.Rnew, s=size, c=z, cmap=cm.YlOrRd)
+    plt.axis((0, 25, 0, 25))
+    plt.xlabel('Literature radius')
+    plt.ylabel('New radius')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+    # plt.savefig('radiusVSradius.pdf')
 
     # for star in df.index:
     #     try:
