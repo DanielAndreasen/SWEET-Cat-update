@@ -431,10 +431,16 @@ last found best parameters.
 \subsection{Abundance method}
 \label{sub:Abundance_method}
 
-With the line list from \citet{Neves2009} with 15 different elements it is
-possible to measure abundances for these elements by combining the ARES mode to
-measure the EWs and the EW method mode to obtain the atmospheric parameters. The
-abundances are saved to a table.
+FASMA calculates element abundances for 12 elements (\ion{Na}{}, \ion{Mg}{},
+\ion{Al}{}, \ion{Si}{}, \ion{Ca}{}, \ion{Ti}{}, \ion{Cr}{}, \ion{Ni}{},
+\ion{Co}{}, \ion{Sc}{}, \ion{Mn}{}, and \ion{V}{}) from spectral lines
+determined in \citet{Neves2009} and \citet{Adibekyan2012}. The atomic data were
+calibrated with the Sun as reference and solar abundances from
+\citet{Anders1989}. The EWs are measured automatically with the ARES mode of
+FASMA. The element abundance of each line is derived using the atmospheric
+parameters of the stars obtained from the previous step. The final element
+abundance of each star is calculated from the average value of the abundances
+produced by all lines detected in a given star and element.
 
 
 \subsection{Testing FASMA}
