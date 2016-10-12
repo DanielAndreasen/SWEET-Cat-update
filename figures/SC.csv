@@ -58,6 +58,7 @@ WASP-52,5197,83,4.47,0.30,0.15,0.05,1.16,0.14,4.55,0.30,4.68,0.30,True,False,Fal
 WASP-58,6039,55,4.48,0.10,-0.09,0.04,1.12,0.08,4.23,0.10,4.31,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-61,6265,168,4.21,0.21,-0.38,0.11,1.44,0.02,3.87,0.22,3.94,0.22,True,False,False,False,True,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-72,6570,85,4.71,0.13,0.15,0.06,2.30,0.15,4.25,0.13,4.30,0.14,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+WASP-73,6203,32,4.16,0.06,0.20,0.02,1.66,0.04,3.84,0.06,3.91,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-75,6203,46,4.42,0.22,0.24,0.03,1.45,0.06,4.11,0.22,4.18,0.22,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-76,6347,52,4.29,0.08,0.36,0.04,1.73,0.06,3.92,0.08,3.98,0.08,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-82,6563,55,4.29,0.10,0.18,0.04,1.93,0.08,3.84,0.10,3.88,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -66,12 +67,14 @@ WASP-95,5799,31,4.29,0.05,0.22,0.03,1.18,0.04,4.13,0.05,4.23,0.05,True,False,Fal
 WASP-97,5723,52,4.37,0.07,0.31,0.04,1.03,0.08,4.24,0.07,4.34,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-99,6324,89,4.70,0.11,0.27,0.06,1.83,0.12,4.34,0.12,4.40,0.12,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-100,6853,209,4.15,0.26,-0.3,0.12,1.87,0.02,3.58,0.27,3.61,0.28,True,False,False,False,True,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-#Thefollowingvaluesarefromtwodifferentinstruments,ESPaDOnSandFIES.
-#Thecombinedresultareshownedabove,butbothresultswillbeinthepaper
+#The following values are from different instruments, ESPaDOnS, FIES, UVES, and FEROS.
+#The combined result are showned above, but both results will be in the paper
 #HD81688ESPaDOnS,4870,30,2.50,0.14,-0.26,0.03,1.50,0.03,2.71,0.14,2.86,0.14,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 #HD81688NOT4,4934,29,2.73,0.05,-0.19,0.02,1.59,0.03,2.91,0.05,3.07,0.05,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 #
 #HD82886NOT4,5121,29,3.31,0.07,-0.24,0.02,1.17,0.04,3.42,0.07,3.56,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 #HD82886ESPaDOnS,5124,22,3.30,0.05,-0.25,0.02,1.15,0.03,3.41,0.05,3.55,0.05,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+#WASP-73-feros,6162,37,4.14,0.06,0.19,0.03,1.61,0.04,3.84,0.06,3.91,0.06,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+#WASP-73-uves,6313,61,4.26,0.15,0.22,0.04,1.85,0.08,3.90,0.15,3.96,0.15,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 
 #Aldebaran,5279,223,4.53,0.40,0.14,0.12,3.05,0.41,4.58,0.41,4.71,0.41,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
