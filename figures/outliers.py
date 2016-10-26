@@ -215,6 +215,8 @@ if __name__ == '__main__':
     plt.axis((0, 25, 0, 25))
     plt.xlabel(r'Literature radius $R_\odot$')
     plt.ylabel(r'New radius $R_\odot$')
+    cbar = plt.colorbar()
+    cbar.set_label(r'$\log(g)$ [cgs]')
     plt.grid(True)
     plt.tight_layout()
     plt.show()
