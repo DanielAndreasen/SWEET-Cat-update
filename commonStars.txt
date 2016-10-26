@@ -1,0 +1,20 @@
+Name       New spectrum      Old spectrum
+11 Com       FIES
+14 And       FIES
+42 Dra       FIES
+HD 102272    FIES
+HD 104985    FIES
+HD 114762    FIES
+HD 152581    FIES
+HD 155358    FIES
+HD 171028    FIES
+HD 192263    HARPS
+HD 192699    FIES
+HD 197037    FIES
+HD 200964    FIES
+HD 37124     FIES
+HD 70573     FIES
+HD 96063     FIES
+HD 97658     FIES
+ksi Aql      FIES
+omi CrB      FIES
