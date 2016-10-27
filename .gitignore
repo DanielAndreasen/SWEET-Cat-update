@@ -4,6 +4,8 @@
 ## Other stuff
 *.rdb
 figures/mass_radius
+printer.pdf
+referee.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -15,14 +17,10 @@ figures/mass_radius
 *.toc
 *.fmt
 *.llt
+*.obj
 
 ## Intermediate documents:
 *.dvi
-*-converted-to.*
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -35,10 +33,6 @@ figures/mass_radius
 
 ## Build tool auxiliary files:
 *.fdb_latexmk
-*.synctex
-*.synctex.gz
-*.synctex.gz(busy)
-*.pdfsync
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -48,32 +42,6 @@ figures/mass_radius
 # achemso
 acs-*.bib
 
-# amsthm
-*.thm
-
-# beamer
-*.nav
-*.snm
-*.vrb
-
-# cprotect
-*.cpt
-
-#(e)ledmac/(e)ledpar
-*.end
-*.[1-9]
-*.[1-9][0-9]
-*.[1-9][0-9][0-9]
-*.[1-9]R
-*.[1-9][0-9]R
-*.[1-9][0-9][0-9]R
-*.eledsec[1-9]
-*.eledsec[1-9]R
-*.eledsec[1-9][0-9]
-*.eledsec[1-9][0-9]R
-*.eledsec[1-9][0-9][0-9]
-*.eledsec[1-9][0-9][0-9]R
-
 # glossaries
 *.acn
 *.acr
@@ -81,16 +49,8 @@ acs-*.bib
 *.glo
 *.gls
 
-# gnuplottex
-*-gnuplottex-*
-
 # hyperref
 *.brf
-
-# knitr
-*-concordance.tex
-*.tikz
-*-tikzDictionary
 
 # listings
 *.lol
