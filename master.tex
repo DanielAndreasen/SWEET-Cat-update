@@ -151,7 +151,7 @@ In the era of large data sets, computation time has to be decreased as much as
 possible without compromising the quality of the results. In the light of this
 we have developed a tool, FASMA, to derive atmospheric parameters in a fast and
 robust way using standard spectroscopic methods. We made this tool available as
-a web interface at \url{http://www.astro.up.pt/~dandreasen/FASMA}. This works
+a web interface at \url{http://www.astro.up.pt/resources/fasma/}. This works
 well for optical spectra which we demonstrate in Section~\ref{sub:Testing_FASMA}
 using the line list from \citet{Sousa2008a} and \citet{Tsantaki2013}. This tool
 also ships with a line list for near-IR spectra using the line list presented
@@ -164,7 +164,7 @@ present the new parameters for SWEET-Cat.
 \section{FASMA}
 \label{sec:FASMA}
 FASMA (acronym for Fast Analysis of Spectra Made Automatically) is a web
-tool\footnote{\url{http://www.astro.up.pt/~dandreasen/FASMA}} for analyzing
+tool\footnote{\url{http://www.astro.up.pt/resources/fasma/}} for analyzing
 spectra. FASMA is written in Python and works as a wrapper around ARES2
 \citep{Sousa2015a} (hereafter just ARES) and MOOG
 \citep[][version 2014]{Sneden1973}, for an all-in-one tool. ARES is a tool to
@@ -490,15 +490,19 @@ normally obtained from high quality spectra.
 
 \subsection{Web interface}
 \label{sub:Web interface}
-NOTE: More will be written once we have a web page.
 
 We provide a web interface for FASMA. In the web interface it is possible to use
-some of the line list provided with FASMA to measure EWs of a spectrum (has to
-be provided by the user). This can be used for all the available FASMA methods
-described above.
+some of the line list provided with FASMA to measure EWs of a spectrum. The
+spectrum is expected to be in a 1D format with the wavelength information stored
+in the header keys, CRVAL1 for the minimum wavelength, CDELT1 for the stepping
+in wavelengths, and NAXIS1 for the number of points. This can be used for all
+the available FASMA methods described above. ARES does the normalization, but
+best results are found when the spectrum is properly reduced (removal of cosmic
+rays, normalized, etc.).
 
 The web interface can be found at the following link
-\url{http://www.astro.up.pt/~dandreasen/FASMA}.
+\url{http://www.astro.up.pt/resources/fasma/}, where more information are
+available on each of the driver.
 
 
 \section{SWEET-Cat update}
@@ -563,18 +567,17 @@ Moreover we were not able to successfully derive parameters with this method for
 Aldebaran, a well known red giant star. Even though spectra of good quality are
 available for a bright star like Aldebaran, this spectral type is intrinsically
 difficult to analyse due to the molecular absorption that arise in the optical
-region at low $T_\mathrm{eff}$. We also expect to see non-LTE effects for this
-kind of spectral type. The fact that we are not able to derive parameters for
-Aldebaran is not a big concern, since it is well studied with other techniques,
-and we can trust the parameters already listed in SWEET-Cat.
+region at low $T_\mathrm{eff}$. The fact that we are not able to derive
+parameters for Aldebaran is not a big concern, since it is well studied with
+other techniques, and we can trust the parameters already listed in SWEET-Cat.
 
-Finally, we also removed 19 from our sample since the parameters for these stars
-did not converge during the minimization procedure. The $T_\mathrm{eff}$ for
-these stars is either too hot or too cold for the EW method to work.
+Finally, we also removed 19 stars from our sample since the parameters for these
+stars did not converge during the minimization procedure. The $T_\mathrm{eff}$
+for these stars is either too hot or too cold for the EW method to work.
 
 The remaining 50 stars are presented in Table~\ref{tab:results}. Note that we
 apply a correction to the spectroscopic $\log g$ based on asteroseismology as
-found in \citet{Mortier2014}. We only use this correction for FGK dwarf stars,
+found by \citet{Mortier2014}. We only use this correction for FGK dwarf stars,
 i.e. between $\SI{4800}{K}\leq T_\mathrm{eff} \leq \SI{6500}{K}$ and $\log
 g\geq4.2$. For stars with a $\log g$ lower than this limit we do not apply the
 corrections, and if the $\log g$ change to below this limit after the
@@ -595,27 +598,27 @@ saved to a table by FASMA.
     \label{fig:HRD}
 \end{figure}
 
-We present the new atmospheric parameters in Figure~\ref{fig:update} against the
-literature values we listed previously in SWEET-Cat. Among 2461 stars discovered
-to be planet hosts, 21\% of these stars have been analyzed in the homogeneous way as
+The new atmospheric parameters are presented in Figure~\ref{fig:update} against
+the literature values we listed previously in SWEET-Cat. The old parameters are
+listed in Table~\ref{tab:oldSC}. Among 2461 stars discovered to be a planet
+hosts, 21\% of these stars have been analyzed in the homogeneous way as
 described in this work. We note that the limiting factor at the moment for
 increasing the sample of stars analyzed in the homogeneous way is the magnitude
-of that planet hosts. There have been found many planet hosts with space mission
+of the planet hosts. There have been found many planet hosts with space missions
 as \emph{Kepler} and \emph{CoRoT} using the transiting method. Most of these
-stars are faint and thus making them observationally expensive for the spectroscopic
-analysis required here. For stars brighter than magnitude 12 the completeness,
-i.e. the stars analyzed in a homogeneous way compared to the ones we did not
-analyze yet, is up to 77\% now while it is at 85\% for exoplanet hosts brighter
-than magnitude 10.
+stars are faint and thus making them observationally expensive for the
+spectroscopic analysis required here. For stars brighter than magnitude 12 the
+completeness, i.e. the stars analyzed in a homogeneous way compared to the ones
+we did not analyze yet, is up to 77\% now while it is at 85\% for exoplanet
+hosts brighter than magnitude 10.
 
 \begin{figure*}[tpb]
     \centering
     \includegraphics[width=1.0\linewidth,natwidth=870,natheight=580]{figures/update.pdf}
     \caption{Atmospheric parameters of the updated planet host stars. The x-axis
-    are the previous values in SWEET-Cat (usually from the discovery paper of
-    the exoplanet), while the y-axis is the new updated values. In the upper
-    left corner of each of the four plots we show the typical error on the
-    parameters.}
+    are the previous values in SWEET-Cat (see Table~\ref{tab:oldSC}), while the
+    y-axis is the new updated values. In the upper left corner of each of the
+    four plots we show the typical error on the parameters.}
     \label{fig:update}
 \end{figure*}
 
@@ -644,14 +647,6 @@ time consuming, and hence expensive to observe.
 
 \subsection{Discussion}
 \label{sec:Discussion}
-We will now focus on the stars with $T_\mathrm{eff}$ higher than \SI{4800}{K}
-and lower than \SI{6500}{K}. Outside this range the EW method suffers from
-different factors and will be less reliable. For the lower range, we expect to
-see more line blending, and hence the EW measurements will no longer be
-reliable. Without reliable EW measurements, the rest of the technique will not
-work. For the hotter stars we start to see non-LTE effects which we do not take
-into account, hence the method does not work there \citep{Gray2006}.
-
 We compute radius and mass of all stars (even the ones whose parameters may not
 be reliable, in order to be complete) using the empirical formula presented in
 \citet{Torres2010}. Some of the stars have radius derived from different methods
@@ -677,50 +672,50 @@ above, rather than compare the stellar radii from different methods.
     \label{fig:RR}
 \end{figure}
 
-Below we discuss the systems (seven stars, 8 exoplanets) where the radius of the
-stars changes more then 25\% and how this influences the planetary parameters.
-The changes in radius for a star is primarily due to changes in $\log g$, which
-can be used as an indicator of the evolutionary stage of a star.
+Below we discuss the systems (seven stars, eight exoplanets) where the radius or
+mass of the stars changes more then 25\% and how this influences the planetary
+parameters. The changes in radius for a star is primarily due to changes in
+$\log g$, which can be used as an indicator of the evolutionary stage of a star.
 
 We rederive the planetary radius, mass and semi-major axis when possible
 following the three simple relations:
 
 \begin{align}
-    M_\mathrm{pl,new} &= \left(\frac{M_\mathrm{\ast,lit}}{M_\mathrm{st,new}}\right)^{-2/3} M_\mathrm{pl,lit}  \\
-    R_\mathrm{pl,new} &= \left(\frac{R_\mathrm{\ast,lit}}{R_\mathrm{st,new}}\right) R_\mathrm{pl,lit} \\
-    a_\mathrm{pl,new} &= \left(\frac{M_\mathrm{\ast,lit}}{M_\mathrm{st,new}}\right)^{1/3} a_\mathrm{pl,lit},
+    M_\mathrm{pl,new} &= \left(\frac{M_\mathrm{\ast,lit}}{M_\mathrm{\ast,new}}\right)^{-2/3} M_\mathrm{pl,lit}  \\
+    R_\mathrm{pl,new} &= \left(\frac{R_\mathrm{\ast,lit}}{R_\mathrm{\ast,new}}\right) R_\mathrm{pl,lit} \\
+    a_\mathrm{pl,new} &= \left(\frac{M_\mathrm{\ast,lit}}{M_\mathrm{\ast,new}}\right)^{1/3} a_\mathrm{pl,lit},
 \end{align}
-where subscript lit denotes the value from the literature which we compare with,
-subscript new will be the new computed values, subscript pl is short for planet,
-and last subscript $\ast$ is short for star. $M$, $R$, and $a$ are mass, radius,
-and semi-major axis respectively. Note that for the literature values, we use
-the values reported directly from the literature, and not the derived radius and
-mass from \citet{Torres2010}. To identify outliers, we compare radii and masses
-derived from \citet{Torres2010} since this is a measure of how the atmospheric
-parameters have changed.
+where subscript "lit" denotes the value from the literature which we compare
+with, subscript "new" is finally the new computed values, subscript "pl" is
+short for planet, and last subscript "$\ast$" is short for star. $M$, $R$, and
+$a$ are mass, radius, and semi-major axis, respectively. Note that for the
+literature values, we use the values reported directly from the literature, and
+not the derived radius and mass from \citet{Torres2010}. To identify outliers,
+we compare radii and masses derived from \citet{Torres2010} since this is a
+measure of how the atmospheric parameters have changed.
 
 \subsubsection{HAT-P-46}
 \label{sub:HAT-P-46}
 HAT-P-46 has two discovered exoplanets according to \citet{Hartmann2014}. The
 outer planet HAT-P-46 c is not transiting hence we do not have any radius for
-this planet. The results we present in this paper for this star comes from UVES
-data with a SNR at 208. \citet{Hartmann2014} derives the following spectroscopic
-parameters: $T_\mathrm{eff}=\SI{6120(100)}{K}$, $\log g=4.25\pm0.11$, and
-$[\ion{Fe}/\ion{H}]=0.30\pm0.10$. We note that for this star the asteroseismic
-correction we apply as mentioned in Section~\ref{sec:results} results in a
-corrected $\log g$ below 4.2dex, so we end up using the spectroscopic $\log g$
-for this star.
+this planet. The results we present in this paper for this star comes from
+UVES/VLT data with a SNR at 208. \citet{Hartmann2014} derives the following
+spectroscopic parameters: $T_\mathrm{eff}=\SI{6120(100)}{K}$, $\log
+g=4.25\pm0.11$, and $[\ion{Fe}/\ion{H}]=0.30\pm0.10$. We note that for this star
+the asteroseismic correction we apply as mentioned in Section~\ref{sec:results}
+results in a corrected $\log g$ below 4.2dex, so we end up using the
+spectroscopic $\log g$ for this star.
 
 If we derive the mass and radius of HAT-P-46 b with our new parameters, we
 obtain the following: $R_\mathrm{pl} = 0.93R_J$, while \citet{Hartmann2014}
-derived $R_\mathrm{pl} = 1.28R_J$ in units of Jupiter. We see no change in mass
-(\citet{Hartmann2014} found $M_\mathrm{pl}=0.49R_J$), however there is a
+derived $R_\mathrm{pl} = 1.28R_J$. We see no change in mass
+(\citet{Hartmann2014} found $M_\mathrm{pl}=0.49M_J$), however there is a
 decrease in the radius, and we end up with a more dense planet,
-$\rho_\mathrm{pl}=0.76$ from $\rho_\mathrm{pl}=0.28\pm0.10$.
+$\rho_\mathrm{pl}=\SI{0.76}{g/cm^3}$ from $\rho_\mathrm{pl}=\SI{0.28\pm0.10}{g/cm^3}$.
 
 As the secondary companion does not transit we only have a limit on the minimum
-mass for this planet. Here we get: $M\sin i_\mathrm{pl} = 1.97M_J$
-(\citet{Hartmann2014} presented $M\sin i_\mathrm{pl} = 2.00M_J$), so a very
+mass for this planet. Here we get: $M\sin i_\mathrm{pl} = 1.97M_J$,
+\citet{Hartmann2014} presented $M\sin i_\mathrm{pl} = 2.00M_J$, so a very
 small change as expected.
 
 
@@ -751,40 +746,41 @@ of 60 000 with a typical SNR at 200-250. We obtained the spectrum for this star
 using the FIES spectrograph with a slightly higher resolution at 67 000, and
 similar but also slightly higher SNR at 320 for this star.
 
-This planet is in a very close orbit with a semi-major axis of $\sim
-15R_\mathrm{st}$ ($R_\mathrm{st}$ is the stellar radius) using the parameters
-from \citet{Nowak2013}. With the updated parameters presented in this paper we
-see a slight increase in the stellar mass from $1.5M_\odot$ to $1.9M_\odot$ and
-a decrease in stellar radius from $10.5R_\odot$ to $8.6R_\odot$. This gives an
-increase of the semi major axis to $\sim 21R_\mathrm{st}$. Note that the correct
-stellar radius are used to describe the semi-major axis in both cases.
+This planet is in a very close orbit with a semi-major axis of $\sim 15R_\ast$
+($R_\ast$ is the stellar radius) using the parameters from \citet{Nowak2013}.
+With the updated parameters presented in this paper we see a slight increase in
+the stellar mass from $1.5M_\odot$ to $1.9M_\odot$ and a decrease in stellar
+radius from $10.5R_\odot$ to $8.6R_\odot$. This gives an increase of the semi
+major axis to $\sim 21R_\ast$. Note that the correct stellar radii are used to
+describe the semi-major axis in both cases.
 
 The increase in stellar mass leads to an increase in the minimum planetary mass,
-from $6.58M_J$ to $7.79M_J$.
+from $m_\mathrm{pl}\sin i=6.58M_J$ to $m_\mathrm{pl}\sin i=7.79M_J$.
 
 \citet{Nowak2013} found a high \ion{Li}{} abundance at
-$A(\ion{Li}{})=1.400\pm0.042$ for this star speculating if this star might have
-engulfed a planet. A more likely explanation is that this star has not yet
-reached the first dredge-up process \citep{Nowak2013}. We found a much lower
-value, $A(\ion{Li}{})_\mathrm{LTE}=0.92$ and hence we find the star to not be
-\ion{Li}{} rich. The \ion{Li}{} abundance we find is in excellent agreement with
-\citet{Adamow2014}. Even applying a NLTE correction as done in
+$A(\ion{Li}{})_\mathrm{LTE}=1.400\pm0.042$ for this star speculating if this
+star might have engulfed a planet. A more likely explanation is that this star
+has not yet reached the first dredge-up process \citep{Nowak2013}. We found a
+much lower value, $A(\ion{Li}{})_\mathrm{LTE}=0.92$ and hence we find the star
+to not be \ion{Li}{} rich. The \ion{Li}{} abundance we find is in excellent
+agreement with \citet{Adamow2014}. Even applying a NLTE correction as done in
 \citet{Adamow2014} ($A(\ion{Li}{})_\mathrm{NLTE}=1.08$) this star is not
-\ion{Li}{} rich. To understand this star in detail a more detailed abundance
-study would be needed as well as a precise placement in an HR diagram.
+\ion{Li}{} rich.
+
 
 \subsubsection{HD 5583}
 \label{sub:HD_5583}
-This exoplanet was discovered by \citet{Niedzielski2016} has an orbital period
+This exoplanet was discovered by \citet{Niedzielski2016} with an orbital period
 of 139 days around a K giant. This exoplanet was discovered with the radial
-velocity technique, hence we do not have a planetary radius. The stellar
-parameters were derived in a similar manner as presented here
-\citep[see][and references therein]{Niedzielski2016} where our biggest
-disagreement is in the surface gravity. We derive a 0.34 dex higher $\log g$
-giving us a smaller stellar radius (37\% smaller). The derived mass is 15\%
-higher which in turn increases the minimum planetary mass from $5.78M_J$ to
-$8.63M_J$. Even with the increase in mass, it is still within the planetary
-regime for most inclinations as noted by \citet{Niedzielski2016}.
+velocity technique, and we do not have a planetary radius. The stellar
+parameters were derived in a similar manner as presented here \citep[see][and
+references therein]{Niedzielski2016} where our biggest disagreement is in the
+surface gravity. We derive a 0.34 dex higher $\log g$ giving us a smaller
+stellar radius (37\% smaller). The derived mass is 15\% higher which in turn
+increases the minimum planetary mass from $m_\mathrm{pl}\sin i=5.78M_J$ to
+$m_\mathrm{pl}\sin i=8.63M_J$. Even with the increase in mass, it is still
+within the planetary regime for most inclinations as noted by
+\citet{Niedzielski2016}.
 
 
 
@@ -816,12 +812,13 @@ The planetary companion was presented in \citet{Jones2015} as an exoplanet
 around an intermediate mass evolved star. The stellar parameters were obtained
 from the analysis by \citet{Jones2011} using the same method as presented here,
 however with a different line list which might lead to some disagreements. For
-this star we derive a higher $\log g$ at 2.83 dex compared to 2.60 dex, and thus
-we derive a slightly smaller star with $11.6R_\odot$ to $9.2R_\odot$ and
-$2.4M_\odot$ to $2.1M_\odot$ for radius and mass of the star respectively. The
+this star we derive a higher $\log g$ at 2.83 dex compared to 2.60 dex, thus we
+derive a slightly smaller star with $11.6R_\odot$ to $9.2R_\odot$ and
+$2.4M_\odot$ to $2.1M_\odot$ for radius and mass of the star, respectively. The
 other atmospheric parameters are very similar to those derived by
 \citet{Jones2011}. This leads to a reduced minimum mass of the planetary
-companion from $m\sin i=1.98M_J$ to $m\sin i=1.78M_J$.
+companion from $m\sin i=1.98M_J$ to $m\sin i=1.78M_J$. The planetary radius has
+not been measured.
 
 
 
@@ -834,10 +831,11 @@ SNR of 100 with a spectral resolution of 50 000. The parameters presented here
 comes from the UVES spectrograph with a SNR of more than 200.
 
 The parameters do not change much for this planet. The planetary mass is changed
-from $1.32M_J$ to $1.37M_J$ and the radius from $1.13R_J$ to $1.42R_J$. This
-does affect the density quite a lot, changing from $\SI{1.13}{g/cm^3}$ to
-$\SI{0.59}{g/cm^3}$. This exoplanet is then in the same category as Saturn with
-a density lower than water, however with a size slightly larger than Jupiter.
+from $m_\mathrm{pl}\sin i=1.32M_J$ to $m_\mathrm{pl}\sin i=1.37M_J$ and the
+radius from $1.13R_J$ to $1.42R_J$. This does affect the density quite a lot,
+changing from $\SI{1.13}{g/cm^3}$ to $\SI{0.59}{g/cm^3}$. This exoplanet is then
+in the same category as Saturn with a density lower than water, however with a
+size slightly larger than Jupiter.
 
 
 \subsubsection{$\omega$ Serpentis (ome Ser)}
@@ -878,11 +876,6 @@ seen from Earth, so we do not have a radius for this exoplanet, which would have
 changes a lot with these new results.
 
 
-\subsubsection{Kepler-33}
-LALALALALALALALA
-
-
-
 \section{Conclusion}
 \label{sec:conclusion}
 
@@ -892,7 +885,7 @@ parameters are available for the public in an easy accessible form at
 \url{https://www.astro.up.pt/resources/sweet-cat/} which is continuously
 updated. The importance of the homogeneous analysis which we keep striving for
 is shown in Figure~\ref{fig:RR} where we see quite different derived stellar
-radius when the atmospheric parameters comes from different methods. As have
+radii when the atmospheric parameters comes from different methods. As have
 been discussed in Section~\ref{sec:Discussion} this has a direct impact on the
 planetary parameters. It is of great importance to know the planetary parameters
 very well, both for individual systems but also for an ensemble. With accurate
@@ -909,15 +902,23 @@ this method in the NIR in order to include the cool solar type stars.
 
 \begin{acknowledgements}
 
+This work was supported by FCT (project ref. PTDC/FIS-AST/1526/2014) through
+national funds and by FEDER through COMPETE2020 (ref.
+POCI-01-0145-FEDER-016886).
+
+This work was supported by FCT (project ref. PTDC/FIS-AST/7073/2014) through
+national funds and by FEDER through COMPETE2020 (ref.
+POCI-01-0145-FEDER-016880).
+
 This work was supported by Funda\c{c}\~ao para a Ci\^encia e a Tecnologia (FCT)
 through the research grants UID/FIS/04434/2013 and PTDC/FIS-AST/1526/2014.
 N.C.S., and S.G.S. acknowledge the support from FCT through Investigador FCT
 contracts of reference IF/00169/2012, and IF/00028/2014, respectively, and
 POPH/FSE (EC) by FEDER funding through the program “Programa Operacional de
-Factores de Competitividade - COMPETE”. E.D.M. and B.J.A. acknowledge the
-support from FCT in form of the fellowship SFRH/BPD/76606/2011 and
-SFRH/BPD/87776/2012, respectively. This work also benefit from the collaboration
-of a cooperation project FCT/CAPES - 2014/2015 (FCT Proc 4.4.1.00 CAPES).
+Factores de Competitividade - COMPETE”. E.D.M. acknowledge the support from FCT
+in form of the fellowship SFRH/BPD/76606/2011.
+
+G.D.C.T. was supported by an FCT/Portugal PhD grant PD/BD/113478/2015.
 
 AM received funding from the European Union Seventh Framework Programme
 (FP7/2007-2013) under grant agreement number 313014 (ETAEARTH).
