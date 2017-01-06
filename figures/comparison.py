@@ -46,7 +46,7 @@ if __name__ == '__main__':
                'metal', 'ermetal', 'fehnew', 'feherrnew',
                'vt', 'ervt', 'vtnew', 'vterrnew']
     df2 = df2.loc[:, columns]
-    df2.teffnew = df2.teffnew.astype(float)
+    df2.loc[:, 'teff':] = df2.loc[:, 'teff':].astype(float)
     df2['teffdiff'] = df2['teff']-df2['teffnew']
     df2['loggdiff'] = df2['logg']-df2['loggnew']
     df2['fehdiff'] = df2['metal']-df2['fehnew']
