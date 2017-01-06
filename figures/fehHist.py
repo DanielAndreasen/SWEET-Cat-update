@@ -23,7 +23,8 @@ if __name__ == '__main__':
              'erlogglc', 'vt', 'ervt', 'metal', 'ermetal', 'mass', 'ermass',
              'author', 'link', 'source', 'update', 'comment', 'z1']
 
-    new = pd.read_csv('SC.csv')
+    new = pd.read_csv('SC.csv', comment='#')
+    new['convergence'].fillna(False, inplace=True)
     new = new[new.convergence]
     new.linelist = new.linelist.str.strip()
     new.set_index('linelist', inplace=True)
