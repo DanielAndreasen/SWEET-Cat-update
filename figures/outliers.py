@@ -211,7 +211,7 @@ if __name__ == '__main__':
 
     plt.figure()
     plt.plot([0, 25], [0, 25], '--k', alpha=0.3)
-    plt.scatter(df.R, df.Rnew, s=size, c=z, cmap=cm.YlOrRd)
+    plt.scatter(df.R, df.Rnew, s=size, c=1/z, cmap=cm.YlOrRd, edgecolor='k')
     plt.axis((0, 25, 0, 25))
     plt.xlabel(r'Literature radius $R_\odot$')
     plt.ylabel(r'New radius $R_\odot$')
