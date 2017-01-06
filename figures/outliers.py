@@ -94,8 +94,8 @@ def _addCols(df):
 
 
 def _mergeEU(df):
-    eu = pd.DataFrame(pyasl.exoplanetEU.ExoplanetEU().data)
-    drops = ['sma', 'eccentricity', 'inclination', 'angDistance', 'pubStatus',
+    eu = pyasl.exoplanetEU.ExoplanetEU2().getAllDataPandas()
+    drops = ['eccentricity', 'inclination',
              'discovered', 'updated', 'omega', 'tperi', 'molecules', 'ra', 'dec',
              'mag_v', 'mag_i', 'mag_j', 'mag_h', 'mag_k']
     eu.drop(drops, axis=1, inplace=True)
@@ -103,20 +103,20 @@ def _mergeEU(df):
     df.reset_index(inplace=True)
     df.star.replace('HR 228', 'HD 4732', inplace=True)
 
-    df = pd.merge(left=eu, right=df, left_on='stName', right_on='star', how='right')
+    df = pd.merge(left=eu, right=df, left_on='star_name', right_on='star', how='right')
     return df
 
 
 def _exoplanetCols(df):
-    idx = np.isnan(df.stRadius)
-    df.loc[~idx, 'Rplnew'] = df.Rnew[~idx]/df.stRadius[~idx] * df.plRadius[~idx]
-    df.loc[idx, 'Rplnew'] = df.Rnew[idx]/df.R[idx] * df.plRadius[idx]
-    idx = np.isnan(df.stMass)
-    df.loc[~idx, 'Mplnew'] = (df.stMass[~idx]/df.Mnew[~idx])**(-2/3) * df.plMass[~idx]
-    df.loc[idx, 'Mplnew'] = (df.stMass[idx]/df.Mnew[idx])**(-2/3) * df.plMass[idx]
+    idx = np.isnan(df.star_radius)
+    df.loc[~idx, 'Rplnew'] = df.Rnew[~idx]/df.star_radius[~idx] * df.radius[~idx]
+    df.loc[idx, 'Rplnew'] = df.Rnew[idx]/df.R[idx] * df.radius[idx]
+    idx = np.isnan(df.star_mass)
+    df.loc[~idx, 'Mplnew'] = (df.star_mass[~idx]/df.Mnew[~idx])**(-2/3) * df.mass[~idx]
+    df.loc[idx, 'Mplnew'] = (df.star_mass[idx]/df.Mnew[idx])**(-2/3) * df.mass[idx]
 
     rhoJ = c.M_jup.to('g').value/(4/3*np.pi*c.R_jup.to('cm').value**3)
-    df['plDensity'] = df.plMass/(df.plRadius**3) * rhoJ
+    df['plDensity'] = df.mass/(df.radius**3) * rhoJ
     df['densityPlNew'] = df.Mplnew/(df.Rplnew**3) * rhoJ
 
     df.Rplnew = df.Rplnew.apply(round, args=(2,))
@@ -188,7 +188,7 @@ if __name__ == '__main__':
 
     # Merge with exoplanet.eu
     df = _mergeEU(df)
-    df.set_index('plName', inplace=True)
+    df.set_index('name', inplace=True)
 
     # Calculate the new planetary mass and radii
     df = _exoplanetCols(df)
@@ -200,9 +200,9 @@ if __name__ == '__main__':
 
     outlier = df[(abs(df.Rperc) > 25) | (abs(df.Mperc) > 25)]
     info = ['vmag', 'teff', 'teffnew', 'logg', 'loggSpec', 'loggnew', 'feh',
-            'fehnew', 'space', 'Mperc', 'stMass', 'Mnew', 'space', 'Rperc',
-            'stRadius', 'Rnew', 'space', 'plMass', 'Mplnew', 'space',
-            'plRadius', 'Rplnew', 'space', 'plDensity', 'densityPlNew']
+            'fehnew', 'space', 'Mperc', 'star_mass', 'Mnew', 'space', 'Rperc',
+            'star_radius', 'Rnew', 'space', 'mass', 'Mplnew', 'space',
+            'radius', 'Rplnew', 'space', 'plDensity', 'densityPlNew']
     print outlier.loc[:, info]
 
     z = 1/df.loggSpec.values
@@ -224,8 +224,8 @@ if __name__ == '__main__':
 
     # for star in df.index:
     #     try:
-    #         x1, x2 = df.loc[star, ['plMass', 'Mplnew']]
-    #         y1, y2 = df.loc[star, ['plRadius', 'Rplnew']]
+    #         x1, x2 = df.loc[star, ['mass', 'Mplnew']]
+    #         y1, y2 = df.loc[star, ['radius', 'Rplnew']]
     #         plt.errorbar([x1], [y1], xerr=0.1*x1, yerr=0.1*y1, fmt='or')
     #         plt.errorbar([x2], [y2], xerr=0.1*x1, yerr=0.1*y1, fmt='og')
     #         plt.plot([x1, x2], [y1, y2], '-k')
