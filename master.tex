@@ -180,10 +180,10 @@ models calculated by \citet{Meszaros2012} for the APOGEE survey and the MARCS
 models \citep{Gustafson2008}. The interpolation from the grid is calculated from
 a geometric mean for effective temperature, surface gravity and metallicity.
 
-{\bf We do not consider hyper-fine structures (HFS) when deriving abundances.
-This is not important for \ion{Fe}{}, so the derived parameters are trustworthy.
-If necessary, we might implement this in the future for elements, where HFS is
-important.}
+{\bf We do not consider hyper-fine structures (HFS) when deriving abundances
+since it has little or no effect on the derivation of iron abundances, so the
+derived parameters are trustworthy. If necessary, we might implement this in the
+future for elements, where HFS is important.}
 
 
 
@@ -201,17 +201,17 @@ it) are needed. FASMA is shipped with some line lists ready to use. The output
 will be a line list with the newly measured EWs in the format required for MOOG.
 The output can be used for either stellar parameter derivation or the abundance
 method, both described below. {\bf ARES iterates over all the lines to be
-measured. For each line a small window is made, where a normalization of the
-spectrum is made automatically. The normalization is made based on a range of
-settings described in \citet{Sousa2015a}. All of these settings can be changed
-in the driver. Most important is the \emph{rejt} parameter, which we recommend
-to be measured using the SNR of the spectrum. Note that for late late K dwarfs
-and cooler, ARES starts to have difficulties placing the continuum. If the user
-wants as accurate EWs as possible, we recommend measuring by hand for these
-stars. The \emph{rejt} parameter is a number between 0 and 1. The closer to 1,
-which means higher quality of the spectrum, the normalization will use the
-higher points in the spectrum. By using the SNR, the \emph{rejt} is simply,
-$\mathit{rejt}=1-1/SNR$.}
+measured. For each line a small window is selected, where a local normalization
+of the spectrum is made automatically. The normalization is made based on a
+range of settings described in \citet{Sousa2007,Sousa2015a}. All of these
+settings can be changed in the driver. Most important is the \emph{rejt}
+parameter, which we recommend to be measured using the SNR of the spectrum. Note
+that for late late K dwarfs and cooler, ARES starts to have difficulties placing
+the continuum. If the user wants as accurate EWs as possible, we recommend
+measuring by hand for these stars. The \emph{rejt} parameter is a number between
+0 and 1. The closer to 1, which means higher quality of the spectrum, the
+normalization will use the higher points in the spectrum. By using the SNR, the
+\emph{rejt} is simply, $\mathit{rejt}=1-1/SNR$.}
 
 The line lists shipped with FASMA are presented in Table~\ref{tab:linelists}.
 These line lists are all calibrated for the Sun, i.e. the oscillator strengths
@@ -254,7 +254,8 @@ curve-of-growth analysis using Boltzmann's and Saha's equations}
 of atoms/ions excited to the $n$th state, $g_n$ is the statistical weight,
 $\theta=5040/T$, $T$ being the temperature, $u(T)$ are the so called partition
 functions, $m_e$ is the electron mass, $P_e$ is the electron pressure and $I$ is
-the ionization potential. More details can be found in e.g \citet{Gray2006}.}
+the ionization potential. More details can be found in e.g \citet{Gray2006}.
+We note that the abundance determination are calculated through the MOOG code.}
 
 \begin{itemize}
     \item The effective temperature has a strong influence on the correlation
@@ -286,8 +287,9 @@ minimize simultaneously:
           \ion{Fe}{II} ($\Delta\ion{Fe}{}$) should be less than 0.01.
     \item Input and output metallicity should be equal.
 \end{enumerate}
-These criteria are denoted as indicators for the physical parameters we
-are trying to minimize. {\bf The constraints on the first 3 indicators are emperically defined.}
+These criteria are denoted as indicators for the physical parameters we are
+trying to minimize. {\bf The constraints on the first three indicators are
+empirically defined.}
 
 \begin{figure}[tpb]
     \centering
@@ -350,7 +352,7 @@ Here is how it works:
     \item {\bf Check for convergence, i.e. if the indicators are below or equal
           to the empirical constraints chosen.} If we do not reach convergence,
           then return the best found parameters. {\bf The best found parameters,
-          when convergence are not reached, are chosen when the quadradic sum
+          when convergence are not reached, are chosen when the quadratic sum
           of the indicators are smallest.}
 \end{enumerate}
 This whole process is schematically shown in Figure~\ref{fig:FASMA_general} and
@@ -375,7 +377,7 @@ slope {\bf (\SI{2000}{K} for $T_\mathrm{eff}$)}. Since we ignore all
 interdependencies between the parameters, we lower the slopes found a little and
 arrived to the very simple equations above. {\bf By empirically determining how
 the atmospheric parameters should be changed in each iteration, we are able to
-swiftly reach close to the convergence value.}
+swiftly reach closer to the convergence value.}
 
 The error estimates are based on the same method presented in
 \citet{Gonzalez2000}, which is also described in detail in
@@ -546,8 +548,8 @@ rays, normalized, etc.).
 
 The web interface can be found at the following link
 {\bf \url{http://www.iastro.pt/fasma}}, where more information are
-available on each of the driver. {\bf The user most provide an email. This is
-only used to send the results and is not stored.}
+available on each of the driver. {\bf The user must provide an email. This is
+only used to send the results after the calculations.}
 
 
 \section{SWEET-Cat update}
@@ -563,9 +565,9 @@ the spectrographs are presented in Table~\ref{tab:instruments} with the mean SNR
 for the spectra used. The SNR for each star can be seen in
 Table~\ref{tab:results} along with the atmospheric parameters of the stars. The
 SNR is measured automatically by ARES, but we note that ARES smooth the spectra
-before measuring the SNR, hence it is listed higher than the actual SNR. {\bf
-These 50 stars are already confirmed exoplanet hosts and are present in
-SWEET-Cat. However, these have not previously been analyzed by our team. We
+before measuring the SNR, hence it is listed higher than the actual SNR.  {\bf
+These 50 stars are confirmed exoplanet hosts listed in SWEET-Cat. However, these
+belonged to the list of stars that have not been analysed by our team. We
 therefore increase the amount of stars analyzed in a homogeneous way, which is
 the goal of SWEET-Cat.}
 
@@ -686,7 +688,8 @@ mainly observed with the \emph{Kepler} space mission. These dim stars are very
 time consuming, and hence expensive to observe. {\bf Out of the 2437 stars in
 SWEET-Cat, 664 of them are brighter than 12 V magnitude. We note that more than
 1500 of the stars does not have a V magnitude. The majority are stars observed
-with \emph{Kepler}. Our group have analyzed 513 stars in SWEET-Cat.}
+with \emph{Kepler}. Our group have analyzed 563 stars in SWEET-Cat including
+the 50 stars presented in this work.}
 
 
 \begin{figure}[tpb]
@@ -726,7 +729,7 @@ above, rather than compare the stellar radii from different methods.
     \centering
     \includegraphics[width=1.0\linewidth]{figures/radiusVSradius.pdf}
     \caption{The stellar radius on both axis calculated based on \citet{Torres2010}.
-    For the x-axis we show the stellar radius based on the atmoshperic parameters
+    For the x-axis we show the stellar radius based on the atmospheric parameters
     from the literature, while the y-axis is from the new homogeneous parameters
     presented here. The colour and size present the surface gravity. This clearly
     shows that the disagreement is biggest for more evolved stars.}
