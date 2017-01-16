@@ -87,21 +87,21 @@ stars with planets. The results are presented in the catalogue: SWEET-Cat.}
 {Stellar atmospheric parameters and masses for the 50 stars were derived
 assuming local thermodynamic equilibrium (LTE) and using high-resolution and
 high signal-to-noise spectra. The methodology used is based on the measurement
-of equivalent widths {\bf with ARES2} for a list of iron lines. {\bf The line
+of equivalent widths with ARES2 for a list of iron lines. The line
 abundances were derived using MOOG. We then use the curve of growth analysis to
-determine the parameters.}}
+determine the parameters. {\bf We have implemented a new minimization procedure which
+significantly improves the computational time.}}
 % Results
 {The stellar parameters for the 50 stars are presented and compared with
-previously determined literature values. For {\bf SWEET-Cat}, we compile values
+previously determined literature values. For SWEET-Cat, we compile values
 for the effective temperature, surface gravity, metallicity, and stellar mass
 for almost all the planet host stars listed in the Extrasolar Planets
 Encyclopaedia. This data will be updated on a continuous basis. The compiled
-{\bf SWEET-Cat} is available online. The data can be used for statistical studies of
+SWEET-Cat is available online. The data can be used for statistical studies of
 the star-planet correlation, as well as for the derivation of consistent
 properties for known planets.}
 % Conclusion
 {}
-
 
 
 \keywords{planetary systems -- stars: solar-type -- catalogs}
@@ -150,41 +150,40 @@ In the era of large data sets, computation time has to be decreased as much as
 possible without compromising the quality of the results. In the light of this
 we have developed a tool, FASMA, to derive atmospheric parameters in a fast and
 robust way using standard spectroscopic methods. We made this tool available as
-a web interface at {\bf \url{http://www.iastro.pt/fasma}}. This works
-well for optical spectra which we demonstrate in Section~\ref{sub:Testing_FASMA}
-using the line list from \citet{Sousa2008a} and \citet{Tsantaki2013}. This tool
-also ships with a line list for near-IR spectra using the line list presented
-recently in \citet{Andreasen2016}. The tool is provided to the community as an
-easy to use web tool to avoid any problems with installations. The tool is
-described in detail in Section~\ref{sec:FASMA}. In Section~\ref{sec:results} we
-present the new parameters for SWEET-Cat.
+a web interface at \url{http://www.iastro.pt/fasma}. This works well for optical
+spectra which we demonstrate in Section~\ref{sub:Testing_FASMA} using the line
+list from \citet{Sousa2008a} and \citet{Tsantaki2013}. This tool also ships with
+a line list for near-IR spectra using the line list presented recently in
+\citet{Andreasen2016}. The tool is provided to the community as an easy to use
+web tool to avoid any problems with installations. The tool is described in
+detail in Section~\ref{sec:FASMA}. In Section~\ref{sec:results} we present the
+new parameters for SWEET-Cat.
 
 
 \section{FASMA}
 \label{sec:FASMA}
 FASMA (acronym for Fast Analysis of Spectra Made Automatically) is a web
-tool\footnote{\bf \url{http://www.iastro.pt/fasma}} for analyzing
-spectra. FASMA is written in Python and works as a wrapper around ARES2
-\citep{Sousa2015a} (hereafter just ARES) and MOOG
-\citep[][version 2014]{Sneden1973}, for an all-in-one tool. ARES is a tool to
-automatically measure equivalent widths (EW) from a spectrum given a line list.
-MOOG is a radiative transfer code under the assumption of local thermodynamic
-equilibrium (LTE).
+tool\footnote{\url{http://www.iastro.pt/fasma}} for analyzing spectra. FASMA is
+written in Python and works as a wrapper around ARES2 \citep{Sousa2015a}
+(hereafter just ARES) and MOOG \citep[][version 2014]{Sneden1973}, for an
+all-in-one tool. ARES is a tool to automatically measure equivalent widths (EW)
+from a spectrum given a line list. MOOG is a radiative transfer code under the
+assumption of local thermodynamic equilibrium (LTE).
 
 FASMA has three different drivers: i) Measure EWs using ARES, ii) derive stellar
-parameters from a set of measured \ion{Fe}{I} and \ion{Fe}{II} line EWs {\bf
-(tested extensively on FGK dwarf and subgiant stars)}, and iii) abundance
-derivation for 15 elements, all described below. The model atmospheres are
-formatted in a grid of Kurucz Atlas 9 plane-parallel, 1D static model
-atmospheres \citet{Kurucz1993}. FASMA can also manage the new grid of Atlas
-models calculated by \citet{Meszaros2012} for the APOGEE survey and the MARCS
-models \citep{Gustafson2008}. The interpolation from the grid is calculated from
-a geometric mean for effective temperature, surface gravity and metallicity.
+parameters from a set of measured \ion{Fe}{I} and \ion{Fe}{II} line EWs (tested
+extensively on FGK dwarf and subgiant stars), and iii) abundance derivation for
+15 elements, all described below. The model atmospheres are formatted in a grid
+of Kurucz Atlas 9 plane-parallel, 1D static model atmospheres
+\citet{Kurucz1993}. FASMA can also manage the new grid of Atlas models
+calculated by \citet{Meszaros2012} for the APOGEE survey and the MARCS models
+\citep{Gustafson2008}. The interpolation from the grid is calculated from a
+geometric mean for effective temperature, surface gravity and metallicity.
 
-{\bf We do not consider hyper-fine structures (HFS) when deriving abundances
-since it has little or no effect on the derivation of iron abundances, so the
-derived parameters are trustworthy. If necessary, we might implement this in the
-future for elements, where HFS is important.}
+We do not consider hyper-fine structures (HFS) when deriving abundances since it
+has little or no effect on the derivation of iron abundances, so the derived
+parameters are trustworthy. If necessary, we might implement this in the future
+for elements, where HFS is important.
 
 
 
@@ -201,18 +200,18 @@ absorption line.} and a spectrum (the format should be 1D fits for ARES to read
 it) are needed. FASMA is shipped with some line lists ready to use. The output
 will be a line list with the newly measured EWs in the format required for MOOG.
 The output can be used for either stellar parameter derivation or the abundance
-method, both described below. {\bf ARES iterates over all the lines to be
-measured. For each line a small window is selected, where a local normalization
-of the spectrum is made automatically. The normalization is made based on a
-range of settings described in \citet{Sousa2007,Sousa2015a}. All of these
-settings can be changed in the driver. Most important is the \emph{rejt}
-parameter, which we recommend to be measured using the SNR of the spectrum. Note
-that for late late K dwarfs and cooler, ARES starts to have difficulties placing
-the continuum. If the user wants as accurate EWs as possible, we recommend
-measuring by hand for these stars. The \emph{rejt} parameter is a number between
-0 and 1. The closer to 1, which means higher quality of the spectrum, the
-normalization will use the higher points in the spectrum. By using the SNR, the
-\emph{rejt} is simply, $\mathit{rejt}=1-1/SNR$.}
+method, both described below. ARES iterates over all the lines to be measured.
+For each line a small window is selected, where a local normalization of the
+spectrum is made automatically. The normalization is made based on a range of
+settings described in \citet{Sousa2007,Sousa2015a}. All of these settings can be
+changed in the driver. Most important is the \emph{rejt} parameter, which we
+recommend to be measured using the SNR of the spectrum. Note that for late late
+K dwarfs and cooler, ARES starts to have difficulties placing the continuum. If
+the user wants as accurate EWs as possible, we recommend measuring by hand for
+these stars. The \emph{rejt} parameter is a number between 0 and 1. The closer
+to 1, which means higher quality of the spectrum, the normalization will use the
+higher points in the spectrum. By using the SNR, the \emph{rejt} is simply,
+$\mathit{rejt}=1-1/SNR$.
 
 The line lists shipped with FASMA are presented in Table~\ref{tab:linelists}.
 These line lists are all calibrated for the Sun, i.e. the oscillator strengths
@@ -245,18 +244,18 @@ The standard determination of spectroscopic parameters for solar-type stars
 starts by measuring the EW of selected and well-defined absorption lines. Then
 we translate these measurements into individual line abundances, assuming a
 given atmospheric model. We obtain the correct stellar parameters by imposing
-excitation and ionization balance for the iron species. {\bf This is a classical
-curve-of-growth analysis using Boltzmann's and Saha's equations}
+excitation and ionization balance for the iron species. This is a classical
+curve-of-growth analysis using Boltzmann's and Saha's equations
 \begin{align}
   \frac{N_n}{N} &= \frac{g_n}{u(T)}10^{-\theta \chi_n} \tag*{Boltzmann} \\
   \frac{N_1}{N_0}P_e &= \frac{(2\pi m_e)^{3/2}(kT)^{5/2}}{h^3} \frac{2u_1(T)}{u_0(T)} e^{-I/kT}, \tag*{Saha}
 \end{align}
-{\bf where $N$ is the number of particles per unit volume, $N_n$ is the fraction
-of atoms/ions excited to the $n$th state, $g_n$ is the statistical weight,
+where $N$ is the number of particles per unit volume, $N_n$ is the fraction of
+atoms/ions excited to the $n$th state, $g_n$ is the statistical weight,
 $\theta=5040/T$, $T$ being the temperature, $u(T)$ are the so called partition
 functions, $m_e$ is the electron mass, $P_e$ is the electron pressure and $I$ is
-the ionization potential. More details can be found in e.g \citet{Gray2006}.
-We note that the abundance determination are calculated through the MOOG code.}
+the ionization potential. More details can be found in e.g \citet{Gray2006}. We
+note that the abundance determination are calculated through the MOOG code.
 
 \begin{itemize}
     \item The effective temperature has a strong influence on the correlation
@@ -272,7 +271,8 @@ We note that the abundance determination are calculated through the MOOG code.}
           lines. However, the abundances for weak and strong lines of a certain
           species (in our case iron) should be the same independent of the value
           of $\xi_\mathrm{micro}$. Iron abundances should show no dependence on
-          the reduced EW {\bf ($\log(EW/\lambda)$)}, i.e. the slope of abundance vs. the reduced EW is zero.
+          the reduced EW ($\log(EW/\lambda)$), i.e. the slope of abundance vs.
+          the reduced EW is zero.
 \end{itemize}
 Lastly, we change the input [\ion{Fe}/\ion{H}] to match
 that of the average output [\ion{Fe}/\ion{H}]. Hence we have four criteria to
@@ -289,8 +289,8 @@ minimize simultaneously:
     \item Input and output metallicity should be equal.
 \end{enumerate}
 These criteria are denoted as indicators for the physical parameters we are
-trying to minimize. {\bf The constraints on the first three indicators are
-empirically defined.}
+trying to minimize. The constraints on the first three indicators are
+empirically defined.
 
 \begin{figure}[tpb]
     \centering
@@ -316,10 +316,10 @@ vector function returning a scalar:
     f(\{T_\mathrm{eff}, \log g, [Fe/H], \xi_\mathrm{micro}\}) &= \sqrt{a_\mathrm{EP}^2 + a_\mathrm{RW}^2 + \Delta\ion{Fe}{}^2}. \label{eq:scalar}
 \end{align}
 The minimization routines are also not physical in the sense that they are not
-{\bf written} for the problem. These two disadvantages were an incitement for
-writing a minimization routine {\bf specific} for the problem at hand. {\bf This
-also allow us to minimize the more complicated expression in Equation~\ref{eq:vector}.}
-Here is how it works:
+written for the problem. These two disadvantages were an incitement for writing
+a minimization routine specific for the problem at hand. This also allow us to
+minimize the more complicated expression in Equation~\ref{eq:vector}. Here is
+how it works:
 
 \begin{enumerate}
     \item Run MOOG once with user defined initial parameters (default is
@@ -330,8 +330,8 @@ Here is how it works:
           indicator. A parameter is only changed if it is not fixed.
     \begin{itemize}
         \item $a_\mathrm{EP}$: Indicator for $T_\mathrm{eff}$. If this value
-              is positive, then increase $T_\mathrm{eff}$. {\bf Decrease $T_\mathrm{eff}$
-              if $a_\mathrm{EP}$ is negative.}
+              is positive, then increase $T_\mathrm{eff}$. Decrease
+              $T_\mathrm{eff}$ if $a_\mathrm{EP}$ is negative.
         \item $a_\mathrm{RW}$: Same as above but for $\xi_\mathrm{micro}$.
         \item $\Delta$\ion{Fe}{}: Positive $\Delta$\ion{Fe}{} means $\log g$
               should be decreased and vice versa.
@@ -341,44 +341,44 @@ Here is how it works:
     \item If the new set of parameters have already been used in a previous
           iteration, then change them slightly. This is done by drawing a random
           number from a Gaussian distribution with a mean at the current value
-          and a sigma equal to the absolute value of the indicator. {\bf For $T_\mathrm{eff}$
+          and a sigma equal to the absolute value of the indicator. For $T_\mathrm{eff}$
           the new value would be a random draw from
           $f(x|T_\mathrm{eff,old},a_\mathrm{EP}^2) = \frac{1}{\sqrt{2\pi a_\mathrm{EP}^2 }}e^{-\frac{(x - T_\mathrm{eff,old})^2 } {2 a_\mathrm{EP}^2} }$
           and similar for the other atmospheric parameters using the appropriate
-          indicators.}
+          indicators.
     \item Calculate a new atmospheric model by interpolating a grid of models
           so we have the requested parameters and run MOOG once again.
     \item For each iteration save the parameters used and the quadratic sum of
           the indicators.
-    \item {\bf Check for convergence, i.e. if the indicators are below or equal
-          to the empirical constraints chosen.} If we do not reach convergence,
-          then return the best found parameters. {\bf The best found parameters,
+    \item Check for convergence, i.e. if the indicators are below or equal
+          to the empirical constraints chosen. If we do not reach convergence,
+          then return the best found parameters. The best found parameters,
           when convergence are not reached, are chosen when the quadratic sum
-          of the indicators are smallest.}
+          of the indicators are smallest.
 \end{enumerate}
 This whole process is schematically shown in Figure~\ref{fig:FASMA_general} and
-the minimization routine itself in Figure~\ref{fig:FASMA_minimization}. {\bf by
+the minimization routine itself in Figure~\ref{fig:FASMA_minimization}. by
 minimizing Equation~\ref{eq:vector} rather than Equation~\ref{eq:scalar} we can
 much faster reach convergence, since we know in which direction we must change
-the atmospheric parameters.} The stepping {\bf in parameters} follows these
-simple {\bf empirical} equations{\bf, where we add the right side (sign change
-according to the sign of the indicator) to the left side}:
+the atmospheric parameters. The stepping in parameters follows these simple
+empirical equations, where we add the right side (sign change according to the
+sign of the indicator) to the left side:
 \begin{align}
     T_\mathrm{eff}     &: \SI{2000}{K} \cdot a_\mathrm{EP}   \\
     \xi_\mathrm{micro} &: \SI{1.5}{km/s} \cdot a_\mathrm{RW} \\
     \log g             &: -\Delta\ion{Fe}.
 \end{align}
 The metallicity is corrected at each step so the input metallicity matches that
-of the output metallicity of the previous iteration. The functional form {\bf
-(linear)} for changing the parameters were found by changing one parameter, e.g.
+of the output metallicity of the previous iteration. The functional form
+(linear) for changing the parameters were found by changing one parameter, e.g.
 $T_\mathrm{eff}$, while keeping the other parameters fixed at their convergence
-values {\bf using the Sun as an example}. A linear fit was applied to
-$T_\mathrm{eff} - T_\mathrm{eff,0}$ vs. $a_\mathrm{EP}$ in order to get the
-slope {\bf (\SI{2000}{K} for $T_\mathrm{eff}$)}. Since we ignore all
-interdependencies between the parameters, we lower the slopes found a little and
-arrived to the very simple equations above. {\bf By empirically determining how
-the atmospheric parameters should be changed in each iteration, we are able to
-swiftly reach closer to the convergence value.}
+values using the Sun as an example. A linear fit was applied to $T_\mathrm{eff} -
+T_\mathrm{eff,0}$ vs. $a_\mathrm{EP}$ in order to get the slope (\SI{2000}{K}
+for $T_\mathrm{eff}$). Since we ignore all interdependencies between the
+parameters, we lower the slopes found a little and arrived to the very simple
+equations above. By empirically determining how the atmospheric parameters
+should be changed in each iteration, we are able to swiftly reach closer to the
+convergence value.
 
 The error estimates are based on the same method presented in
 \citet{Gonzalez2000}, which is also described in detail in
@@ -454,13 +454,13 @@ FASMA calculates element abundances for 12 different elements (\ion{Na}{},
 \ion{Ni}{}, \ion{Co}{}, \ion{Sc}{}, \ion{Mn}{}, and \ion{V}{}) from spectral
 lines determined in \citet{Neves2009} and \citet{Adibekyan2012}. It also
 includes three ionized elements: \ion{Cr}{II}, \ion{Sc}{2}, and \ion{Ti}{II}.
-{\bf The abundances are derived using MOOG in the same way as described above
-for \ion{Fe}{}.} The atomic data were calibrated with the Sun as reference and
-solar abundances from \citet{Anders1989}. The EWs are measured automatically
-with the ARES driver of FASMA. The element abundance of each line is derived
-using the atmospheric parameters of the stars obtained from the previous step.
-The final element abundance is calculated from the weighted mean of the
-abundances produced by all lines detected for a given element as described in
+The abundances are derived using MOOG in the same way as described above for
+\ion{Fe}{}. The atomic data were calibrated with the Sun as reference and solar
+abundances from \citet{Anders1989}. The EWs are measured automatically with the
+ARES driver of FASMA. The element abundance of each line is derived using the
+atmospheric parameters of the stars obtained from the previous step. The final
+element abundance is calculated from the weighted mean of the abundances
+produced by all lines detected for a given element as described in
 \citet{Adibekyan2015b}.
 
 
@@ -521,8 +521,8 @@ by FASMA are presented in Table~\ref{tab:FASMATest}.
 
 The comparison is very consistent as expected and the small offsets are within
 the errors except for metallicity. This can be due to different versions of
-MOOG, measured line lists {\bf (i.e. using slightly different settings/version
-of ARES to measure the EWs)}, interpolation of atmosphere grid, and minimization
+MOOG, measured line lists (i.e. using slightly different settings/version of
+ARES to measure the EWs), interpolation of atmosphere grid, and minimization
 routine. Most likely the difference will be due to different used \emph{rejt}
 parameters in ARES, which can alter the EWs systematically and hence the
 metallicity. We therefore randomly selected 20 stars with different
@@ -548,9 +548,9 @@ best results are found when the spectrum is properly reduced (removal of cosmic
 rays, normalized, etc.).
 
 The web interface can be found at the following link
-{\bf \url{http://www.iastro.pt/fasma}}, where more information are
-available on each of the driver. {\bf The user must provide an email. This is
-only used to send the results after the calculations.}
+\url{http://www.iastro.pt/fasma}, where more information are available on each
+of the driver. The user must provide an email. This is only used to send the
+results after the calculations.
 
 
 \section{SWEET-Cat update}
@@ -566,11 +566,11 @@ the spectrographs are presented in Table~\ref{tab:instruments} with the mean SNR
 for the spectra used. The SNR for each star can be seen in
 Table~\ref{tab:results} along with the atmospheric parameters of the stars. The
 SNR is measured automatically by ARES, but we note that ARES smooth the spectra
-before measuring the SNR, hence it is listed higher than the actual SNR.  {\bf
-These 50 stars are confirmed exoplanet hosts listed in SWEET-Cat. However, these
+before measuring the SNR, hence it is listed higher than the actual SNR. These
+50 stars are confirmed exoplanet hosts listed in SWEET-Cat. However, these
 belonged to the list of stars that have not been analysed by our team. We
 therefore increase the amount of stars analyzed in a homogeneous way, which is
-the goal of SWEET-Cat.}
+the goal of SWEET-Cat.
 
 We obtain the spectra with the highest possible resolution for a given
 spectrograph, and in cases with multiple observations, we include all unless a
@@ -619,15 +619,15 @@ Moreover we were not able to successfully derive parameters with this method for
 Aldebaran, a well known red giant star. Even though spectra of good quality are
 available for a bright star like Aldebaran, this spectral type is intrinsically
 difficult to analyse due to the molecular absorption that arise in the optical
-region at low $T_\mathrm{eff}$ {\bf (\SI{4055}{K} is listed in SWEET-Cat as
-measured by \citet{Hatzes2015})}. The fact that we are not able to derive
-parameters for Aldebaran is not a big concern, since it is well studied with
-other techniques, and we can trust the parameters already listed in SWEET-Cat.
+region at low $T_\mathrm{eff}$ (\SI{4055}{K} is listed in SWEET-Cat as measured
+by \citet{Hatzes2015}). The fact that we are not able to derive parameters for
+Aldebaran is not a big concern, since it is well studied with other techniques,
+and we can trust the parameters already listed in SWEET-Cat.
 
-{\bf In total, we removed 16} stars from our sample since the parameters for
+In total, we removed 16 stars from our sample since the parameters for
 these stars did not converge during the minimization procedure. The
-$T_\mathrm{eff}$ for these stars is either too hot{\bf , above \SI{7500}{K}} or
-too cold{\bf , below \SI{4000}{K}} for the EW method to work.
+$T_\mathrm{eff}$ for these stars is either too hot, above \SI{7500}{K} or
+too cold, below \SI{4000}{K} for the EW method to work.
 
 The remaining 50 stars are presented in Table~\ref{tab:results}. Note that we
 apply a correction to the spectroscopic $\log g$ based on asteroseismology as
@@ -635,9 +635,9 @@ found by \citet{Mortier2014}. We only use this correction for FGK dwarf stars,
 i.e. between $\SI{4800}{K}\leq T_\mathrm{eff} \leq \SI{6500}{K}$ and $\log
 g\geq4.2$. For stars with a $\log g$ lower than this limit we do not apply the
 corrections, and if the $\log g$ change to below this limit after the
-correction, we go back to use the spectroscopic $\log g$ again. {\bf The
-correction for $\log g$ depends on both $T_\mathrm{eff}$ and $\log g$. The
-correction can be up to 0.5 dex, depending on the $T_\mathrm{eff}$.}
+correction, we go back to use the spectroscopic $\log g$ again. The correction
+for $\log g$ depends on both $T_\mathrm{eff}$ and $\log g$. The correction can
+be up to 0.5 dex, depending on the $T_\mathrm{eff}$.
 
 We present a Hertzprung-Russel diagram (HRD) of our sample in
 Figure~\ref{fig:HRD}, which is made with a tool for post processing the results
@@ -655,19 +655,19 @@ saved to a table by FASMA.
 \end{figure}
 
 The new atmospheric parameters are presented in Figure~\ref{fig:update} against
-the literature values we listed previously in SWEET-Cat. {\bf The red points
-showing the location of the outliers as discussed below, are mainly visible
-outliers for $\log g$ at the low end, i.e. for the sub-giant to giant stars.}
-The old parameters are listed in Table~\ref{tab:oldSC}. Among 2437 stars
-discovered to be a planet hosts, 21\% of these stars have been analyzed in the
-homogeneous way as described in this work. We note that the limiting factor at
-the moment for increasing the sample of stars analyzed in the homogeneous way is
-the magnitude of the planet hosts. There have been found many planet hosts with
-space missions as \emph{Kepler} and \emph{CoRoT} using the transiting method.
-Most of these stars are faint and thus making them observationally expensive for
-the spectroscopic analysis required here. For stars brighter than magnitude 12
-the completeness, i.e. the stars analyzed in a homogeneous way compared to the
-ones we did not analyze yet, is up to 77\% now while it is at 85\% for exoplanet
+the literature values we listed previously in SWEET-Cat. The red points showing
+the location of the outliers as discussed below, are mainly visible outliers for
+$\log g$ at the low end, i.e. for the sub-giant to giant stars. The old
+parameters are listed in Table~\ref{tab:oldSC}. Among 2437 stars discovered to
+be a planet hosts, 21\% of these stars have been analyzed in the homogeneous way
+as described in this work. We note that the limiting factor at the moment for
+increasing the sample of stars analyzed in the homogeneous way is the magnitude
+of the planet hosts. There have been found many planet hosts with space missions
+as \emph{Kepler} and \emph{CoRoT} using the transiting method. Most of these
+stars are faint and thus making them observationally expensive for the
+spectroscopic analysis required here. For stars brighter than magnitude 12 the
+completeness, i.e. the stars analyzed in a homogeneous way compared to the ones
+we did not analyze yet, is up to 77\% now while it is at 85\% for exoplanet
 hosts brighter than magnitude 10.
 
 \begin{figure*}[tpb]
@@ -676,8 +676,8 @@ hosts brighter than magnitude 10.
     \caption{Atmospheric parameters of the updated planet host stars. The x-axis
     are the previous values in SWEET-Cat (see Table~\ref{tab:oldSC}), while the
     y-axis is the new updated values. In the upper left corner of each of the
-    four plots we show the typical error on the parameters. {\bf The red points
-    are outliers as discussed in Section~\ref{sec:Discussion}.}}
+    four plots we show the typical error on the parameters. The red points
+    are outliers as discussed in Section~\ref{sec:Discussion}.}
     \label{fig:update}
 \end{figure*}
 
@@ -686,11 +686,11 @@ understand e.g. planet formation. We present a distribution in
 Figure~\ref{fig:distribution}. The sample is divided in two, for all planet
 hosts in SWEET-Cat, and for stars brighter than 12 V magnitude. Stars dimmer are
 mainly observed with the \emph{Kepler} space mission. These dim stars are very
-time consuming, and hence expensive to observe. {\bf Out of the 2437 stars in
+time consuming, and hence expensive to observe. Out of the 2437 stars in
 SWEET-Cat, 664 of them are brighter than 12 V magnitude. We note that more than
 1500 of the stars does not have a V magnitude. The majority are stars observed
-with \emph{Kepler}. Our group have analyzed 563 stars in SWEET-Cat including
-the 50 stars presented in this work.}
+with \emph{Kepler}. Our group have analyzed 563 stars in SWEET-Cat including the
+50 stars presented in this work.
 
 
 \begin{figure}[tpb]
@@ -711,13 +711,13 @@ the 50 stars presented in this work.}
 
 \subsection{Discussion}
 \label{sec:Discussion}
-We compute radius and mass of all {\bf the 50 new stars updated in SWEET-Cat}
-(even the ones whose parameters may not be reliable, in order to be complete)
-using the empirical formula presented in \citet{Torres2010}. Some of the stars
-have radius derived from different methods{\bf , usually from isochrones. These
-radii} generally show a good correlation with radii derived from
-\citet{Torres2010} if the literature parameters of $T_\mathrm{eff}$, $\log g$,
-and $[\ion{Fe}/\ion{H}]$ are used. However, if we compare with the new radius
+We compute radius and mass of all the 50 new stars updated in SWEET-Cat (even
+the ones whose parameters may not be reliable, in order to be complete) using
+the empirical formula presented in \citet{Torres2010}. Some of the stars have
+radius derived from different methods, usually from isochrones. These radii
+generally show a good correlation with radii derived from \citet{Torres2010} if
+the literature parameters of $T_\mathrm{eff}$, $\log g$, and
+$[\ion{Fe}/\ion{H}]$ are used. However, if we compare with the new radius
 derived using the parameters presented here, the results can differ up to 65\%.
 We show in Figure~\ref{fig:RR} how the radius calculated from \citet{Torres2010}
 differ between the literature atmospheric parameters and the new homogeneous
@@ -737,16 +737,16 @@ above, rather than compare the stellar radii from different methods.
     \label{fig:RR}
 \end{figure}
 
-{\bf In the subsections below} we discuss the systems (seven stars, eight
-exoplanets) where the radius or mass of the stars changes more then 25\% and how
-this influences the planetary parameters. The changes in radius for a star is
+In the subsections below we discuss the systems (seven stars, eight exoplanets)
+where the radius or mass of the stars changes more then 25\% and how this
+influences the planetary parameters. The changes in radius for a star is
 primarily due to changes in $\log g$, which can be used as an indicator of the
 evolutionary stage of a star.
 
 We rederive the planetary radius, mass and semi-major axis when possible
-following the three simple {\bf scaling relations based on Newton's law of
-gravity \citep{Newton1687} for deriving mass and distance and simple geometry
-for radius \citep[see e.g.][]{Torres2008}.}:
+following the three simple scaling relations based on Newton's law of gravity
+\citep{Newton1687} for deriving mass and distance and simple geometry for radius
+\citep[see e.g.][]{Torres2008}.:
 
 \begin{align}
     M_\mathrm{pl,new} &= \left(\frac{M_\mathrm{\ast,lit}}{M_\mathrm{\ast,new}}\right)^{-2/3} M_\mathrm{pl,lit}  \\
@@ -953,16 +953,15 @@ parameters are available for the public in an easy accessible form at
 \url{https://www.astro.up.pt/resources/sweet-cat/} which is continuously
 updated. The importance of the homogeneous analysis which we keep striving for
 is shown in Figure~\ref{fig:RR} where we see quite different derived stellar
-radii when the atmospheric parameters comes from different methods. {\bf Even
-using the same method, but with different setup (different line list,
-minimization routine, atmospheric models, etc.) we can arrive to different
-results. This again shows the importance of analyzing the stars in a homogeneous
-way.} As have been discussed in Section~\ref{sec:Discussion} this has a direct
-impact on the planetary parameters. It is of great importance to know the
-planetary parameters very well, both for individual systems but also for an
-ensemble. With accurate and precise planetary parameters we will be able to
-distinguish the different possible composition, let it be gas giant, water
-worlds, or rocky planets.
+radii when the atmospheric parameters comes from different methods. Even using
+the same method, but with different setup (different line list, minimization
+routine, atmospheric models, etc.) we can arrive to different results. This
+again shows the importance of analyzing the stars in a homogeneous way. As have
+been discussed in Section~\ref{sec:Discussion} this has a direct impact on the
+planetary parameters. It is of great importance to know the planetary parameters
+very well, both for individual systems but also for an ensemble. With accurate
+and precise planetary parameters we will be able to distinguish the different
+possible composition, let it be gas giant, water worlds, or rocky planets.
 
 Finally we also provide an online tool to derive the stellar atmospheric
 parameters using FASMA. We recommend to only use this tool for spectra and stars
