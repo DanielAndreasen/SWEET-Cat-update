@@ -39,7 +39,7 @@ HD 97658,5219,54,4.53,0.10,-0.28,0.04,0.78,0.11,4.60,0.10,4.73,0.10,True,False,F
 HD 87883,4917,68,4.34,0.19,0.02,0.03,0.46,0.21,4.53,0.19,4.68,0.19,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HIP 107773,4957,49,2.83,0.09,0.04,0.04,1.49,0.05,3.00,0.09,3.15,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HIP 11915,5770,14,4.47,0.03,-0.06,0.01,0.95,0.02,4.33,0.03,4.42,0.03,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
-HIP 116454,5038,82,4.39,0.18,-0.12,0.04,0.74,0.15,4.53,0.18,4.68,0.18,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+HIP 116454,5042,72,4.55,0.15,-0.16,0.03,0.71,0.17,4.69,0.15,4.84,0.15,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 HR 228,5042,42,3.30,0.09,0.07,0.03,1.14,0.04,3.44,0.09,3.59,0.09,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 KELT-6,6246,88,4.22,0.09,-0.22,0.06,1.66,0.13,3.89,0.10,3.96,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 Kepler-37,5378,53,4.46,0.12,-0.23,0.04,0.58,0.13,4.47,0.12,4.59,0.12,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
@@ -63,6 +63,8 @@ WASP-75,6203,46,4.42,0.22,0.24,0.03,1.45,0.06,4.11,0.22,4.18,0.22,True,False,Fal
 WASP-76,6347,52,4.29,0.08,0.36,0.04,1.73,0.06,3.92,0.08,3.98,0.08,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-82,6563,55,4.29,0.10,0.18,0.04,1.93,0.08,3.84,0.10,3.88,0.10,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-88,6450,61,4.24,0.06,0.03,0.04,1.79,0.09,3.83,0.06,3.88,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+WASP-94 A,6259,34,4.34,0.07,0.35,0.03,1.50,0.04,4.01,0.07,4.07,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
+WASP-94 B,6137,21,4.42,0.05,0.33,0.02,1.29,0.03,4.13,0.05,4.21,0.05,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-95,5799,31,4.29,0.05,0.22,0.03,1.18,0.04,4.13,0.05,4.23,0.05,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-97,5723,52,4.37,0.07,0.31,0.04,1.03,0.08,4.24,0.07,4.34,0.07,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
 WASP-99,6324,89,4.70,0.11,0.27,0.06,1.83,0.12,4.34,0.12,4.40,0.12,True,False,False,False,False,allOnce,null,kurucz95,True,0.0003,0.001,0.0033
