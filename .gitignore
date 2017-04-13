@@ -7,6 +7,9 @@ figures/mass_radius
 printer.pdf
 referee.pdf
 reply*
+arxiv*
+copyright.pdf
+AA.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
